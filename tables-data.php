@@ -1,3 +1,14 @@
+<?php
+include_once "..\HRIS\Model\db-manager.php";
+
+$database = new DB_Manager();
+
+$get_employee = $database->get_all();
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +16,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Forms / Elements - NiceAdmin Bootstrap Template</title>
+  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -25,6 +36,7 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="assets/vendor/datatable/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -35,6 +47,21 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <!-- CDN dataTable with URL: https://github.com/fiduswriter/Simple-DataTables -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script> -->
+  <!-- <script>
+    const dataTable = new simpleDatatables.DataTable("datatable")
+  </script> -->
+
+  <!-- Datatable CSS Files -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/select/1.5.0/css/select.dataTables.min.css">
+
+  <!-- Jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 
 <body>
@@ -280,7 +307,7 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -356,19 +383,19 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Components Nav -->
+      </li>End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="forms-elements.html" class="active">
+            <a href="forms-elements.php">
               <i class="bi bi-circle"></i><span>Form Elements</span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="forms-layouts.html">
               <i class="bi bi-circle"></i><span>Form Layouts</span>
             </a>
@@ -382,29 +409,29 @@
             <a href="forms-validation.html">
               <i class="bi bi-circle"></i><span>Form Validation</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </li><!-- End Forms Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
+        <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <!-- <li>
             <a href="tables-general.html">
               <i class="bi bi-circle"></i><span>General Tables</span>
             </a>
-          </li>
+          </li> -->
           <li>
-            <a href="tables-data.html">
+            <a href="tables-data.html" class="active">
               <i class="bi bi-circle"></i><span>Data Tables</span>
             </a>
           </li>
         </ul>
       </li><!-- End Tables Nav -->
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -425,9 +452,9 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Charts Nav -->
+      </li>End Charts Nav -->
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -448,7 +475,7 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Icons Nav -->
+      </li>End Icons Nav -->
 
       <li class="nav-heading">Pages</li>
 
@@ -506,295 +533,147 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-
     <div class="pagetitle">
-      <h1>Form Elements</h1>
+      <h1>Data Tables</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Forms</li>
-          <li class="breadcrumb-item active">Elements</li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
         </ol>
       </nav>
-    </div><!-- End Page Title -->
-
+    </div>
     <section class="section">
       <div class="row">
-        <div class="col-lg-6">
-
+        <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">General Form Elements</h5>
-
-              <!-- General Form Elements -->
-              <form>
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">Text</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control">
+              <h5 class="card-title">Datatables</h5>
+              <div class="card-body">
+                <a href="forms-elements.php"><button type="button" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i></button></a>
+                <a href="forms-elements.php"><button type="button" class="btn btn-secondary"><i class="bi bi-pencil-square"></i></button></a>
+                <button type="button" class="btn btn-danger"><i class="bi bi-trash2-fill"></i></button>
+              </div>
+              <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                <!-- <div class="dataTable-top">
+                  <div class="dataTable-dropdown"><label><select class="dataTable-selector">
+                        <option value="5">5</option>
+                        <option value="10" selected="">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                      </select> entries per page</label></div>
+                  <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..." type="text">
                   </div>
+                </div> -->
+                <div class="dataTable-container">
+                  <table id="emp_table" class="table" style="width: 100%">
+                    <thead>
+                      <tr>
+                        <th style="width: 3%">#</th>
+                        <th style="width: 20%">Full Name</th>
+                        <th style="width: 20%">Position</th>
+                        <th style="width: 20%">Email</th>
+                        <th style="width: 5%">Region</th>
+                        <th style="width: 20%">UID</th>
+                        <th style="width: 3%">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- <tr>
+                        <td>0</td>
+                        <td>Administrator</td>
+                        <td>Administrator</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td style="font-weight: bold; color: rgb(0, 200, 0);">Active</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>Kevin Chan</td>
+                        <td>Store Manager</td>
+                        <td>Row 1 Data 2</td>
+                        <td>Row 1 Data 1</td>
+                        <td style="font-weight: bold; color: rgb(0, 200, 0);">Active</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Steve Jobs</td>
+                        <td>Executive Director</td>
+                        <td>Row 1 Data 2</td>
+                        <td>Row 1 Data 1</td>
+                        <td style="font-weight: bold; color: red;">Inactive</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Elon Musk</td>
+                        <td>Operation Manager</td>
+                        <td>Row 1 Data 2</td>
+                        <td>Row 1 Data 1</td>
+                        <td style="font-weight: bold; color: rgb(0, 200, 0);">Active</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Mike</td>
+                        <td>Accountant</td>
+                        <td>Row 1 Data 2</td>
+                        <td>Row 1 Data 1</td>
+                        <td style="font-weight: bold; color: rgb(0, 200, 0);">Active</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>Elton Chan</td>
+                        <td>Bartender</td>
+                        <td>Row 1 Data 2</td>
+                        <td>Row 1 Data 1</td>
+                        <td style="font-weight: bold; color: rgb(0, 200, 0);">Active</td>
+                      </tr>
+                      </tr> -->
+                      <?php foreach ($get_employee as $employee) : ?>
+                        <tr>
+                          <td><?= $employee['id'] ?></td>
+                          <td><?= $employee['first name'] . ' ' . $employee['last name'] ?></td>
+                          <td><?= $employee['position'] ?></td>
+                          <td><?= $employee['email'] ?></td>
+                          <td><?= $employee['region'] ?></td>
+                          <td><?= $employee['UID'] ?></td>
+                          <td style="font-weight: bold; color: <?php if ($employee['status'] == 'Inactive') {
+                                                                  echo 'red;';
+                                                                } else {
+                                                                  echo 'rgb(0, 200, 0);';
+                                                                } ?> "> <?= $employee['status']; ?></td>
+                        </tr>
+                      <?php endforeach ?>
+                    </tbody>
+                  </table>
                 </div>
-                <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
-                  <div class="col-sm-10">
-                    <input type="number" class="form-control">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="file" id="formFile">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
-                  <div class="col-sm-10">
-                    <input type="date" class="form-control">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputTime" class="col-sm-2 col-form-label">Time</label>
-                  <div class="col-sm-10">
-                    <input type="time" class="form-control">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="inputColor" class="col-sm-2 col-form-label">Color Picker</label>
-                  <div class="col-sm-10">
-                    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#4154f1" title="Choose your color">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Textarea</label>
-                  <div class="col-sm-10">
-                    <textarea class="form-control" style="height: 100px"></textarea>
-                  </div>
-                </div>
-                <fieldset class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                  <div class="col-sm-10">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                      <label class="form-check-label" for="gridRadios1">
-                        First radio
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                      <label class="form-check-label" for="gridRadios2">
-                        Second radio
-                      </label>
-                    </div>
-                    <div class="form-check disabled">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios" value="option" disabled>
-                      <label class="form-check-label" for="gridRadios3">
-                        Third disabled radio
-                      </label>
-                    </div>
-                  </div>
-                </fieldset>
-                <div class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">Checkboxes</legend>
-                  <div class="col-sm-10">
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="gridCheck1">
-                      <label class="form-check-label" for="gridCheck1">
-                        Example checkbox
-                      </label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="gridCheck2" checked>
-                      <label class="form-check-label" for="gridCheck2">
-                        Example checkbox 2
-                      </label>
-                    </div>
-
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Disabled</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" value="Read only / Disabled" disabled>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Select</label>
-                  <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Open this select menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Multi Select</label>
-                  <div class="col-sm-10">
-                    <select class="form-select" multiple aria-label="multiple select example">
-                      <option selected>Open this select menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Submit Button</label>
-                  <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Submit Form</button>
-                  </div>
-                </div>
-
-              </form><!-- End General Form Elements -->
+                <!-- <div class=" dataTable-bottom">
+                            <div class="dataTable-info">Showing 1 to 5 of 5 entries</div>
+                            <nav class="dataTable-pagination">
+                              <ul class="dataTable-pagination-list"></ul>
+                            </nav>
+                </div> -->
+              </div>
 
             </div>
           </div>
-
-        </div>
-
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Advanced Form Elements</h5>
-
-              <!-- Advanced Form Elements -->
-              <form>
-                <div class="row mb-5">
-                  <label class="col-sm-2 col-form-label">Switches</label>
-                  <div class="col-sm-10">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                      <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
-                      <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch checkbox input</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-                      <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-5">
-                  <label class="col-sm-2 col-form-label">Ranges</label>
-                  <div class="col-sm-10">
-                    <div>
-                      <label for="customRange1" class="form-label">Example range</label>
-                      <input type="range" class="form-range" id="customRange1">
-                    </div>
-                    <div>
-                      <label for="disabledRange" class="form-label">Disabled range</label>
-                      <input type="range" class="form-range" id="disabledRange" disabled>
-                    </div>
-                    <div>
-                      <label for="customRange2" class="form-label">Min and max with steps</label>
-                      <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange2">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Floating labels</label>
-                  <div class="col-sm-10">
-                    <div class="form-floating mb-3">
-                      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                      <label for="floatingInput">Email address</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                      <label for="floatingPassword">Password</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px;"></textarea>
-                      <label for="floatingTextarea">Comments</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                      <label for="floatingSelect">Works with selects</label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-5">
-                  <label class="col-sm-2 col-form-label">Input groups</label>
-                  <div class="col-sm-10">
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="basic-addon1">@</span>
-                      <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                      <span class="input-group-text" id="basic-addon2">@example.com</span>
-                    </div>
-
-                    <label for="basic-url" class="form-label">Your vanity URL</label>
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-                      <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <span class="input-group-text">$</span>
-                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                      <span class="input-group-text">.00</span>
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-                      <span class="input-group-text">@</span>
-                      <input type="text" class="form-control" placeholder="Server" aria-label="Server">
-                    </div>
-
-                    <div class="input-group">
-                      <span class="input-group-text">With textarea</span>
-                      <textarea class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                  </div>
-                </div>
-
-              </form><!-- End General Form Elements -->
-
-            </div>
-          </div>
-
         </div>
       </div>
+      </div>
     </section>
+  </main>
 
-  </main><!-- End #main -->
+
+
+  <!-- <main id="main" class="main">
+    <p class="text-center p-5">
+      This page is only available in the pro version! <a
+        href="https://bootstrapmade.com/demo/templates/NiceAdmin/tables-data.html" target="_blank">Preview the page
+        online</a> | <a href="https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/#download"
+        target="_blank">Buy the pro version</a>
+    </p>
+  </main> -->
+  <!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
@@ -821,10 +700,50 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/datatable/datatable.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <!-- Datable CDN -->
+  <!-- Includes responsive javascript -->
+  <!-- Includes select javascript -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#emp_table').DataTable({
+        responsive: true,
+        columnDefs: [{
+            responsivePriority: 1,
+            targets: 0
+          },
+          {
+            responsivePriority: 2,
+            targets: -1
+          }
+        ],
+        select: true
+      });
+
+      var table = document.getElementById("emp_table"),
+        rIndex;
+
+      // table rows
+      for (var i = 1; i < table.rows.length; i++) {
+        // row cells
+        // for (var j = 0; j < table.rows[i].cells.length; j++) {
+        table.rows[i].onclick = function() {
+          rIndex = this.rowIndex;
+          // cIndex = this.cellIndex + 1;
+          // console.log("Row : " + rIndex + " , Cell : " + cIndex);
+          console.log("Row : " + rIndex);
+        };
+        // }
+      }
+    })
+  </script>
 </body>
 
 </html>
