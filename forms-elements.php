@@ -1,11 +1,11 @@
 <?php
-include_once "..\HRIS\Model\db-manager.php";
+include_once "../HRIS/Model/db-manager.php";
+include_once "../HRIS/Controller/employee-controller.php";
 
 $database = new DB_Manager();
 
 $get_employee = $database->get_all();
 
-session_start();
 
 ?>
 
@@ -46,6 +46,9 @@ session_start();
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <!-- Jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 
 <body>
@@ -379,41 +382,23 @@ session_start();
               <i class="bi bi-circle"></i><span>Form Elements</span>
             </a>
           </li>
-          <!-- <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Form Layouts</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-editors.html">
-              <i class="bi bi-circle"></i><span>Form Editors</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-validation.html">
-              <i class="bi bi-circle"></i><span>Form Validation</span>
-            </a>
-          </li> -->
         </ul>
-      </li><!-- End Forms Nav -->
+      </li>
+      <!-- End Forms Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <!-- <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>General Tables</span>
-            </a>
-          </li> -->
           <li>
             <a href="tables-data.php">
               <i class="bi bi-circle"></i><span>Data Tables</span>
             </a>
           </li>
         </ul>
-      </li><!-- End Tables Nav -->
+      </li>
+      <!-- End Tables Nav -->
 
       <!-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
@@ -529,45 +514,64 @@ session_start();
       </nav>
     </div><!-- End Page Title -->
 
+    <!-- Alert boxes -->
+    <?php if (isset($_SESSION['success']) == true) { ?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert-success">
+        <i class="bi bi-check-circle me-1"></i>
+        Congratulation! A new employee has been created!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php } ?>
+
+    <?php if (isset($_SESSION['valid']) == true) { ?>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert-danger">
+        <i class="bi bi-exclamation-octagon me-1"></i>
+        The SIN number already exists!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php }
+    session_unset(); ?>
+
+    <!-- Section with all the inputs -->
     <section class="section">
-      <div class="row">
-        <div class="col-lg-6">
+      <form action="#" method="post">
+        <div class="row">
+          <div class="col-lg-6">
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">General Form Elements</h5>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Personal Informations</h5>
 
-              <!-- General Form Elements -->
-              <form>
+                <!-- General Form Elements -->
                 <div class="row mb-3">
                   <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputFirstName" required>
+                    <input type="text" class="form-control" id="inputFirstName" required name="firstname">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputLastName" required>
+                    <input type="text" class="form-control" id="inputLastName" required name="lastname">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputDob" class="col-sm-3 col-form-label">Date of birth</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="inputDob" required>
+                    <input type="date" class="form-control" id="inputDob" required name="dob">
                   </div>
                 </div>
                 <fieldset class="row mb-3">
                   <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
                   <div class="col-sm-9">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" required>
+                      <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="male" required>
                       <label class="form-check-label" for="gridRadios1">
                         Male
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" required>
+                      <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="female" required>
                       <label class="form-check-label" for="gridRadios2">
                         Female
                       </label>
@@ -577,160 +581,90 @@ session_start();
                 <div class="row mb-3">
                   <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required name="address">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputAddress2" class="col-sm-3 col-form-label">Address 2</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="address2">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputCity" class="col-sm-3 col-form-label">City</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputCity" required>
+                    <input type="text" class="form-control" id="inputCity" required name="city">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputProvince" class="col-sm-3 col-form-label">Province</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputProvince" required>
+                    <input type="text" class="form-control" id="inputProvince" required name="province">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputCountry" class="col-sm-3 col-form-label">Country</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputCountry" required>
+                    <select id="inputPayclass" class="form-select" name="country">
+                      <option selected required></option>
+                      <option>Canada</option>
+                      <option>United-States</option>
+                    </select>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputZip" class="col-sm-3 col-form-label">Zip/Postal Code</label>
-                  <div class="col-sm-2">
-                    <input type="text" class="form-control" id="inputZip" maxlength="6" required>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputZip" maxlength="7" required pattern="[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
                   <div class="col-sm-9">
-                    <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" required>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" required name="email">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputMobile" class="col-sm-3 col-form-label">Mobile Phone</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputMobile" placeholder="e.g. 999-999-9999" maxlength="12">
+                  <div class="col-sm-9">
+                    <input type="tel" class="form-control" id="inputMobile" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="mobile" oninvalid="this.setCustomValidity('e.g. 888-888-888')" oninput="this.setCustomValidity('')">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputHome" class="col-sm-3 col-form-label">Homephone</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputHome" placeholder="e.g. 999-999-9999" maxlength="12">
+                  <div class="col-sm-9">
+                    <input type="tel" class="form-control" id="inputHome" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="home" oninvalid="this.setCustomValidity('e.g. 888-888-8888')" oninput="this.setCustomValidity('')">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputSin" class="col-sm-3 col-form-label">SIN</label>
-                  <div class="col-sm-4">
-                    <input type="number_format" class="form-control" id="inputSin" maxlength="9" required>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputSin" required maxlength="9" pattern="[0-9]{9}" name="sin" oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')">
                   </div>
                 </div>
 
-                <!-- <div class="row mb-3">
-                  <label for="inputTime" class="col-sm-2 col-form-label">Time</label>
-                  <div class="col-sm-9">
-                    <input type="time" class="form-control">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputColor" class="col-sm-2 col-form-label">Color Picker</label>
-                  <div class="col-sm-9">
-                    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#4154f1" title="Choose your color">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Textarea</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" style="height: 90px"></textarea>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">Checkboxes</legend>
-                  <div class="col-sm-9">
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="gridCheck1">
-                      <label class="form-check-label" for="gridCheck1">
-                        Example checkbox
-                      </label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="gridCheck2" checked>
-                      <label class="form-check-label" for="gridCheck2">
-                        Example checkbox 2
-                      </label>
-                    </div>
-
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Disabled</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" value="Read only / Disabled" disabled>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Select</label>
-                  <div class="col-sm-9">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Open this select menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Multi Select</label>
-                  <div class="col-sm-9">
-                    <select class="form-select" multiple aria-label="multiple select example">
-                      <option selected>Open this select menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                  </div>
-                </div> -->
-              </form><!-- End General Form Elements -->
-
+                <!-- End General Form Elements -->
+              </div>
             </div>
           </div>
 
-        </div>
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Other Informations</h5>
 
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Advanced Form Elements</h5>
-
-              <!-- Advanced Form Elements -->
-              <form>
+                <!-- Advanced Form Elements -->
                 <div class="row mb-3">
                   <label for="inputPosition" class="col-sm-3 col-form-label">Hired position</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputPosition">
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputPosition" name="position">
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputPosition" class="col-sm-3 col-form-label">Hired position</label>
-                  <div class="col-sm-4">
-                    <select id="inputState" class="form-select">
-                      <option selected>Choose...</option>
+                  <label for="inputPayclass" class="col-sm-3 col-form-label">Pay Class</label>
+                  <div class="col-sm-9">
+                    <select id="inputPayclass" class="form-select" name="payclass">
+                      <option selected></option>
                       <option>Hourly</option>
                       <option>Salary</option>
                     </select>
@@ -738,127 +672,30 @@ session_start();
                 </div>
                 <div class="row mb-3">
                   <label for="inputSupervisor" class="col-sm-3 col-form-label">Supervisor</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputSupervisor">
-                  </div>
-                </div>
-                <!-- <div class="row mb-5">
-                  <label class="col-sm-2 col-form-label">Switches</label>
                   <div class="col-sm-9">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                      <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
-                      <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch checkbox input</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-                      <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
-                    </div>
+                    <input type="text" class="form-control" id="inputSupervisor" name="supervisor">
                   </div>
                 </div>
-
-                <div class="row mb-5">
-                  <label class="col-sm-2 col-form-label">Ranges</label>
-                  <div class="col-sm-9">
-                    <div>
-                      <label for="customRange1" class="form-label">Example range</label>
-                      <input type="range" class="form-range" id="customRange1">
-                    </div>
-                    <div>
-                      <label for="disabledRange" class="form-label">Disabled range</label>
-                      <input type="range" class="form-range" id="disabledRange" disabled>
-                    </div>
-                    <div>
-                      <label for="customRange2" class="form-label">Min and max with steps</label>
-                      <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange2">
-                    </div>
-                  </div>
-                </div>
-
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Floating labels</label>
+                  <label for="inputRegion" class="col-sm-3 col-form-label">Region</label>
                   <div class="col-sm-9">
-                    <div class="form-floating mb-3">
-                      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                      <label for="floatingInput">Email address</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                      <label for="floatingPassword">Password</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 90px;"></textarea>
-                      <label for="floatingTextarea">Comments</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                      <label for="floatingSelect">Works with selects</label>
-                    </div>
+                    <input type="text" class="form-control" id="inputRegion" name="region">
                   </div>
                 </div>
-
-                <div class="row mb-5">
-                  <label class="col-sm-2 col-form-label">Input groups</label>
-                  <div class="col-sm-9">
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="basic-addon1">@</span>
-                      <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                      <span class="input-group-text" id="basic-addon2">@example.com</span>
-                    </div>
-
-                    <label for="basic-url" class="form-label">Your vanity URL</label>
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-                      <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <span class="input-group-text">$</span>
-                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                      <span class="input-group-text">.00</span>
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-                      <span class="input-group-text">@</span>
-                      <input type="text" class="form-control" placeholder="Server" aria-label="Server">
-                    </div>
-
-                    <div class="input-group">
-                      <span class="input-group-text">With textarea</span>
-                      <textarea class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                  </div>
-                </div> -->
                 <div class="row mb-3">
                   <label class="col-sm-3 col-form-label"></label>
                   <div class="col-sm-9">
-                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Submit Form</button>
                   </div>
                 </div>
-              </form><!-- End General Form Elements -->
 
+                <!-- End Advanced Form Elements -->
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
-      </div>
+      </form>
     </section>
 
   </main><!-- End #main -->
@@ -892,6 +729,19 @@ session_start();
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <!-- Function for closing the alert after 3 seconds -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+      $("#alert-danger").fadeTo(3000, 1).slideUp(1000, function() {
+        $("#alert-danger").alert('close');
+      });
+
+      $("#alert-success").fadeTo(3000, 1).slideUp(1000, function() {
+        $("#alert-success").alert('close');
+      });
+    });
+  </script>
 </body>
 
 </html>

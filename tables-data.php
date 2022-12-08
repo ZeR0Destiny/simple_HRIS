@@ -1,11 +1,9 @@
 <?php
-include_once "..\HRIS\Model\db-manager.php";
+include_once "../HRIS/Model/db-manager.php";
 
 $database = new DB_Manager();
 
 $get_employee = $database->get_all();
-
-session_start();
 
 ?>
 
@@ -36,7 +34,6 @@ session_start();
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <link href="assets/vendor/datatable/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -47,13 +44,6 @@ session_start();
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-
-  <!-- CDN dataTable with URL: https://github.com/fiduswriter/Simple-DataTables -->
-  <!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
-  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script> -->
-  <!-- <script>
-    const dataTable = new simpleDatatables.DataTable("datatable")
-  </script> -->
 
   <!-- Datatable CSS Files -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
@@ -307,84 +297,6 @@ session_start();
         </a>
       </li><!-- End Dashboard Nav -->
 
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Alerts</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span>Accordion</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-badges.html">
-              <i class="bi bi-circle"></i><span>Badges</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle"></i><span>Breadcrumbs</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-buttons.html">
-              <i class="bi bi-circle"></i><span>Buttons</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-cards.html">
-              <i class="bi bi-circle"></i><span>Cards</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-carousel.html">
-              <i class="bi bi-circle"></i><span>Carousel</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-list-group.html">
-              <i class="bi bi-circle"></i><span>List group</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-modal.html">
-              <i class="bi bi-circle"></i><span>Modal</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-tabs.html">
-              <i class="bi bi-circle"></i><span>Tabs</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-pagination.html">
-              <i class="bi bi-circle"></i><span>Pagination</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-progress.html">
-              <i class="bi bi-circle"></i><span>Progress</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-spinners.html">
-              <i class="bi bi-circle"></i><span>Spinners</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-tooltips.html">
-              <i class="bi bi-circle"></i><span>Tooltips</span>
-            </a>
-          </li>
-        </ul>
-      </li>End Components Nav -->
-
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -395,21 +307,6 @@ session_start();
               <i class="bi bi-circle"></i><span>Form Elements</span>
             </a>
           </li>
-          <!-- <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Form Layouts</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-editors.html">
-              <i class="bi bi-circle"></i><span>Form Editors</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-validation.html">
-              <i class="bi bi-circle"></i><span>Form Validation</span>
-            </a>
-          </li> -->
         </ul>
       </li><!-- End Forms Nav -->
 
@@ -418,64 +315,13 @@ session_start();
           <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-          <!-- <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>General Tables</span>
-            </a>
-          </li> -->
           <li>
-            <a href="tables-data.html" class="active">
+            <a href="tables-data.php" class="active">
               <i class="bi bi-circle"></i><span>Data Tables</span>
             </a>
           </li>
         </ul>
       </li><!-- End Tables Nav -->
-
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="charts-chartjs.html">
-              <i class="bi bi-circle"></i><span>Chart.js</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-apexcharts.html">
-              <i class="bi bi-circle"></i><span>ApexCharts</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-echarts.html">
-              <i class="bi bi-circle"></i><span>ECharts</span>
-            </a>
-          </li>
-        </ul>
-      </li>End Charts Nav -->
-
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="icons-bootstrap.html">
-              <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-remix.html">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-boxicons.html">
-              <i class="bi bi-circle"></i><span>Boxicons</span>
-            </a>
-          </li>
-        </ul>
-      </li>End Icons Nav -->
 
       <li class="nav-heading">Pages</li>
 
@@ -555,106 +401,39 @@ session_start();
                 <button type="button" class="btn btn-danger"><i class="bi bi-trash2-fill"></i></button>
               </div>
               <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-                <!-- <div class="dataTable-top">
-                  <div class="dataTable-dropdown"><label><select class="dataTable-selector">
-                        <option value="5">5</option>
-                        <option value="10" selected="">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
-                      </select> entries per page</label></div>
-                  <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..." type="text">
-                  </div>
-                </div> -->
                 <div class="dataTable-container">
                   <table id="emp_table" class="table" style="width: 100%">
                     <thead>
                       <tr>
                         <th style="width: 3%">#</th>
                         <th style="width: 20%">Full Name</th>
-                        <th style="width: 20%">Position</th>
                         <th style="width: 20%">Email</th>
-                        <th style="width: 5%">Region</th>
                         <th style="width: 20%">UID</th>
+                        <th style="width: 20%">Position</th>
+                        <th style="width: 5%">Region</th>
                         <th style="width: 3%">Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <!-- <tr>
-                        <td>0</td>
-                        <td>Administrator</td>
-                        <td>Administrator</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td style="font-weight: bold; color: rgb(0, 200, 0);">Active</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>Kevin Chan</td>
-                        <td>Store Manager</td>
-                        <td>Row 1 Data 2</td>
-                        <td>Row 1 Data 1</td>
-                        <td style="font-weight: bold; color: rgb(0, 200, 0);">Active</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Steve Jobs</td>
-                        <td>Executive Director</td>
-                        <td>Row 1 Data 2</td>
-                        <td>Row 1 Data 1</td>
-                        <td style="font-weight: bold; color: red;">Inactive</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Elon Musk</td>
-                        <td>Operation Manager</td>
-                        <td>Row 1 Data 2</td>
-                        <td>Row 1 Data 1</td>
-                        <td style="font-weight: bold; color: rgb(0, 200, 0);">Active</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Mike</td>
-                        <td>Accountant</td>
-                        <td>Row 1 Data 2</td>
-                        <td>Row 1 Data 1</td>
-                        <td style="font-weight: bold; color: rgb(0, 200, 0);">Active</td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>Elton Chan</td>
-                        <td>Bartender</td>
-                        <td>Row 1 Data 2</td>
-                        <td>Row 1 Data 1</td>
-                        <td style="font-weight: bold; color: rgb(0, 200, 0);">Active</td>
-                      </tr>
-                      </tr> -->
                       <?php foreach ($get_employee as $employee) : ?>
                         <tr>
                           <td><?= $employee['id'] ?></td>
-                          <td><?= $employee['first name'] . ' ' . $employee['last name'] ?></td>
-                          <td><?= $employee['position'] ?></td>
+                          <td><?= $employee['firstname'] . ' ' . $employee['lastname'] ?></td>
                           <td><?= $employee['email'] ?></td>
-                          <td><?= $employee['region'] ?></td>
                           <td><?= $employee['UID'] ?></td>
-                          <td style="font-weight: bold; color: <?php if ($employee['status'] == 'Inactive') {
-                                                                  echo 'red;';
-                                                                } else {
-                                                                  echo 'rgb(0, 200, 0);';
-                                                                } ?> "> <?= $employee['status']; ?></td>
+                          <td><?= $employee['position'] ?></td>
+                          <td><?= $employee['region'] ?></td>
+                          <td> <span class="badge <?php if ($employee['status'] == 'Inactive') {
+                                                    echo 'bg-danger';
+                                                  } else {
+                                                    echo 'bg-success';
+                                                  } ?>"><?= $employee['status']; ?></span></td>
                         </tr>
                       <?php endforeach ?>
                     </tbody>
                   </table>
                 </div>
-                <!-- <div class=" dataTable-bottom">
-                            <div class="dataTable-info">Showing 1 to 5 of 5 entries</div>
-                            <nav class="dataTable-pagination">
-                              <ul class="dataTable-pagination-list"></ul>
-                            </nav>
-                </div> -->
               </div>
-
             </div>
           </div>
         </div>
@@ -700,7 +479,6 @@ session_start();
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/datatable/datatable.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>

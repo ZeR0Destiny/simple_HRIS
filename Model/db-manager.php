@@ -24,6 +24,7 @@ class DB_Manager
         }
     }
 
+    // Function to select all the employee from the table
     public function get_all()
     {
         $query = $this->db->query("SELECT * FROM employee");
@@ -32,7 +33,52 @@ class DB_Manager
         return $array;
     }
 
-    public function get_one()
+    // Function to insert a new employee to the table
+    public function add_employee($employee)
+    {
+        $query = $this->db->prepare("INSERT INTO employee 
+        VALUES (DEFAULT, :firstname, :lastname, :gender, :birthdate, :address, 
+        :city, :province, :country, :postalcode, :email, :mobile, :homephone, :SIN, :UID, 
+        :position, :payclass, :supervisor, DEFAULT, DEFAULT, :region)");
+
+        $query->execute(array(
+            "firstname" => $employee->getFirstname(),
+            "lastname" => $employee->getLastname(),
+            "gender" => $employee->getGender(),
+            "birthdate" => $employee->getBirthdate(),
+            "address" => $employee->getAddress(),
+            "city" => $employee->getCity(),
+            "province" => $employee->getProvince(),
+            "country" => $employee->getCountry(),
+            "postalcode" => $employee->getPostalcode(),
+            "email" => $employee->getEmail(),
+            "mobile" => $employee->getMobile(),
+            "homephone" => $employee->getHomephone(),
+            "SIN" => $employee->getSin(),
+            "UID" => $employee->getUID(),
+            "position" => $employee->getPosition(),
+            "payclass" => $employee->getPayclass(),
+            "supervisor" => $employee->getSupervisor(),
+            "region" => $employee->getRegion()
+        ));
+    }
+
+    // 
+    public function sin_check($sin)
+    {
+        $query = $this->db->prepare("SELECT * FROM employee WHERE sin = :sin;");
+        $query->execute(array("sin" => $sin));
+
+        if ($query->fetch() == true) {
+            $valid = true;
+        } else {
+            $valid = false;
+        }
+
+        return $valid;
+    }
+
+    public function uid_check($uid)
     {
     }
 }
