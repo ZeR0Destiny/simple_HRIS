@@ -6,7 +6,6 @@ $database = new DB_Manager();
 
 $get_employee = $database->get_all();
 
-
 ?>
 
 <!DOCTYPE html>
@@ -47,8 +46,23 @@ $get_employee = $database->get_all();
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-  <!-- Jquery -->
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <style>
+    #inputFirstName,
+    #inputLastName,
+    #inputAddress,
+    #inputAddress2,
+    #inputCity,
+    #inputProvince,
+    #inputPosition,
+    #inputSupervisor,
+    #inputRegion {
+      text-transform: capitalize;
+    }
+
+    #inputZip {
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 
 <body>
@@ -294,84 +308,6 @@ $get_employee = $database->get_all();
         </a>
       </li><!-- End Dashboard Nav -->
 
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Alerts</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span>Accordion</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-badges.html">
-              <i class="bi bi-circle"></i><span>Badges</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle"></i><span>Breadcrumbs</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-buttons.html">
-              <i class="bi bi-circle"></i><span>Buttons</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-cards.html">
-              <i class="bi bi-circle"></i><span>Cards</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-carousel.html">
-              <i class="bi bi-circle"></i><span>Carousel</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-list-group.html">
-              <i class="bi bi-circle"></i><span>List group</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-modal.html">
-              <i class="bi bi-circle"></i><span>Modal</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-tabs.html">
-              <i class="bi bi-circle"></i><span>Tabs</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-pagination.html">
-              <i class="bi bi-circle"></i><span>Pagination</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-progress.html">
-              <i class="bi bi-circle"></i><span>Progress</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-spinners.html">
-              <i class="bi bi-circle"></i><span>Spinners</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-tooltips.html">
-              <i class="bi bi-circle"></i><span>Tooltips</span>
-            </a>
-          </li>
-        </ul>
-      </li>End Components Nav -->
-
       <li class="nav-item">
         <a class="nav-link " data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -399,52 +335,6 @@ $get_employee = $database->get_all();
         </ul>
       </li>
       <!-- End Tables Nav -->
-
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="charts-chartjs.html">
-              <i class="bi bi-circle"></i><span>Chart.js</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-apexcharts.html">
-              <i class="bi bi-circle"></i><span>ApexCharts</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-echarts.html">
-              <i class="bi bi-circle"></i><span>ECharts</span>
-            </a>
-          </li>
-        </ul>
-      </li>End Charts Nav -->
-
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="icons-bootstrap.html">
-              <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-remix.html">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-boxicons.html">
-              <i class="bi bi-circle"></i><span>Boxicons</span>
-            </a>
-          </li>
-        </ul>
-      </li>End Icons Nav -->
 
       <li class="nav-heading">Pages</li>
 
@@ -530,14 +420,14 @@ $get_employee = $database->get_all();
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <?php }
+    // Unset existing session
     session_unset(); ?>
 
     <!-- Section with all the inputs -->
     <section class="section">
       <form action="#" method="post">
-        <div class="row">
-          <div class="col-lg-6">
-
+        <div class="col-lg-6 justify-content-center mx-auto">
+          <div class="col">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Personal Informations</h5>
@@ -565,13 +455,13 @@ $get_employee = $database->get_all();
                   <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
                   <div class="col-sm-9">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="male" required>
+                      <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" required>
                       <label class="form-check-label" for="gridRadios1">
                         Male
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="female" required>
+                      <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" required>
                       <label class="form-check-label" for="gridRadios2">
                         Female
                       </label>
@@ -581,15 +471,15 @@ $get_employee = $database->get_all();
                 <div class="row mb-3">
                   <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required name="address">
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" required name="address">
                   </div>
                 </div>
-                <div class="row mb-3">
+                <!-- <div class="row mb-3">
                   <label for="inputAddress2" class="col-sm-3 col-form-label">Address 2</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="address2">
                   </div>
-                </div>
+                </div> -->
                 <div class="row mb-3">
                   <label for="inputCity" class="col-sm-3 col-form-label">City</label>
                   <div class="col-sm-9">
@@ -607,8 +497,8 @@ $get_employee = $database->get_all();
                   <div class="col-sm-9">
                     <select id="inputPayclass" class="form-select" name="country">
                       <option selected required></option>
-                      <option>Canada</option>
-                      <option>United-States</option>
+                      <option value="Canada">Canada</option>
+                      <option value="United-States">United-States</option>
                     </select>
                   </div>
                 </div>
@@ -648,7 +538,7 @@ $get_employee = $database->get_all();
             </div>
           </div>
 
-          <div class="col-lg-6">
+          <div class="col">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Other Informations</h5>
@@ -664,9 +554,8 @@ $get_employee = $database->get_all();
                   <label for="inputPayclass" class="col-sm-3 col-form-label">Pay Class</label>
                   <div class="col-sm-9">
                     <select id="inputPayclass" class="form-select" name="payclass">
-                      <option selected></option>
-                      <option>Hourly</option>
-                      <option>Salary</option>
+                      <option value="Hourly">Hourly</option>
+                      <option value="Salary">Salary</option>
                     </select>
                   </div>
                 </div>
@@ -692,8 +581,8 @@ $get_employee = $database->get_all();
                 <!-- End Advanced Form Elements -->
               </div>
             </div>
-
           </div>
+
         </div>
       </form>
     </section>
@@ -729,19 +618,13 @@ $get_employee = $database->get_all();
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- Function for closing the alert after 3 seconds -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function() {
-      $("#alert-danger").fadeTo(3000, 1).slideUp(1000, function() {
-        $("#alert-danger").alert('close');
-      });
+  <!-- Jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
-      $("#alert-success").fadeTo(3000, 1).slideUp(1000, function() {
-        $("#alert-success").alert('close');
-      });
-    });
-  </script>
+  <!-- Javascript for alert popup control  -->
+  <script src="js/alert-control.js"></script>
+
+  <script src="js/resubmission-control.js"></script>
 </body>
 
 </html>

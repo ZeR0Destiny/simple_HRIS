@@ -1,5 +1,6 @@
 <?php
 include_once "../HRIS/Model/db-manager.php";
+include_once "../HRIS/Controller/employee-controller.php";
 
 $database = new DB_Manager();
 
@@ -46,12 +47,10 @@ $get_employee = $database->get_all();
   ======================================================== -->
 
   <!-- Datatable CSS Files -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/select/1.5.0/css/select.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.bootstrap5.min.css">
 
-  <!-- Jquery -->
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 
 <body>
@@ -390,55 +389,65 @@ $get_employee = $database->get_all();
       </nav>
     </div>
     <section class="section">
+      <!-- <form action="" method="POST"> -->
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Datatables</h5>
               <div class="card-body">
-                <a href="forms-elements.php"><button type="button" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i></button></a>
-                <a href="forms-elements.php"><button type="button" class="btn btn-secondary"><i class="bi bi-pencil-square"></i></button></a>
-                <button type="button" class="btn btn-danger"><i class="bi bi-trash2-fill"></i></button>
+                <a href="forms-elements.php" class="btn btn-outline-primary" title="Create" data-toggle="tooltip"><i class="bi bi-person-plus-fill"></i></a>
               </div>
-              <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-                <div class="dataTable-container">
-                  <table id="emp_table" class="table" style="width: 100%">
-                    <thead>
-                      <tr>
-                        <th style="width: 3%">#</th>
-                        <th style="width: 20%">Full Name</th>
-                        <th style="width: 20%">Email</th>
-                        <th style="width: 20%">UID</th>
-                        <th style="width: 20%">Position</th>
-                        <th style="width: 5%">Region</th>
-                        <th style="width: 3%">Status</th>
+              <div class="dataTable-container">
+                <table id="emp_table" class="table table-striped table-bordered nowrap" style="width: 100%">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Full Name</th>
+                      <th>Email</th>
+                      <th>UID</th>
+                      <th>Position</th>
+                      <th>Region</th>
+                      <th>Status</th>
+                      <th>Update</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($get_employee as $employee) : ?>
+                      <tr name="p_id">
+                        <td><?= $employee['id'] ?></td>
+                        <td><?= $employee['firstname'] . ' ' . $employee['lastname'] ?></td>
+                        <td><?= $employee['email'] ?></td>
+                        <td><?= $employee['UID'] ?></td>
+                        <td><?= $employee['position'] ?></td>
+                        <td><?= $employee['region'] ?></td>
+                        <td> <span class="badge <?php if ($employee['status'] == 'Inactive') {
+                                                  echo 'bg-danger';
+                                                } else {
+                                                  echo 'bg-success';
+                                                } ?>"><?= $employee['status']; ?></span>
+                        </td>
+                        <td>
+                          <div class="row-lg-6">
+
+                            <a href="edit-forms-elements.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-secondary btn-sm" role="button" title="Edit" data-toggle="tooltip">
+                              <i class="bi bi-pencil-square">
+                              </i>
+                            </a>
+                            <a href="<?= $employee['id'] ?>" class="btn btn-outline-danger btn-sm" title="Delete" data-toggle="tooltip"><i class="bi bi-trash2-fill"></i></a>
+                          </div>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      <?php foreach ($get_employee as $employee) : ?>
-                        <tr>
-                          <td><?= $employee['id'] ?></td>
-                          <td><?= $employee['firstname'] . ' ' . $employee['lastname'] ?></td>
-                          <td><?= $employee['email'] ?></td>
-                          <td><?= $employee['UID'] ?></td>
-                          <td><?= $employee['position'] ?></td>
-                          <td><?= $employee['region'] ?></td>
-                          <td> <span class="badge <?php if ($employee['status'] == 'Inactive') {
-                                                    echo 'bg-danger';
-                                                  } else {
-                                                    echo 'bg-success';
-                                                  } ?>"><?= $employee['status']; ?></span></td>
-                        </tr>
-                      <?php endforeach ?>
-                    </tbody>
-                  </table>
-                </div>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
       </div>
       </div>
+      <!-- </form> -->
     </section>
   </main>
 
@@ -483,43 +492,78 @@ $get_employee = $database->get_all();
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- Datable CDN -->
+  <!-- Jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+  <!-- CDN Datable -->
   <!-- Includes responsive javascript -->
   <!-- Includes select javascript -->
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
-  <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.4.0/js/responsive.bootstrap5.min.js"></script>
+
+  <!-- <script src="js/table-control.js"></script> -->
   <script>
     $(document).ready(function() {
+      // $('#emp_table').DataTable({
+      //   responsive: {
+      //     details: {
+      //       renderer: function(api, rowIdx, columns) {
+      //         var data = $.map(columns, function(col, i) {
+      //           return col.hidden ?
+      //             '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+      //             '<td>' + col.title + ':' + '</td> ' +
+      //             '<td>' + col.data + '</td>' +
+      //             '</tr>' :
+      //             '';
+      //         }).join('');
+
+      //         return data ?
+      //           $('<table/>').append(data) :
+      //           false;
+      //       }
+      //     }
+      //   }
+      //   // {
+      //   //   responsivePriority: 2,
+      //   //   targets: -1
+      //   // }   
+      // });
       $('#emp_table').DataTable({
-        responsive: true,
-        columnDefs: [{
-            responsivePriority: 1,
-            targets: 0
-          },
-          {
-            responsivePriority: 2,
-            targets: -1
+        responsive: {
+          details: {
+            display: $.fn.dataTable.Responsive.display.modal({
+              header: function(row) {
+                var data = row.data();
+                return 'Details for ' + data[1];
+              }
+            }),
+            renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+              tableClass: 'table'
+            })
           }
-        ],
-        select: true
+        }
       });
 
-      var table = document.getElementById("emp_table"),
-        rIndex;
+      // var table = document.getElementById("emp_table"),
+      //   rIndex;
 
-      // table rows
-      for (var i = 1; i < table.rows.length; i++) {
-        // row cells
-        // for (var j = 0; j < table.rows[i].cells.length; j++) {
-        table.rows[i].onclick = function() {
-          rIndex = this.rowIndex;
-          // cIndex = this.cellIndex + 1;
-          // console.log("Row : " + rIndex + " , Cell : " + cIndex);
-          console.log("Row : " + rIndex);
-        };
-        // }
-      }
+      // // table rows
+      // for (var i = 1; i < table.rows.length; i++) {
+      //   // row cells
+      //   // for (var j = 0; j < table.rows[i].cells.length; j++) {
+      //   table.rows[i].onclick = function() {
+      //     rIndex = this.rowIndex;
+      //     // cIndex = this.cellIndex + 1;
+      //     // console.log("Row : " + rIndex + " , Cell : " + cIndex);
+      //     // console.log("Row : " + rIndex);
+
+      //   };
+      //   // }
+      // }
+
     })
   </script>
 </body>
