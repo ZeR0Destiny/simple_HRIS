@@ -389,69 +389,81 @@ $get_employee = $database->get_all();
       </nav>
     </div>
     <section class="section">
-      <!-- <form action="" method="POST"> -->
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Datatables</h5>
+      <form action="" method="POST">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
               <div class="card-body">
-                <a href="forms-elements.php" class="btn btn-outline-primary" title="Create" data-toggle="tooltip"><i class="bi bi-person-plus-fill"></i></a>
-              </div>
-              <div class="dataTable-container">
-                <table id="emp_table" class="table table-striped table-bordered nowrap" style="width: 100%">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Full Name</th>
-                      <th>Email</th>
-                      <th>UID</th>
-                      <th>Position</th>
-                      <th>Region</th>
-                      <th>Status</th>
-                      <th>Update</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($get_employee as $employee) : ?>
-                      <tr name="p_id">
-                        <td><?= $employee['id'] ?></td>
-                        <td><?= $employee['firstname'] . ' ' . $employee['lastname'] ?></td>
-                        <td><?= $employee['email'] ?></td>
-                        <td><?= $employee['UID'] ?></td>
-                        <td><?= $employee['position'] ?></td>
-                        <td><?= $employee['region'] ?></td>
-                        <td> <span class="badge <?php if ($employee['status'] == 'Inactive') {
-                                                  echo 'bg-danger';
-                                                } else {
-                                                  echo 'bg-success';
-                                                } ?>"><?= $employee['status']; ?></span>
-                        </td>
-                        <td>
-                          <div class="row-lg-6">
-
-                            <a href="edit-forms-elements.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-secondary btn-sm" role="button" title="Edit" data-toggle="tooltip">
-                              <i class="bi bi-pencil-square">
-                              </i>
-                            </a>
-                            <a href="<?= $employee['id'] ?>" class="btn btn-outline-danger btn-sm" title="Delete" data-toggle="tooltip"><i class="bi bi-trash2-fill"></i></a>
-                          </div>
-                        </td>
+                <h5 class="card-title">Datatables</h5>
+                <div class="card-body">
+                  <a href="forms-elements.php" class="btn btn-outline-dark" title="Create" data-toggle="tooltip"><i class="bi bi-person-plus-fill"></i></a>
+                </div>
+                <div class="dataTable-container">
+                  <table id="emp_table" class="table table-striped table-bordered nowrap" style="width: 100%">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>UID</th>
+                        <th>Position</th>
+                        <th>Region</th>
+                        <th>Status</th>
+                        <th>Action</th>
                       </tr>
-                    <?php endforeach ?>
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($get_employee as $employee) : ?>
+                        <tr name="p_id">
+                          <td><?= $employee['id'] ?></td>
+                          <td><?= $employee['firstname'] . ' ' . $employee['lastname'] ?></td>
+                          <td><?= $employee['email'] ?></td>
+                          <td><?= $employee['UID'] ?></td>
+                          <td><?= $employee['position'] ?></td>
+                          <td><?= $employee['region'] ?></td>
+                          <td> <span class="badge <?php if ($employee['status'] == 'Inactive') {
+                                                    echo 'bg-danger';
+                                                  } else {
+                                                    echo 'bg-success';
+                                                  } ?>"><?= $employee['status']; ?></span>
+                          </td>
+                          <td>
+                            <div class="row-lg-6">
+                              <a href="edit-forms-elements.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-primary btn-sm" role="button" title="Edit" data-toggle="tooltip">
+                                <i class="bi bi-person-check-fill">
+                                </i>
+                              </a>
+                              <a href="tables-data.php?id=<?= $employee['id'] ?>" class="btn btn-outline-secondary btn-sm" role="button" title="Status" data-toggle="tooltip">
+                                <i class="bi bi-person-dash-fill"></i>
+                              </a>
+                              <!-- <a href="Model/db-manager.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-danger btn-sm" title="Delete" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                                <i class="bi bi-person-x-fill"></i>
+                              </a> -->
+                              <button type="submit" class="btn btn-outline-secondary btn-sm" title="Status" data-toggle="tooltip" name="change_status">
+                                <i class="bi bi-person-dash-fill">
+                                </i>
+                              </button>
+                              <button type="button" class="btn btn-outline-danger btn-sm" title="Delete" data-toggle="tooltip" name="delete">
+                                <i class="bi bi-person-x-fill">
+                                </i>
+                              </button>
+
+                            </div>
+                          </td>
+                        </tr>
+                      <?php endforeach ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      </div>
-      <!-- </form> -->
+      </form>
     </section>
   </main>
 
-
+  <?php echo $_SESSION['selected']; ?>
 
   <!-- <main id="main" class="main">
     <p class="text-center p-5">
@@ -546,24 +558,6 @@ $get_employee = $database->get_all();
           }
         }
       });
-
-      // var table = document.getElementById("emp_table"),
-      //   rIndex;
-
-      // // table rows
-      // for (var i = 1; i < table.rows.length; i++) {
-      //   // row cells
-      //   // for (var j = 0; j < table.rows[i].cells.length; j++) {
-      //   table.rows[i].onclick = function() {
-      //     rIndex = this.rowIndex;
-      //     // cIndex = this.cellIndex + 1;
-      //     // console.log("Row : " + rIndex + " , Cell : " + cIndex);
-      //     // console.log("Row : " + rIndex);
-
-      //   };
-      //   // }
-      // }
-
     })
   </script>
 </body>

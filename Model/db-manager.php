@@ -78,7 +78,7 @@ class DB_Manager
         return $valid;
     }
 
-    // 
+    // Function to verify an existing unique id and return true or false
     public function uid_check($uid)
     {
         $query = $this->db->prepare("SELECT * FROM employee WHERE UID = :UID;");
@@ -102,39 +102,52 @@ class DB_Manager
         return $array;
     }
 
+    // 
     public function update_employee($id)
     {
-
-        //query to update database
-        unset($_POST['level']);
-        $query = $this->db->prepare("UPDATE users SET id= :id, name=:name,lastname=:lastname,username=:username, 
-avatar = :avatar, email=:email,password=:password WHERE id = $id;");
-
         $query = $this->db->prepare("UPDATE employee 
         SET firstname = :firstname, lastname = :lastname, gender = :gender, birthdate = :birthdate, 
         address = :address, city = :city, province = :province, country = :country, postalcode =:postalcode, 
         email = :email, mobile = :mobile, homephone = :homephone, SIN = :SIN, 
         position = :position, payclass = :payclass, supervisor = :supervisor, region = :region WHERE id = $id");
 
-        // $query->execute(array(
-        //     "firstname" => $employee->getFirstname(),
-        //     "lastname" => $employee->getLastname(),
-        //     "gender" => $employee->getGender(),
-        //     "birthdate" => $employee->getBirthdate(),
-        //     "address" => $employee->getAddress(),
-        //     "city" => $employee->getCity(),
-        //     "province" => $employee->getProvince(),
-        //     "country" => $employee->getCountry(),
-        //     "postalcode" => $employee->getPostalcode(),
-        //     "email" => $employee->getEmail(),
-        //     "mobile" => $employee->getMobile(),
-        //     "homephone" => $employee->getHomephone(),
-        //     "SIN" => $employee->getSin(),
-        //     "UID" => $employee->getUID(),
-        //     "position" => $employee->getPosition(),
-        //     "payclass" => $employee->getPayclass(),
-        //     "supervisor" => $employee->getSupervisor(),
-        //     "region" => $employee->getRegion()
-        // ));
+        if (isset($_POST['homephone'])) {
+            $homephone = $_POST['homephone'];
+        } else {
+            $homephone = "";
+        }
+
+        $query->execute(array(
+            "firstname" => ucwords($_POST['firstname']),
+            "lastname" => ucwords($_POST['lastname']),
+            "birthdate" => $_POST['dob'],
+            "gender" => $_POST['gender'],
+            "address" => ucwords($_POST['address']),
+            "city" => ucwords($_POST['city']),
+            "province" => ucwords($_POST['province']),
+            "country" => $_POST['country'],
+            "postalcode" => $_POST['postalcode'],
+            "email" => $_POST['email'],
+            "mobile" => $_POST['mobile'],
+            "homephone" => $homephone,
+            "SIN" => $_POST['sin'],
+            "position" => ucwords($_POST['position']),
+            "payclass" => $_POST['payclass'],
+            "supervisor" => ucwords($_POST['supervisor']),
+            "region" => ucwords($_POST['region'])
+        ));
+    }
+
+    public function update_status()
+    {
+        //query to update database
+        $query = $this->db->prepare("UPDATE employee SET status = :status WHERE id = ?;");
+        $result = $query->execute(array($_GET['employee_id']));
+
+
+
+        if ($result) {
+            header("location: tables-data.php?uccess");
+        }
     }
 }

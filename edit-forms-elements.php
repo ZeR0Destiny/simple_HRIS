@@ -543,7 +543,7 @@ var_dump($selected_employee);
                                 <div class="row mb-3">
                                     <label for="inputSin" class="col-sm-3 col-form-label">SIN</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputSin" required maxlength="9" pattern="[0-9]{9}" name="sin" oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['SIN'] . '"'; ?>>
+                                        <input type="text" class="form-control" id="inputSin" required maxlength="9" pattern="[0-9]{9}" name="sin" oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['SIN'] . '"'; ?> disabled>
                                     </div>
                                 </div>
 
@@ -592,7 +592,7 @@ var_dump($selected_employee);
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label"></label>
                                     <div class="col-sm-9">
-                                        <button type="submit" class="btn btn-primary" name="update">Confirmation</button>
+                                        <button type="submit" class="btn btn-primary" name="update">Update</button>
                                     </div>
                                 </div>
 

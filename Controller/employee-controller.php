@@ -42,13 +42,13 @@ if (isset($_POST['submit'])) {
                 }
 
                 $new_emp = array(
-                    "first_name" => $_POST['firstname'],
-                    "last_name" => $_POST['lastname'],
+                    "first_name" => ucwords($_POST['firstname']),
+                    "last_name" => ucwords($_POST['lastname']),
                     "birth_date" => $_POST['dob'],
                     "gender" => $_POST['gender'],
-                    "address" => $_POST['address'],
-                    "city" => $_POST['city'],
-                    "province" => $_POST['province'],
+                    "address" => ucwords($_POST['address']),
+                    "city" => ucwords($_POST['city']),
+                    "province" => ucwords($_POST['province']),
                     "country" => $_POST['country'],
                     "postal_code" => $_POST['postalcode'],
                     "email" => $_POST['email'],
@@ -56,10 +56,10 @@ if (isset($_POST['submit'])) {
                     "homephone" => $homephone,
                     "sin" => $_POST['sin'],
                     "uid" => $uniq_id,
-                    "position" => $_POST['position'],
+                    "position" => ucwords($_POST['position']),
                     "pay_class" => $_POST['payclass'],
-                    "supervisor" => $_POST['supervisor'],
-                    "region" => $_POST['region'],
+                    "supervisor" => ucwords($_POST['supervisor']),
+                    "region" => ucwords($_POST['region']),
                 );
 
                 $employee = new employee($new_emp);
@@ -69,4 +69,9 @@ if (isset($_POST['submit'])) {
             }
         } while ($valid2 == true);
     }
+}
+
+// Retrieve changed information from the form when the update button is clicked
+if (isset($_POST['update'])) {
+    $database->update_employee($_GET['employee_id']);
 }
