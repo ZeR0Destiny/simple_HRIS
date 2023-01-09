@@ -433,15 +433,15 @@ $get_employee = $database->get_all();
                                 <i class="bi bi-person-check-fill">
                                 </i>
                               </a>
-                              <a href="tables-data.php?id=<?= $employee['id'] ?>" class="btn btn-outline-secondary btn-sm" role="button" title="Status" data-toggle="tooltip">
+                              <a href="tables-data.php?employee_status_id=<?= $employee['id'] ?>" class="btn btn-outline-secondary btn-sm" role="button" title="Status" data-toggle="tooltip">
                                 <i class="bi bi-person-dash-fill"></i>
                               </a>
                               <!-- <a href="Model/db-manager.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-danger btn-sm" title="Delete" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#verticalycentered">
                                 <i class="bi bi-person-x-fill"></i>
                               </a> -->
-                              <button type="submit" class="btn btn-outline-secondary btn-sm" title="Status" data-toggle="tooltip" name="change_status">
+                              <!-- <button type="submit" class="btn btn-outline-secondary btn-sm" title="Status" data-toggle="tooltip" name="change_status">
                                 <i class="bi bi-person-dash-fill">
-                                </i>
+                                </i> -->
                               </button>
                               <button type="button" class="btn btn-outline-danger btn-sm" title="Delete" data-toggle="tooltip" name="delete">
                                 <i class="bi bi-person-x-fill">
@@ -462,8 +462,6 @@ $get_employee = $database->get_all();
       </form>
     </section>
   </main>
-
-  <?php echo $_SESSION['selected']; ?>
 
   <!-- <main id="main" class="main">
     <p class="text-center p-5">
@@ -516,50 +514,8 @@ $get_employee = $database->get_all();
   <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.4.0/js/responsive.bootstrap5.min.js"></script>
 
-  <!-- <script src="js/table-control.js"></script> -->
-  <script>
-    $(document).ready(function() {
-      // $('#emp_table').DataTable({
-      //   responsive: {
-      //     details: {
-      //       renderer: function(api, rowIdx, columns) {
-      //         var data = $.map(columns, function(col, i) {
-      //           return col.hidden ?
-      //             '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
-      //             '<td>' + col.title + ':' + '</td> ' +
-      //             '<td>' + col.data + '</td>' +
-      //             '</tr>' :
-      //             '';
-      //         }).join('');
+  <script src="js/table-control.js"></script>
 
-      //         return data ?
-      //           $('<table/>').append(data) :
-      //           false;
-      //       }
-      //     }
-      //   }
-      //   // {
-      //   //   responsivePriority: 2,
-      //   //   targets: -1
-      //   // }   
-      // });
-      $('#emp_table').DataTable({
-        responsive: {
-          details: {
-            display: $.fn.dataTable.Responsive.display.modal({
-              header: function(row) {
-                var data = row.data();
-                return 'Details for ' + data[1];
-              }
-            }),
-            renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-              tableClass: 'table'
-            })
-          }
-        }
-      });
-    })
-  </script>
 </body>
 
 </html>

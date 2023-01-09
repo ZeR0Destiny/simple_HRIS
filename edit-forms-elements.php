@@ -62,9 +62,9 @@ var_dump($selected_employee);
             text-transform: capitalize;
         }
 
-        #inputZip {
+        /* #inputZip {
             text-transform: uppercase;
-        }
+        } */
     </style>
 </head>
 
@@ -519,7 +519,11 @@ var_dump($selected_employee);
                                 <div class="row mb-3">
                                     <label for="inputZip" class="col-sm-3 col-form-label">Zip/Postal Code</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputZip" maxlength="7" required pattern="[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['postalcode'] . '"'; ?>>
+                                        <input type="text" class="form-control" id="inputZip" maxlength="7" required pattern="<?php if ($selected_employee['country'] == 'Canada') {
+                                                                                                                                    echo "[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}";
+                                                                                                                                } elseif ($selected_employee['country'] == 'United-States') {
+                                                                                                                                    echo "[0-9]{5}";
+                                                                                                                                } ?>" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['postalcode'] . '"'; ?>>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

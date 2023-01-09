@@ -33,7 +33,7 @@ class DB_Manager
         return $array;
     }
 
-    // Function to insert a new employee to the table
+    // Function to insert a new employee to database
     public function add_employee($employee)
     {
         $query = $this->db->prepare("INSERT INTO employee 
@@ -41,7 +41,7 @@ class DB_Manager
         :city, :province, :country, :postalcode, :email, :mobile, :homephone, :SIN, :UID, 
         :position, :payclass, :supervisor, DEFAULT, DEFAULT, :region)");
 
-        $query->execute(array(
+        $result = $query->execute(array(
             "firstname" => $employee->getFirstname(),
             "lastname" => $employee->getLastname(),
             "gender" => $employee->getGender(),
@@ -61,9 +61,13 @@ class DB_Manager
             "supervisor" => $employee->getSupervisor(),
             "region" => $employee->getRegion()
         ));
+
+        if ($result) {
+            header("location: forms-elements.php?employee-created");
+        }
     }
 
-    // Function to verify an existing SIN and return true or false
+    // Function to select an existing SIN and return true or false
     public function sin_check($sin)
     {
         $query = $this->db->prepare("SELECT * FROM employee WHERE SIN = :SIN;");
@@ -78,7 +82,7 @@ class DB_Manager
         return $valid;
     }
 
-    // Function to verify an existing unique id and return true or false
+    // Function to select an existing unique id and return true or false
     public function uid_check($uid)
     {
         $query = $this->db->prepare("SELECT * FROM employee WHERE UID = :UID;");
@@ -102,13 +106,13 @@ class DB_Manager
         return $array;
     }
 
-    // 
+    // Function to update the information of the employee
     public function update_employee($id)
     {
         $query = $this->db->prepare("UPDATE employee 
         SET firstname = :firstname, lastname = :lastname, gender = :gender, birthdate = :birthdate, 
         address = :address, city = :city, province = :province, country = :country, postalcode =:postalcode, 
-        email = :email, mobile = :mobile, homephone = :homephone, SIN = :SIN, 
+        email = :email, mobile = :mobile, homephone = :homephone,
         position = :position, payclass = :payclass, supervisor = :supervisor, region = :region WHERE id = $id");
 
         if (isset($_POST['homephone'])) {
@@ -117,7 +121,7 @@ class DB_Manager
             $homephone = "";
         }
 
-        $query->execute(array(
+        $result = $query->execute(array(
             "firstname" => ucwords($_POST['firstname']),
             "lastname" => ucwords($_POST['lastname']),
             "birthdate" => $_POST['dob'],
@@ -130,24 +134,25 @@ class DB_Manager
             "email" => $_POST['email'],
             "mobile" => $_POST['mobile'],
             "homephone" => $homephone,
-            "SIN" => $_POST['sin'],
             "position" => ucwords($_POST['position']),
             "payclass" => $_POST['payclass'],
             "supervisor" => ucwords($_POST['supervisor']),
             "region" => ucwords($_POST['region'])
         ));
-    }
-
-    public function update_status()
-    {
-        //query to update database
-        $query = $this->db->prepare("UPDATE employee SET status = :status WHERE id = ?;");
-        $result = $query->execute(array($_GET['employee_id']));
-
-
 
         if ($result) {
-            header("location: tables-data.php?uccess");
+            header("location: tables-data.php?employee-information-updated");
+        }
+    }
+
+    // Function to quickly change the status of the employee
+    public function update_status()
+    {
+        $query = $this->db->prepare("UPDATE employee SET status = 'Inactive' WHERE id = ?;");
+        $result = $query->execute(array($_GET['employee_status_id']));
+
+        if ($result) {
+            header("location: tables-data.php?employee-status-changed");
         }
     }
 }

@@ -59,9 +59,9 @@ $get_employee = $database->get_all();
       text-transform: capitalize;
     }
 
-    #inputZip {
+    /* #inputZip {
       text-transform: uppercase;
-    }
+    } */
   </style>
 </head>
 
@@ -505,9 +505,15 @@ $get_employee = $database->get_all();
                 <div class="row mb-3">
                   <label for="inputZip" class="col-sm-3 col-form-label">Zip/Postal Code</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputZip" maxlength="7" required pattern="[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')">
+                    <!-- <input type="text" class="form-control" id="inputZip" maxlength="7" required pattern="<?php if (isset($_POST['country']) == 'Canada') {
+                                                                                                                  echo "[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}";
+                                                                                                                } elseif (isset($_POST['country']) == 'United-States') {
+                                                                                                                  echo "[0-9]{5}";
+                                                                                                                } ?>" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')"> -->
+                    <input type="text" class="form-control" id="inputZip" maxlength="7" required name="postalcode">
                   </div>
                 </div>
+
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
                   <div class="col-sm-9">
@@ -517,13 +523,13 @@ $get_employee = $database->get_all();
                 <div class="row mb-3">
                   <label for="inputMobile" class="col-sm-3 col-form-label">Mobile Phone</label>
                   <div class="col-sm-9">
-                    <input type="tel" class="form-control" id="inputMobile" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="mobile" oninvalid="this.setCustomValidity('e.g. 888-888-888')" oninput="this.setCustomValidity('')">
+                    <input type="tel" class="form-control" id="inputMobile" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="mobile">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputHome" class="col-sm-3 col-form-label">Homephone</label>
                   <div class="col-sm-9">
-                    <input type="tel" class="form-control" id="inputHome" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="home" oninvalid="this.setCustomValidity('e.g. 888-888-8888')" oninput="this.setCustomValidity('')">
+                    <input type="tel" class="form-control" id="inputHome" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="home">
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -625,6 +631,8 @@ $get_employee = $database->get_all();
   <script src="js/alert-control.js"></script>
 
   <script src="js/resubmission-control.js"></script>
+
+
 </body>
 
 </html>

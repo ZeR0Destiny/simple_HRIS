@@ -71,7 +71,12 @@ if (isset($_POST['submit'])) {
     }
 }
 
-// Retrieve changed information from the form when the update button is clicked
+// Retrieve information from the inputs when the update button is clicked
 if (isset($_POST['update'])) {
     $database->update_employee($_GET['employee_id']);
+}
+
+// Retrieve the id of the employee and update the status
+if (isset($_GET['employee_status_id'])) {
+    $database->update_status();
 }
