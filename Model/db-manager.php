@@ -146,7 +146,17 @@ class DB_Manager
     }
 
     // Function to quickly change the status of the employee
-    public function update_status()
+    public function update_employee_status()
+    {
+        $query = $this->db->prepare("UPDATE employee SET status = 'Inactive' WHERE id = ?;");
+        $result = $query->execute(array($_GET['employee_status_id']));
+
+        if ($result) {
+            header("location: tables-data.php?employee-status-changed");
+        }
+    }
+
+    public function delete_employee()
     {
         $query = $this->db->prepare("UPDATE employee SET status = 'Inactive' WHERE id = ?;");
         $result = $query->execute(array($_GET['employee_status_id']));
