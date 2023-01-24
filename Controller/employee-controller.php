@@ -64,7 +64,8 @@ if (isset($_POST['submit'])) {
 
                 $employee = new employee($new_emp);
                 var_dump($employee);
-                // $database->add_employee($employee);
+                $database->add_employee($employee);
+                $database->set_auto_increment();
                 $_SESSION['success'] = true;
             }
         } while ($valid2 == true);
@@ -78,5 +79,9 @@ if (isset($_POST['update'])) {
 
 // Retrieve the id of the employee and update the status
 if (isset($_GET['employee_status_id'])) {
-    $database->update_status();
+    $database->update_employee_status();
+}
+
+if (isset($_GET['employee_delete_id'])) {
+    $database->delete_employee();
 }
