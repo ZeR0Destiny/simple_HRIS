@@ -10,7 +10,7 @@ session_start();
 
 $database = new DB_Manager();
 
-// Retrieve and validate all input when the submit is clicked
+// Retrieve and validate all input when the submit is clicked then call the add function
 if (isset($_POST['submit'])) {
 
     // Verify if a SIN already exists
@@ -63,9 +63,8 @@ if (isset($_POST['submit'])) {
                 );
 
                 $employee = new employee($new_emp);
-                var_dump($employee);
+                // var_dump($employee);
                 $database->add_employee($employee);
-                $database->set_auto_increment();
                 $_SESSION['success'] = true;
             }
         } while ($valid2 == true);
@@ -77,11 +76,13 @@ if (isset($_POST['update'])) {
     $database->update_employee($_GET['employee_id']);
 }
 
-// Retrieve the id of the employee and update the status
+// Retrieve the id of the employee and call the update function
 if (isset($_GET['employee_status_id'])) {
     $database->update_employee_status();
 }
 
+// Retrieve the id of the employee then call the delete and auto_increment function
 if (isset($_GET['employee_delete_id'])) {
     $database->delete_employee();
+    $database->reset_auto_increment();
 }

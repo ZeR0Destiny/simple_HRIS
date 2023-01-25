@@ -7,7 +7,6 @@ $database = new DB_Manager();
 $id = $_GET['employee_id'];
 
 $selected_employee = $database->select_employee($id);
-var_dump($selected_employee);
 
 ?>
 
@@ -593,10 +592,17 @@ var_dump($selected_employee);
                                         <input type="text" class="form-control" id="inputRegion" name="region" <?= 'value="' . $selected_employee['region'] . '"'; ?>>
                                     </div>
                                 </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                                </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-3 col-form-label"></label>
-                                    <div class="col-sm-9">
-                                        <button type="submit" class="btn btn-primary" name="update">Update</button>
+                                    <div class="col-sm">
+                                    </div>
+                                    <div class="col-sm d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-primary" name="update">Update Form</button>
+                                    </div>
+                                    <div class="col-sm">
                                     </div>
                                 </div>
 

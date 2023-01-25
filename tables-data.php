@@ -439,15 +439,6 @@ $get_employee = $database->get_all();
                               <a href="tables-data.php?employee_delete_id=<?= $employee['id'] ?>" class="btn btn-outline-danger btn-sm" role="button" title="Delete" data-toggle="tooltip">
                                 <i class="bi bi-person-x-fill"></i>
                               </a>
-                              <!-- <button type="submit" class="btn btn-outline-secondary btn-sm" title="Status" data-toggle="tooltip" name="change_status">
-                                <i class="bi bi-person-dash-fill">
-                                </i>
-                              </button> -->
-                              <!-- <button type="button" class="btn btn-outline-danger btn-sm" title="Delete" data-toggle="tooltip" name="delete">
-                                <i class="bi bi-person-x-fill">
-                                </i>
-                              </button> -->
-
                             </div>
                           </td>
                         </tr>

@@ -63,7 +63,7 @@ class DB_Manager
         ));
 
         if ($result) {
-            header("location: forms-elements.php?employee-created");
+            header("location: tables-data.php?employee-created");
         }
     }
 
@@ -156,6 +156,7 @@ class DB_Manager
         }
     }
 
+    // Function to delete the selected employeee
     public function delete_employee()
     {
         $query = $this->db->prepare("DELETE FROM employee WHERE id = ?; ");
@@ -166,47 +167,16 @@ class DB_Manager
         }
     }
 
-    public function set_auto_increment()
+    // Function to reset auto increment of employee table
+    public function reset_auto_increment()
     {
-        if (isset($_GET["employee_delete_id"])) {
-            // $id = $_GET["employee_delete_id"];
-            $sql = 'SET @num := 0; 
-            UPDATE employee SET id = @num := (@num+1); 
-            ALTER TABLE employee AUTO_INCREMENT = 1;';
-            $nu = 0;
-            $conn = $this->db->prepare('UPDATE employee SET id = ' . $nu . ':= (' . $nu + 1 . ');');
-            $conn->execute();
+        $sql = $this->db->prepare('SELECT @num := 0;');
+        $sql->execute();
 
-            // $conn2 = $this->db->query("ALTER TABLE employee AUTO_INCREMENT = 1;");
-            // $conn2->fetch();
+        $sql = $this->db->prepare('UPDATE employee SET id = @num := (@num+1);');
+        $sql->execute();
 
-
-            //Delete the line
-            // $sql = "DELETE FROM user WHERE userid=$id";
-            // if ($conn->query($sql) == TRUE) {
-            //     echo "Record delete succesfully<br>";
-            // } else {
-            //     // echo "Error delete record: " . $conn->error;
-            // }
-
-            // //Reset and Update line by line start from 1 and increament by 1 at id
-            // $query = mysqli_query($conn, "select * from user");
-            // $number = 1;
-            // while ($row = mysqli_fetch_array($query)) {
-            //     $id = $row['userid']; //PLEASE CHANGE ACCORDING TO YOUR DATABASE AUTO-INCREAMENT ID
-            //     $sql = "UPDATE user SET userid=$number WHERE userid=$id";
-            //     if ($conn->query($sql) == TRUE) {
-            //         echo "Record RESET succesfully<br>";
-            //     }
-            //     $number++;
-            // }
-            // //Alter the increment to the latest number(bigger number)
-            // $sql = "ALTER TABLE user AUTO_INCREMENT =1"; //CHANGE TABLE NAME
-            // if ($conn->query($sql) == TRUE) {
-            //     echo "Record ALTER succesfully";
-            // } else {
-            //     // echo "Error ALTER record: " . $conn->error;
-            // }
-        }
+        $sql = $this->db->prepare('ALTER TABLE employee AUTO_INCREMENT = 1;');
+        $sql->execute();
     }
 }

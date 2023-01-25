@@ -578,10 +578,11 @@ $get_employee = $database->get_all();
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label"></label>
-                  <div class="col-sm-9">
+                  <div class="col-sm"></div>
+                  <div class="col-sm d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary" name="submit">Submit Form</button>
                   </div>
+                  <div class="col-sm"></div>
                 </div>
 
                 <!-- End Advanced Form Elements -->
@@ -630,6 +631,7 @@ $get_employee = $database->get_all();
   <!-- Javascript for alert popup control  -->
   <script src="js/alert-control.js"></script>
 
+  <!-- Javascript for preventing resubmitting control  -->
   <script src="js/resubmission-control.js"></script>
 
 
