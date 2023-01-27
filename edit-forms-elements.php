@@ -592,17 +592,27 @@ $selected_employee = $database->select_employee($id);
                                         <input type="text" class="form-control" id="inputRegion" name="region" <?= 'value="' . $selected_employee['region'] . '"'; ?>>
                                     </div>
                                 </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-                                </div>
                                 <div class="row mb-3">
-                                    <div class="col-sm">
+                                    <div class="col-sm-3">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Status</label>
+                                    </div>
+                                    <div class="col-sm-3 form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="status" <?php if ($selected_employee['status'] == 'Active') {
+                                                                                                                                        echo 'checked';
+                                                                                                                                    } ?>>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-xs">
                                     </div>
                                     <div class="col-sm d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-primary" name="update">Update Form</button>
+                                        <div class="btn-group">
+                                            <button onclick="getStatus()" type="submit" class="btn btn-primary" name="update">Update</button>
+                                            <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
+                                        </div>
                                     </div>
-                                    <div class="col-sm">
+                                    <div class="col-xs">
                                     </div>
                                 </div>
 
