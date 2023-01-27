@@ -597,9 +597,10 @@ $selected_employee = $database->select_employee($id);
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Status</label>
                                     </div>
                                     <div class="col-sm-3 form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="status" <?php if ($selected_employee['status'] == 'Active') {
-                                                                                                                                        echo 'checked';
-                                                                                                                                    } ?>>
+                                        <input onclick="getStatus()" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="status" <?php if ($selected_employee['status'] == 'Active') {
+                                                                                                                                                            echo 'checked';
+                                                                                                                                                        } ?>>
+                                        <label class="form-check-label" for="flexSwitchCheckDefault" id="preview"><?= $selected_employee['status'] ?></label>
                                     </div>
                                 </div>
 
@@ -608,7 +609,7 @@ $selected_employee = $database->select_employee($id);
                                     </div>
                                     <div class="col-sm d-flex justify-content-center">
                                         <div class="btn-group">
-                                            <button onclick="getStatus()" type="submit" class="btn btn-primary" name="update">Update</button>
+                                            <button type="submit" class="btn btn-primary" name="update">Update</button>
                                             <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
                                         </div>
                                     </div>
@@ -664,7 +665,12 @@ $selected_employee = $database->select_employee($id);
 
     <script>
         function getStatus() {
-
+            let status = document.getElementById('flexSwitchCheckDefault').checked;
+            if (status == false) {
+                document.getElementById('preview').innerHTML = 'Inactive';
+            } else {
+                document.getElementById('preview').innerHTML = 'Active';
+            }
         }
     </script>
 </body>
