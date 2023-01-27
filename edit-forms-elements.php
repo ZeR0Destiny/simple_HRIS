@@ -662,6 +662,11 @@ $selected_employee = $database->select_employee($id);
     <!-- Javascript for alert popup control  -->
     <script src="js/alert-control.js"></script>
 
+    <script>
+        function getStatus() {
+
+        }
+    </script>
 </body>
 
 </html>

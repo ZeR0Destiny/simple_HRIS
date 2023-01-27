@@ -578,11 +578,14 @@ $get_employee = $database->get_all();
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="col-sm"></div>
+                  <div class="col-xs"></div>
                   <div class="col-sm d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary" name="submit">Submit Form</button>
+                    <div class="btn-group">
+                      <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                      <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
+                    </div>
                   </div>
-                  <div class="col-sm"></div>
+                  <div class="col-xs"></div>
                 </div>
 
                 <!-- End Advanced Form Elements -->

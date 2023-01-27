@@ -113,12 +113,18 @@ class DB_Manager
         SET firstname = :firstname, lastname = :lastname, gender = :gender, birthdate = :birthdate, 
         address = :address, city = :city, province = :province, country = :country, postalcode =:postalcode, 
         email = :email, mobile = :mobile, homephone = :homephone,
-        position = :position, payclass = :payclass, supervisor = :supervisor, region = :region WHERE id = $id");
+        position = :position, payclass = :payclass, supervisor = :supervisor, status = :status, region = :region WHERE id = $id");
 
         if (isset($_POST['homephone'])) {
             $homephone = $_POST['homephone'];
         } else {
             $homephone = "";
+        }
+
+        if (isset($_POST['status'])) {
+            $status = "Active";
+        } else {
+            $status = "Inactive";
         }
 
         $result = $query->execute(array(
@@ -137,6 +143,7 @@ class DB_Manager
             "position" => ucwords($_POST['position']),
             "payclass" => $_POST['payclass'],
             "supervisor" => ucwords($_POST['supervisor']),
+            "status" => $status,
             "region" => ucwords($_POST['region'])
         ));
 
