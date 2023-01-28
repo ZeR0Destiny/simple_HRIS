@@ -60,10 +60,6 @@ $selected_employee = $database->select_employee($id);
         #inputRegion {
             text-transform: capitalize;
         }
-
-        /* #inputZip {
-            text-transform: uppercase;
-        } */
     </style>
 </head>
 
@@ -502,10 +498,7 @@ $selected_employee = $database->select_employee($id);
                                 <div class="row mb-3">
                                     <label for="inputCountry" class="col-sm-3 col-form-label">Country</label>
                                     <div class="col-sm-9">
-                                        <select id="inputPayclass" class="form-select" name="country">
-                                            <!-- <option selected required></option>
-                                            <option value="Canada">Canada</option>
-                                            <option value="United-States">United-States</option> -->
+                                        <select id="inputCountry" class="form-select" name="country">
                                             <option value="Canada" <?php if ($selected_employee['country'] == 'Canada') {
                                                                         echo "selected";
                                                                     } ?>>Canada</option>
@@ -516,13 +509,13 @@ $selected_employee = $database->select_employee($id);
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="inputZip" class="col-sm-3 col-form-label">Zip/Postal Code</label>
+                                    <label for="inputPostalcode" class="col-sm-3 col-form-label">Postal Code</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputZip" maxlength="7" required pattern="<?php if ($selected_employee['country'] == 'Canada') {
-                                                                                                                                    echo "[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}";
-                                                                                                                                } elseif ($selected_employee['country'] == 'United-States') {
-                                                                                                                                    echo "[0-9]{5}";
-                                                                                                                                } ?>" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['postalcode'] . '"'; ?>>
+                                        <input type="text" class="form-control" id="inputPostalcode" maxlength="7" required pattern="<?php if ($selected_employee['country'] == 'Canada') {
+                                                                                                                                            echo "[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}";
+                                                                                                                                        } elseif ($selected_employee['country'] == 'United-States') {
+                                                                                                                                            echo "[0-9]{5}";
+                                                                                                                                        } ?>" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['postalcode'] . '"'; ?>>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -663,16 +656,8 @@ $selected_employee = $database->select_employee($id);
     <!-- Javascript for alert popup control  -->
     <script src="js/alert-control.js"></script>
 
-    <script>
-        function getStatus() {
-            let status = document.getElementById('flexSwitchCheckDefault').checked;
-            if (status == false) {
-                document.getElementById('preview').innerHTML = 'Inactive';
-            } else {
-                document.getElementById('preview').innerHTML = 'Active';
-            }
-        }
-    </script>
+    <!-- Javascript to load getStatus control  -->
+    <script src="js/getStatus-control.js"></script>
 </body>
 
 </html>

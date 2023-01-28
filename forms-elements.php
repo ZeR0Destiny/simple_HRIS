@@ -58,10 +58,6 @@ $get_employee = $database->get_all();
     #inputRegion {
       text-transform: capitalize;
     }
-
-    /* #inputZip {
-      text-transform: uppercase;
-    } */
   </style>
 </head>
 
@@ -495,22 +491,22 @@ $get_employee = $database->get_all();
                 <div class="row mb-3">
                   <label for="inputCountry" class="col-sm-3 col-form-label">Country</label>
                   <div class="col-sm-9">
-                    <select id="inputPayclass" class="form-select" name="country">
-                      <option selected required></option>
+                    <select id="inputCountry" class="form-select" name="country" required>
+                      <option selected disabled value="">Choose...</option>
                       <option value="Canada">Canada</option>
                       <option value="United-States">United-States</option>
                     </select>
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputZip" class="col-sm-3 col-form-label">Zip/Postal Code</label>
+                  <label for="inputPostalcode" class="col-sm-3 col-form-label">Postal Code</label>
                   <div class="col-sm-9">
                     <!-- <input type="text" class="form-control" id="inputZip" maxlength="7" required pattern="<?php if (isset($_POST['country']) == 'Canada') {
                                                                                                                   echo "[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}";
                                                                                                                 } elseif (isset($_POST['country']) == 'United-States') {
                                                                                                                   echo "[0-9]{5}";
                                                                                                                 } ?>" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')"> -->
-                    <input type="text" class="form-control" id="inputZip" maxlength="7" required name="postalcode">
+                    <input type="text" class="form-control" id="inputPostalcode" maxlength="7" required name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')">
                   </div>
                 </div>
 
@@ -581,7 +577,7 @@ $get_employee = $database->get_all();
                   <div class="col-xs"></div>
                   <div class="col-sm d-flex justify-content-center">
                     <div class="btn-group">
-                      <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                      <button onclick="getPostalcode()" type="submit" class="btn btn-primary" name="submit">Submit</button>
                       <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
                     </div>
                   </div>
@@ -637,7 +633,36 @@ $get_employee = $database->get_all();
   <!-- Javascript for preventing resubmitting control  -->
   <script src="js/resubmission-control.js"></script>
 
+  <script>
+    function getPostalcode() {
+      const cad = /[A-Z][0-9][A-Z]-[0-9][A-Z][0-9]/g;
+      const us = /[0-9]{5}/g;
 
+      let code = document.getElementById('inputCountry').value;
+      let zip = document.getElementById('inputPostalcode').value
+      let result;
+
+      if (code == 'Canada') {
+        result = cad.test(zip);
+
+        if (!result) {
+          document.getElementById('inputPostalcode').classList.add('is-invalid');
+          event.preventDefault();
+        } else {
+          document.getElementById('inputPostalcode').classList.remove('is-invalid');
+        }
+      } else if (code == 'United-States') {
+        result = us.test(zip);
+
+        if (!result) {
+          document.getElementById('inputPostalcode').classList.add('is-invalid');
+          event.preventDefault();
+        } else {
+          document.getElementById('inputPostalcode').classList.remove('is-invalid');
+        }
+      }
+    }
+  </script>
 </body>
 
 </html>
