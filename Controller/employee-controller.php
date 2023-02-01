@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
                     "city" => ucwords($_POST['city']),
                     "province" => ucwords($_POST['province']),
                     "country" => $_POST['country'],
-                    "postal_code" => $_POST['postalcode'],
+                    "postal_code" => strtoupper($_POST['postalcode']),
                     "email" => $_POST['email'],
                     "mobile" => $_POST['mobile'],
                     "homephone" => $homephone,

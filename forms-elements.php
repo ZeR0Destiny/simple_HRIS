@@ -432,19 +432,28 @@ $get_employee = $database->get_all();
                 <div class="row mb-3">
                   <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputFirstName" required name="firstname">
+                    <input type="text" class="form-control" id="inputFirstName" name="firstname" required>
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputLastName" required name="lastname">
+                    <input type="text" class="form-control" id="inputLastName" name="lastname" required>
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputDob" class="col-sm-3 col-form-label">Date of birth</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="inputDob" required name="dob">
+                    <input type="date" class="form-control" id="inputDob" name="dob" required>
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
                   </div>
                 </div>
                 <fieldset class="row mb-3">
@@ -467,25 +476,28 @@ $get_employee = $database->get_all();
                 <div class="row mb-3">
                   <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" required name="address">
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" name="address" required>
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
                   </div>
                 </div>
-                <!-- <div class="row mb-3">
-                  <label for="inputAddress2" class="col-sm-3 col-form-label">Address 2</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="address2">
-                  </div>
-                </div> -->
                 <div class="row mb-3">
                   <label for="inputCity" class="col-sm-3 col-form-label">City</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputCity" required name="city">
+                    <input type="text" class="form-control" id="inputCity" name="city" required>
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputProvince" class="col-sm-3 col-form-label">Province</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputProvince" required name="province">
+                    <input type="text" class="form-control" id="inputProvince" name="province" required>
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -501,19 +513,21 @@ $get_employee = $database->get_all();
                 <div class="row mb-3">
                   <label for="inputPostalcode" class="col-sm-3 col-form-label">Postal Code</label>
                   <div class="col-sm-9">
-                    <!-- <input type="text" class="form-control" id="inputZip" maxlength="7" required pattern="<?php if (isset($_POST['country']) == 'Canada') {
-                                                                                                                  echo "[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}";
-                                                                                                                } elseif (isset($_POST['country']) == 'United-States') {
-                                                                                                                  echo "[0-9]{5}";
-                                                                                                                } ?>" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')"> -->
-                    <input type="text" class="form-control" id="inputPostalcode" maxlength="7" required name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')">
+                    <!-- oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" -->
+                    <input type="text" class="form-control" id="inputPostalcode" maxlength="7" name="postalcode" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid zip. (Canada: A1Z-1B2, USA: 12345)
+                    </div>
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
                   <div class="col-sm-9">
-                    <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" required name="email">
+                    <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" name="email" required>
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -531,7 +545,7 @@ $get_employee = $database->get_all();
                 <div class="row mb-3">
                   <label for="inputSin" class="col-sm-3 col-form-label">SIN</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputSin" required maxlength="9" pattern="[0-9]{9}" name="sin" oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')">
+                    <input type="text" class="form-control" id="inputSin" maxlength="9" pattern="[0-9]{9}" name="sin" required oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')">
                   </div>
                 </div>
 
@@ -635,7 +649,7 @@ $get_employee = $database->get_all();
 
   <script>
     function getPostalcode() {
-      const cad = /[A-Z][0-9][A-Z]-[0-9][A-Z][0-9]/g;
+      const cad = /[a-zA-Z][0-9][a-zA-Z]-[0-9][a-zA-Z][0-9]/g;
       const us = /[0-9]{5}/g;
 
       let code = document.getElementById('inputCountry').value;
@@ -644,22 +658,15 @@ $get_employee = $database->get_all();
 
       if (code == 'Canada') {
         result = cad.test(zip);
-
-        if (!result) {
-          document.getElementById('inputPostalcode').classList.add('is-invalid');
-          event.preventDefault();
-        } else {
-          document.getElementById('inputPostalcode').classList.remove('is-invalid');
-        }
       } else if (code == 'United-States') {
         result = us.test(zip);
+      }
 
-        if (!result) {
-          document.getElementById('inputPostalcode').classList.add('is-invalid');
-          event.preventDefault();
-        } else {
-          document.getElementById('inputPostalcode').classList.remove('is-invalid');
-        }
+      if (!result) {
+        document.getElementById('inputPostalcode').classList.add('is-invalid');
+        event.preventDefault();
+      } else {
+        document.getElementById('inputPostalcode').classList.remove('is-invalid');
       }
     }
   </script>
