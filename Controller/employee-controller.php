@@ -2,7 +2,7 @@
 
 // Autoload any classes from the Model folder
 spl_autoload_register(function ($class) {
-    include_once "../HRIS/Model/" . $class . ".class.php";
+    require_once "../HRIS/Model/" . $class . ".class.php";
 });
 
 // Only 1 session needed
@@ -20,9 +20,6 @@ if (isset($_POST['submit'])) {
         $_SESSION['valid'] = true;
     } else {
 
-        // $a1 = $_POST['address'];
-        // $a2 = $_POST['address2'];
-        // $address = $a1 . ' ' . $a2;
         $uniq_id;
 
         do {
@@ -32,9 +29,9 @@ if (isset($_POST['submit'])) {
             $uniq_id = $letter . $number;
 
             // Verify if unique id already exist
-            $valid2 = $database->uid_check($uniq_id);
+            $valid_2 = $database->uid_check($uniq_id);
 
-            if ($valid2 == false) {
+            if ($valid_2 == false) {
                 if (isset($_POST['homephone'])) {
                     $homephone = $_POST['homephone'];
                 } else {
@@ -67,7 +64,7 @@ if (isset($_POST['submit'])) {
                 $database->add_employee($employee);
                 $_SESSION['success'] = true;
             }
-        } while ($valid2 == true);
+        } while ($valid_2 == true);
     }
 }
 
@@ -86,3 +83,33 @@ if (isset($_GET['employee_delete_id'])) {
     $database->delete_employee();
     $database->reset_auto_increment();
 }
+
+// if (isset($_POST['emp_id'])) {
+//     $y = $database->select_employee($_POST['emp_id']);
+//     $output .= '<div class="table-responsive">  
+//     <table class="table table-bordered">';
+//     $output .= '  
+//     <tr>  
+//          <td width="30%"><label>Name</label></td>  
+//          <td width="70%">' . $row["firstname"] . '</td>  
+//     </tr>  
+//     <tr>  
+//          <td width="30%"><label>Address</label></td>  
+//          <td width="70%">' . $row["address"] . '</td>  
+//     </tr>  
+//     <tr>  
+//          <td width="30%"><label>Gender</label></td>  
+//          <td width="70%">' . $row["gender"] . '</td>  
+//     </tr>  
+//     <tr>  
+//          <td width="30%"><label>Designation</label></td>  
+//          <td width="70%">' . $row["supervisor"] . '</td>  
+//     </tr>  
+//     <tr>  
+//          <td width="30%"><label>Age</label></td>  
+//          <td width="70%">' . $row["supervisor"] . ' Year</td>  
+//     </tr>  
+//     ';
+//     $output .= "</table></div>";
+//     echo $output;
+// }

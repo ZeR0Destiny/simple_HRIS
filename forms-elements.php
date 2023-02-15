@@ -1,6 +1,6 @@
 <?php
-include_once "../HRIS/Model/db-manager.php";
-include_once "../HRIS/Controller/employee-controller.php";
+require_once "../HRIS/Model/db-manager.php";
+require_once "../HRIS/Controller/employee-controller.php";
 
 $database = new DB_Manager();
 
@@ -433,18 +433,12 @@ $get_employee = $database->get_all();
                   <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="inputFirstName" name="firstname" required>
-                    <div class="invalid-feedback">
-                      Please choose a username.
-                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="inputLastName" name="lastname" required>
-                    <div class="invalid-feedback">
-                      Please choose a username.
-                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -452,7 +446,7 @@ $get_employee = $database->get_all();
                   <div class="col-sm-9">
                     <input type="date" class="form-control" id="inputDob" name="dob" required>
                     <div class="invalid-feedback">
-                      Please choose a username.
+                      Invalid age, must be 15 and above
                     </div>
                   </div>
                 </div>
@@ -477,27 +471,18 @@ $get_employee = $database->get_all();
                   <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" name="address" required>
-                    <div class="invalid-feedback">
-                      Please choose a username.
-                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputCity" class="col-sm-3 col-form-label">City</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="inputCity" name="city" required>
-                    <div class="invalid-feedback">
-                      Please choose a username.
-                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputProvince" class="col-sm-3 col-form-label">Province</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="inputProvince" name="province" required>
-                    <div class="invalid-feedback">
-                      Please choose a username.
-                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -525,9 +510,6 @@ $get_employee = $database->get_all();
                   <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
                   <div class="col-sm-9">
                     <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" name="email" required>
-                    <div class="invalid-feedback">
-                      Please choose a username.
-                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -591,7 +573,7 @@ $get_employee = $database->get_all();
                   <div class="col-xs"></div>
                   <div class="col-sm d-flex justify-content-center">
                     <div class="btn-group">
-                      <button onclick="getPostalcode()" type="submit" class="btn btn-primary" name="submit">Submit</button>
+                      <button onclick="getPostalcode(); getAge();" type="submit" class="btn btn-primary" name="submit">Submit</button>
                       <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
                     </div>
                   </div>
@@ -656,17 +638,37 @@ $get_employee = $database->get_all();
       let zip = document.getElementById('inputPostalcode').value
       let result;
 
-      if (code == 'Canada') {
-        result = cad.test(zip);
-      } else if (code == 'United-States') {
-        result = us.test(zip);
-      }
+      if (zip != "") {
+        if (code == 'Canada') {
+          result = cad.test(zip);
+        } else if (code == 'United-States') {
+          result = us.test(zip);
+        }
 
-      if (!result) {
-        document.getElementById('inputPostalcode').classList.add('is-invalid');
+
+        if (!result) {
+          document.getElementById('inputPostalcode').classList.add('is-invalid');
+          event.preventDefault();
+        } else {
+          document.getElementById('inputPostalcode').classList.remove('is-invalid');
+        }
+      }
+    }
+
+    function getAge() {
+      let today_date = new Date();
+
+      let dob = document.getElementById('inputDob').value;
+      let today_date2 = new Date(dob);
+
+      let milisec_diff = today_date - today_date2;
+      let age = Math.ceil(milisec_diff / (1000 * 60 * 60 * 24 * 365));
+
+      if (age < 16) {
+        document.getElementById('inputDob').classList.add('is-invalid');
         event.preventDefault();
       } else {
-        document.getElementById('inputPostalcode').classList.remove('is-invalid');
+        document.getElementById('inputDob').classList.remove('is-invalid');
       }
     }
   </script>

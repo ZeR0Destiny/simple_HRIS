@@ -1,6 +1,6 @@
 <?php
-include_once "../HRIS/Model/db-manager.php";
-include_once "../HRIS/Controller/employee-controller.php";
+require_once "../HRIS/Model/db-manager.php";
+require_once "../HRIS/Controller/employee-controller.php";
 
 $database = new DB_Manager();
 
