@@ -1,6 +1,6 @@
 <?php
-require_once "../HRIS/Model/db-manager.php";
-require_once "../HRIS/Controller/employee-controller.php";
+require "../HRIS/Model/db-manager.php";
+require "../HRIS/Controller/employee-controller.php";
 
 $database = new DB_Manager();
 
@@ -429,7 +429,7 @@ $get_employee = $database->get_all();
                           </td>
                           <td>
                             <div class="row-lg-6">
-                              <button type="button" onclick="myclick()" class="btn btn-outline-info btn-sm" id="<?= $employee['id'] ?>" name="view"><i class="bi bi-person-square"></i></button>
+                              <button type="button" class="btn btn-outline-info btn-sm" id="<?= $employee['id'] ?>" name="view"><i class="bi bi-person-square"></i></button>
 
                               <a href="edit-forms-elements.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-primary btn-sm" role="button" title="Edit" data-toggle="tooltip">
                                 <i class="bi bi-person-check-fill">
@@ -453,33 +453,26 @@ $get_employee = $database->get_all();
           </div>
         </div>
 
-        <!-- Small modal -->
-        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="exampleModal">
-          <div class="modal-dialog modal-dialog-centered modal-md">
-            <div class="modal-content">
-              <!-- Modal Header -->
-              <!-- <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div> -->
 
-              <!-- Modal body -->
-              <div class="modal-body" id="exampleInfo">
-                Modal body..
-              </div>
-
-              <!-- Modal footer -->
-              <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div> -->
-            </div>
-          </div>
-        </div>
       </form>
     </section>
   </main>
 
-
+  <!-- Small modal -->
+  <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="exampleModal">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body" id="exampleInfo">
+          Modal body..
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- <main id="main" class="main">
     <p class="text-center p-5">
@@ -536,24 +529,49 @@ $get_employee = $database->get_all();
 
   <script>
     $(document).ready(function() {
-      $('button').click(function() {
-        id_emp = $(this).attr('id')
-        $.ajax({
-          url: "emp_info.php",
-          type: 'post',
-          data: {
-            emp_id: id_emp
-          },
-          success: function(get_employee) {
-            $("#exampleInfo").html(get_employee);
-          }
+      var table = $('#emp_table').DataTable();
+
+      $('#emp_table tbody').on('click', 'tr', function() {
+        var data = table.row(this).data();
+        // alert('You clicked on ' + data[0] + "'s row");
+        $('button').click(function() {
+          id_emp = data[0];
+          $.ajax({
+            url: "emp_info.php",
+            type: 'post',
+            data: {
+              emp_id: id_emp
+            },
+            success: function(get_employee) {
+              $(".modal-body").html(get_employee);
+            }
+          });
+
+          $('#exampleModal').modal('show');
         });
 
-        $('#exampleModal').modal("show");
-      })
+      });
+    });
+  </script>
 
+  <script>
+    // $(document).ready(function() {
+    //   $('button').click(function() {
+    //     id_emp = $(this).attr('id')
+    //     $.ajax({
+    //       url: "emp_info.php",
+    //       type: 'post',
+    //       data: {
+    //         emp_id: id_emp
+    //       },
+    //       success: function(get_employee) {
+    //         $(".modal-body").html(get_employee);
+    //       }
+    //     });
 
-    })
+    //     $('#exampleModal').modal('show');
+    //   })
+    // })
   </script>
 </body>
 
