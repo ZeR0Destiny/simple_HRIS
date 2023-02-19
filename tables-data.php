@@ -415,7 +415,7 @@ $get_employee = $database->get_all();
                     <tbody>
                       <?php foreach ($get_employee as $employee) : ?>
                         <tr name="p_id">
-                          <td><?= $employee['id'] ?></td>
+                          <td width="4%"><?= $employee['id'] ?></td>
                           <td><?= $employee['firstname'] . ' ' . $employee['lastname'] ?></td>
                           <td><?= $employee['email'] ?></td>
                           <td><?= $employee['UID'] ?></td>
@@ -427,10 +427,9 @@ $get_employee = $database->get_all();
                                                     echo 'bg-success';
                                                   } ?>"><?= $employee['status']; ?></span>
                           </td>
-                          <td>
+                          <td width="7%">
                             <div class="row-lg-6">
-                              <button type="button" class="btn btn-outline-info btn-sm" id="<?= $employee['id'] ?>" name="view"><i class="bi bi-person-square"></i></button>
-
+                              <button type="button" class="btn btn-outline-info btn-sm" id="id_button" name="view"><i class="bi bi-person-square"></i></button>
                               <a href="edit-forms-elements.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-primary btn-sm" role="button" title="Edit" data-toggle="tooltip">
                                 <i class="bi bi-person-check-fill">
                                 </i>
@@ -452,18 +451,16 @@ $get_employee = $database->get_all();
             </div>
           </div>
         </div>
-
-
       </form>
     </section>
   </main>
 
   <!-- Small modal -->
-  <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="exampleModal">
+  <div class="modal fade md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="exampleModal">
     <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h5 class="modal-title">Employee Information</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <!-- Modal body -->
@@ -527,52 +524,6 @@ $get_employee = $database->get_all();
 
   <script src="js/table-control.js"></script>
 
-  <script>
-    $(document).ready(function() {
-      var table = $('#emp_table').DataTable();
-
-      $('#emp_table tbody').on('click', 'tr', function() {
-        var data = table.row(this).data();
-        // alert('You clicked on ' + data[0] + "'s row");
-        $('button').click(function() {
-          id_emp = data[0];
-          $.ajax({
-            url: "emp_info.php",
-            type: 'post',
-            data: {
-              emp_id: id_emp
-            },
-            success: function(get_employee) {
-              $(".modal-body").html(get_employee);
-            }
-          });
-
-          $('#exampleModal').modal('show');
-        });
-
-      });
-    });
-  </script>
-
-  <script>
-    // $(document).ready(function() {
-    //   $('button').click(function() {
-    //     id_emp = $(this).attr('id')
-    //     $.ajax({
-    //       url: "emp_info.php",
-    //       type: 'post',
-    //       data: {
-    //         emp_id: id_emp
-    //       },
-    //       success: function(get_employee) {
-    //         $(".modal-body").html(get_employee);
-    //       }
-    //     });
-
-    //     $('#exampleModal').modal('show');
-    //   })
-    // })
-  </script>
 </body>
 
 </html>

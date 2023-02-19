@@ -1,26 +1,30 @@
 $(document).ready(function () {
-  // $("#emp_table").DataTable({
-  //   responsive: {
-  //     details: {
-  //       display: $.fn.dataTable.Responsive.display.modal({
-  //         header: function (row) {
-  //           var data = row.data();
-  //           return "Details for " + data[1];
-  //         },
-  //       }),
-  //       renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-  //         tableClass: "table",
-  //       }),
-  //     },
-  //   },
-  // });
-
   $("#emp_table").DataTable({
-    responsive: true,
-    columnDefs: [
-      { responsivePriority: 1, targets: 1 },
-      { responsivePriority: 2, targets: -1 },
-    ],
-    selector: false,
+    responsive: {
+      details: {
+        type: "column",
+        target: "tr",
+      },
+    },
+  });
+
+  var table = $("#emp_table").DataTable();
+
+  $("#emp_table tbody").on("click mouseover", "tr", function () {
+    var data = table.row(this).data();
+    $("#id_button").click(function () {
+      id_emp = data[0];
+      $.ajax({
+        url: "emp_info.php",
+        type: "post",
+        data: {
+          emp_id: id_emp,
+        },
+        success: function (get_employee) {
+          $(".modal-body").html(get_employee);
+          $("#exampleModal").modal("show");
+        },
+      });
+    });
   });
 });

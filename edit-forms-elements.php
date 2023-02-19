@@ -602,7 +602,7 @@ $selected_employee = $database->select_employee($id);
                                     </div>
                                     <div class="col-sm d-flex justify-content-center">
                                         <div class="btn-group">
-                                            <button type="submit" class="btn btn-primary" name="update">Update</button>
+                                            <button onsubmit="getPostalCode(); getAge();" type="submit" class="btn btn-primary" name="update">Update</button>
                                             <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
                                         </div>
                                     </div>
@@ -658,6 +658,7 @@ $selected_employee = $database->select_employee($id);
 
     <!-- Javascript to load getStatus control  -->
     <script src="js/getStatus-control.js"></script>
+
 </body>
 
 </html>
