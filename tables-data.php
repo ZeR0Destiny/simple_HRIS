@@ -429,7 +429,7 @@ $get_employee = $database->get_all();
                           </td>
                           <td width="7%">
                             <div class="row-lg-6">
-                              <button type="button" class="btn btn-outline-info btn-sm" id="id_button" name="view"><i class="bi bi-person-square"></i></button>
+                              <button type="button" class="btn btn-outline-info btn-sm" id="<?= $employee['id'] ?>" name="view"><i class="bi bi-person-square"></i></button>
                               <a href="edit-forms-elements.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-primary btn-sm" role="button" title="Edit" data-toggle="tooltip">
                                 <i class="bi bi-person-check-fill">
                                 </i>

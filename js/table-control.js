@@ -12,7 +12,7 @@ $(document).ready(function () {
 
   $("#emp_table tbody").on("click mouseover", "tr", function () {
     var data = table.row(this).data();
-    $("#id_button").click(function () {
+    $("button").click(function () {
       id_emp = data[0];
       $.ajax({
         url: "emp_info.php",
