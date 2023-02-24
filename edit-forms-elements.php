@@ -448,6 +448,9 @@ $selected_employee = $database->select_employee($id);
                                     <label for="inputDob" class="col-sm-3 col-form-label">Date of birth</label>
                                     <div class="col-sm-9">
                                         <input type="date" class="form-control" id="inputDob" required name="dob" <?= 'value="' . $selected_employee['birthdate'] . '"'; ?>>
+                                        <div class="invalid-feedback">
+                                            Invalid age, must be 16 and above
+                                        </div>
                                     </div>
                                 </div>
                                 <fieldset class="row mb-3">
@@ -511,11 +514,15 @@ $selected_employee = $database->select_employee($id);
                                 <div class="row mb-3">
                                     <label for="inputPostalcode" class="col-sm-3 col-form-label">Postal Code</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputPostalcode" maxlength="7" required pattern="<?php if ($selected_employee['country'] == 'Canada') {
-                                                                                                                                            echo "[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}";
-                                                                                                                                        } elseif ($selected_employee['country'] == 'United-States') {
-                                                                                                                                            echo "[0-9]{5}";
-                                                                                                                                        } ?>" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['postalcode'] . '"'; ?>>
+                                        <!-- <input type="text" class="form-control" id="inputPostalcode" maxlength="7" required pattern="<?php if ($selected_employee['country'] == 'Canada') {
+                                                                                                                                                echo "[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}";
+                                                                                                                                            } elseif ($selected_employee['country'] == 'United-States') {
+                                                                                                                                                echo "[0-9]{5}";
+                                                                                                                                            } ?>" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['postalcode'] . '"'; ?>> -->
+                                        <input type="text" class="form-control" id="inputPostalcode" maxlength="7" name="postalcode" required <?= 'value="' . $selected_employee['postalcode'] . '"'; ?>>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid zip. (Canada: A1Z-1B2, USA: 12345)
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -602,7 +609,7 @@ $selected_employee = $database->select_employee($id);
                                     </div>
                                     <div class="col-sm d-flex justify-content-center">
                                         <div class="btn-group">
-                                            <button onsubmit="getPostalCode(); getAge();" type="submit" class="btn btn-primary" name="update">Update</button>
+                                            <button onclick="getAge(); getPostalcode();" type="submit" class="btn btn-primary" name="update">Update</button>
                                             <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
                                         </div>
                                     </div>
@@ -658,6 +665,10 @@ $selected_employee = $database->select_employee($id);
 
     <!-- Javascript to load getStatus control  -->
     <script src="js/getStatus-control.js"></script>
+
+    <!-- Javascript to load getAge and getPostalCode control  -->
+    <script src="js/getAge.js"></script>
+    <script src="js/getPostalCode.js"></script>
 
 </body>
 

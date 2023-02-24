@@ -423,116 +423,113 @@ $get_employee = $database->get_all();
     <section class="section">
       <form action="#" method="post">
         <div class="col-lg-6 justify-content-center mx-auto">
-          <div class="col">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Personal Informations</h5>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Personal Informations</h5>
 
-                <!-- General Form Elements -->
-                <div class="row mb-3">
-                  <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputFirstName" name="firstname" required>
-                  </div>
+              <!-- General Form Elements -->
+              <div class="row mb-3">
+                <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="inputFirstName" name="firstname" required>
                 </div>
-                <div class="row mb-3">
-                  <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputLastName" name="lastname" required>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputDob" class="col-sm-3 col-form-label">Date of birth</label>
-                  <div class="col-sm-9">
-                    <input type="date" class="form-control" id="inputDob" name="dob" required>
-                    <div class="invalid-feedback">
-                      Invalid age, must be 15 and above
-                    </div>
-                  </div>
-                </div>
-                <fieldset class="row mb-3">
-                  <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
-                  <div class="col-sm-9">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" required>
-                      <label class="form-check-label" for="gridRadios1">
-                        Male
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" required>
-                      <label class="form-check-label" for="gridRadios2">
-                        Female
-                      </label>
-                    </div>
-                  </div>
-                </fieldset>
-                <div class="row mb-3">
-                  <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" name="address" required>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputCity" class="col-sm-3 col-form-label">City</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputCity" name="city" required>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputProvince" class="col-sm-3 col-form-label">Province</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputProvince" name="province" required>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputCountry" class="col-sm-3 col-form-label">Country</label>
-                  <div class="col-sm-9">
-                    <select id="inputCountry" class="form-select" name="country" required>
-                      <option selected disabled value="">Choose...</option>
-                      <option value="Canada">Canada</option>
-                      <option value="United-States">United-States</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputPostalcode" class="col-sm-3 col-form-label">Postal Code</label>
-                  <div class="col-sm-9">
-                    <!-- oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" -->
-                    <input type="text" class="form-control" id="inputPostalcode" maxlength="7" name="postalcode" required>
-                    <div class="invalid-feedback">
-                      Please provide a valid zip. (Canada: A1Z-1B2, USA: 12345)
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
-                  <div class="col-sm-9">
-                    <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" name="email" required>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputMobile" class="col-sm-3 col-form-label">Mobile Phone</label>
-                  <div class="col-sm-9">
-                    <input type="tel" class="form-control" id="inputMobile" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="mobile">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputHome" class="col-sm-3 col-form-label">Homephone</label>
-                  <div class="col-sm-9">
-                    <input type="tel" class="form-control" id="inputHome" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="home">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputSin" class="col-sm-3 col-form-label">SIN</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputSin" maxlength="9" pattern="[0-9]{9}" name="sin" required oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')">
-                  </div>
-                </div>
-
-                <!-- End General Form Elements -->
               </div>
+              <div class="row mb-3">
+                <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="inputLastName" name="lastname" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputDob" class="col-sm-3 col-form-label">Date of birth</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" id="inputDob" name="dob" required>
+                  <div class="invalid-feedback">
+                    Invalid age, must be 16 and above
+                  </div>
+                </div>
+              </div>
+              <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
+                <div class="col-sm-9">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" required>
+                    <label class="form-check-label" for="gridRadios1">
+                      Male
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" required>
+                    <label class="form-check-label" for="gridRadios2">
+                      Female
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+              <div class="row mb-3">
+                <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" name="address" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputCity" class="col-sm-3 col-form-label">City</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="inputCity" name="city" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputProvince" class="col-sm-3 col-form-label">Province</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="inputProvince" name="province" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputCountry" class="col-sm-3 col-form-label">Country</label>
+                <div class="col-sm-9">
+                  <select id="inputCountry" class="form-select" name="country" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option value="Canada">Canada</option>
+                    <option value="United-States">United-States</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputPostalcode" class="col-sm-3 col-form-label">Postal Code</label>
+                <div class="col-sm-9">
+                  <!-- oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" -->
+                  <input type="text" class="form-control" id="inputPostalcode" maxlength="7" name="postalcode" required>
+                  <div class="invalid-feedback">
+                    Please provide a valid zip. (Canada: A1Z-1B2, USA: 12345)
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" name="email" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputMobile" class="col-sm-3 col-form-label">Mobile Phone</label>
+                <div class="col-sm-9">
+                  <input type="tel" class="form-control" id="inputMobile" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="mobile">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputHome" class="col-sm-3 col-form-label">Homephone</label>
+                <div class="col-sm-9">
+                  <input type="tel" class="form-control" id="inputHome" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="home">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputSin" class="col-sm-3 col-form-label">SIN</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="inputSin" maxlength="9" pattern="[0-9]{9}" name="sin" required oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')">
+                </div>
+              </div>
+              <!-- End General Form Elements -->
             </div>
           </div>
 
@@ -573,7 +570,8 @@ $get_employee = $database->get_all();
                   <div class="col-xs"></div>
                   <div class="col-sm d-flex justify-content-center">
                     <div class="btn-group">
-                      <button onclick="getPostalcode(); getAge();" type="submit" class="btn btn-primary" name="submit">Submit</button>
+                      <button onclick="getDate()">asd</button>
+                      <button onclick="getAge(); getPostalcode();" type="submit" class="btn btn-primary" name="submit">Submit</button>
                       <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
                     </div>
                   </div>
@@ -629,9 +627,40 @@ $get_employee = $database->get_all();
   <!-- Javascript for preventing resubmitting control  -->
   <script src="js/resubmission-control.js"></script>
 
-  <!-- Javascript to load getPostalCode and getAge control  -->
-  <script src="js/getPostalCode.js"></script>
+  <!-- Javascript to load getAge and getPostalCode control  -->
   <script src="js/getAge.js"></script>
+  <script src="js/getPostalCode.js"></script>
+
+  <script>
+    function getDate() {
+      let d = new Date("2023-08-13");
+      let today_date = new Date();
+      console.log(d);
+      console.log(today_date);
+
+      let milisec_diff = today_date - d;
+      let year = Math.floor(milisec_diff / (1000 * 60 * 60 * 24 * 365));
+
+      console.log(year + " year(s)");
+      // let month = Math.round((milisec_diff / (1000 * 60 * 60 * 24 * 365) - year) * 10);
+      let month = Math.abs(d.getMonth() - today_date.getMonth());
+
+      console.log(month + " month(s)");
+      let day;
+      let diff = 0;
+      if (d.getDate() >= today_date.getDate()) {
+        diff = d.getDate() - today_date.getDate();
+        day = today_date.getDate() + diff;
+      } else {
+        day = today_date.getDate() - d.getDate();
+      }
+      // let day = ((milisec_diff / (1000 * 60 * 60 * 24 * 365) - year) * 10);
+      console.log(d.getDate())
+      console.log(today_date.getDate())
+      console.log(diff + " difference");
+      console.log(day)
+    }
+  </script>
 </body>
 
 </html>

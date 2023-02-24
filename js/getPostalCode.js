@@ -14,8 +14,8 @@ function getPostalcode() {
     }
 
     if (!result) {
-      document.getElementById("inputPostalcode").classList.add("is-invalid");
       event.preventDefault();
+      document.getElementById("inputPostalcode").classList.add("is-invalid");
     } else {
       document.getElementById("inputPostalcode").classList.remove("is-invalid");
     }

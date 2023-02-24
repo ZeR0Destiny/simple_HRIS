@@ -225,7 +225,7 @@ $get_employee = $database->get_all();
 
         <li class="nav-item dropdown pe-3">
 
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown" role="button">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon -->
@@ -389,75 +389,75 @@ $get_employee = $database->get_all();
       </nav>
     </div>
     <section class="section">
-      <form action="" method="POST">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card">
+      <form action="" method="post">
+        <!-- <div class="col"> -->
+        <div class="col-lg justify-content-center">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Datatables</h5>
               <div class="card-body">
-                <h5 class="card-title">Datatables</h5>
-                <div class="card-body">
-                  <a href="forms-elements.php" class="btn btn-outline-dark" title="Create" data-toggle="tooltip"><i class="bi bi-person-plus-fill"></i></a>
-                </div>
-                <div class="dataTable-container">
-                  <table id="emp_table" class="table table-striped table-bordered nowrap" style="width: 100%">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>Email</th>
-                        <th>UID</th>
-                        <th>Position</th>
-                        <th>Region</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                <a href="forms-elements.php" class="btn btn-outline-dark" title="Create" data-toggle="tooltip"><i class="bi bi-person-plus-fill"></i></a>
+              </div>
+              <div class="dataTable-container">
+                <table id="emp_table" class="table table-striped table-bordered" width="100%">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Full Name</th>
+                      <th>Email</th>
+                      <th>UID</th>
+                      <th>Position</th>
+                      <th>Region</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($get_employee as $employee) : ?>
+                      <tr name="p_id">
+                        <td width="3%"><?= $employee['id'] ?></td>
+                        <td><?= $employee['firstname'] . ' ' . $employee['lastname'] ?></td>
+                        <td><?= $employee['email'] ?></td>
+                        <td><?= $employee['UID'] ?></td>
+                        <td width="15%"><?= $employee['position'] ?></td>
+                        <td width="10%"><?= $employee['region'] ?></td>
+                        <td width="5%"> <span class="badge <?php if ($employee['status'] == 'Inactive') {
+                                                              echo 'bg-danger';
+                                                            } else {
+                                                              echo 'bg-success';
+                                                            } ?>"><?= $employee['status']; ?></span>
+                        </td>
+                        <td width="12%">
+                          <div class="row-lg-6">
+                            <button type="button" class="btn btn-outline-info btn-sm" id="<?= $employee['id'] ?>" name="view"><i class="bi bi-person-square"></i></button>
+                            <a href="edit-forms-elements.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-primary btn-sm" role="button" title="Edit" data-toggle="tooltip">
+                              <i class="bi bi-person-check-fill">
+                              </i>
+                            </a>
+                            <a href="tables-data.php?employee_status_id=<?= $employee['id'] ?>" class="btn btn-outline-secondary btn-sm" role="button" title="Status" data-toggle="tooltip">
+                              <i class="bi bi-person-dash-fill"></i>
+                            </a>
+                            <a href="tables-data.php?employee_delete_id=<?= $employee['id'] ?>" class="btn btn-outline-danger btn-sm" role="button" title="Delete" data-toggle="tooltip">
+                              <i class="bi bi-person-x-fill"></i>
+                            </a>
+                          </div>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      <?php foreach ($get_employee as $employee) : ?>
-                        <tr name="p_id">
-                          <td width="4%"><?= $employee['id'] ?></td>
-                          <td><?= $employee['firstname'] . ' ' . $employee['lastname'] ?></td>
-                          <td><?= $employee['email'] ?></td>
-                          <td><?= $employee['UID'] ?></td>
-                          <td><?= $employee['position'] ?></td>
-                          <td><?= $employee['region'] ?></td>
-                          <td> <span class="badge <?php if ($employee['status'] == 'Inactive') {
-                                                    echo 'bg-danger';
-                                                  } else {
-                                                    echo 'bg-success';
-                                                  } ?>"><?= $employee['status']; ?></span>
-                          </td>
-                          <td width="7%">
-                            <div class="row-lg-6">
-                              <button type="button" class="btn btn-outline-info btn-sm" id="<?= $employee['id'] ?>" name="view"><i class="bi bi-person-square"></i></button>
-                              <a href="edit-forms-elements.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-primary btn-sm" role="button" title="Edit" data-toggle="tooltip">
-                                <i class="bi bi-person-check-fill">
-                                </i>
-                              </a>
-                              <a href="tables-data.php?employee_status_id=<?= $employee['id'] ?>" class="btn btn-outline-secondary btn-sm" role="button" title="Status" data-toggle="tooltip">
-                                <i class="bi bi-person-dash-fill"></i>
-                              </a>
-                              <a href="tables-data.php?employee_delete_id=<?= $employee['id'] ?>" class="btn btn-outline-danger btn-sm" role="button" title="Delete" data-toggle="tooltip">
-                                <i class="bi bi-person-x-fill"></i>
-                              </a>
-                            </div>
-                          </td>
-                        </tr>
-                      <?php endforeach ?>
-                    </tbody>
-                  </table>
-                </div>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
+        <!-- </div> -->
       </form>
     </section>
   </main>
 
   <!-- Small modal -->
   <div class="modal fade md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="exampleModal">
-    <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Employee Information</h5>
@@ -466,6 +466,9 @@ $get_employee = $database->get_all();
         <!-- Modal body -->
         <div class="modal-body" id="exampleInfo">
           Modal body..
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -516,7 +519,7 @@ $get_employee = $database->get_all();
   <!-- CDN Datable -->
   <!-- Includes responsive javascript -->
   <!-- Includes select javascript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script> -->
   <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>

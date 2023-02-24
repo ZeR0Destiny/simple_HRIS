@@ -12,8 +12,12 @@ $(document).ready(function () {
 
   $("#emp_table tbody").on("click mouseover", "tr", function () {
     var data = table.row(this).data();
+
     $("button").click(function () {
-      id_emp = data[0];
+      if (Array.isArray(data)) {
+        id_emp = data[0];
+      }
+
       $.ajax({
         url: "emp_info.php",
         type: "post",
