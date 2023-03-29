@@ -13,10 +13,12 @@ $(document).ready(function () {
   $("#emp_table tbody").on("click mouseover", "tr", function () {
     var data = table.row(this).data();
 
+    $("button").unbind("click");
     $("button").click(function () {
       if (Array.isArray(data)) {
         id_emp = data[0];
       }
+      console.log(id_emp);
 
       $.ajax({
         url: "emp_info.php",

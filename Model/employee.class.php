@@ -1,10 +1,12 @@
 <?php
+// Employee class that contains properties of an employee
+// When adding new properties matching the database, add getters and setters to access the properties
 class employee
 {
     // Employee properties
     private $id;
-    private $first_name;
-    private $last_name;
+    private $firstname;
+    private $lastname;
     private $gender;
     private $birth_date;
     private $address;
@@ -23,6 +25,7 @@ class employee
     private $status;
     private $access;
     private $region;
+    private $start_date;
 
     public function __construct($array)
     {
@@ -40,12 +43,12 @@ class employee
 
     public function getFirstname()
     {
-        return $this->first_name;
+        return $this->firstname;
     }
 
     public function getLastname()
     {
-        return $this->last_name;
+        return $this->lastname;
     }
 
     public function getGender()
@@ -138,6 +141,11 @@ class employee
         return $this->region;
     }
 
+    public function getStart_date()
+    {
+        return $this->start_date;
+    }
+
     // ==================== Setters ====================
     public function setId($id)
     {
@@ -146,16 +154,16 @@ class employee
         return $this;
     }
 
-    public function setFirstname($first_name)
+    public function setFirstname($firstname)
     {
-        $this->first_name = $first_name;
+        $this->firstname = $firstname;
 
         return $this;
     }
 
-    public function setLastname($last_name)
+    public function setLastname($lastname)
     {
-        $this->last_name = $last_name;
+        $this->lastname = $lastname;
 
         return $this;
     }
@@ -283,6 +291,12 @@ class employee
     {
         $this->region = $region;
 
+        return $this;
+    }
+
+    public function setStart_date($start_date)
+    {
+        $this->start_date = $start_date;
         return $this;
     }
 }

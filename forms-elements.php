@@ -570,7 +570,6 @@ $get_employee = $database->get_all();
                   <div class="col-xs"></div>
                   <div class="col-sm d-flex justify-content-center">
                     <div class="btn-group">
-                      <button onclick="getDate()">asd</button>
                       <button onclick="getAge(); getPostalcode();" type="submit" class="btn btn-primary" name="submit">Submit</button>
                       <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
                     </div>
@@ -631,55 +630,6 @@ $get_employee = $database->get_all();
   <script src="js/getAge.js"></script>
   <script src="js/getPostalCode.js"></script>
 
-  <script>
-    function getDate() {
-      // let a = document.getElementById("inputDob").value;
-      let d = new Date(<?= date("Y-m-d") ?>);
-      let today_date = new Date();
-
-      console.log(d + " first date");
-      console.log(today_date + " second date");
-
-      // let milisec_diff = today_date.getTime() - d.getTime();
-      // let year = Math.floor(milisec_diff / (1000 * 3600 * 24 * 365));
-      // // let year = Math.abs(today_date.getFullYear() - d.getFullYear());
-
-      // console.log(milisec_diff);
-      // console.log(year + " year(s)");
-      // let month = Math.round((milisec_diff / (1000 * 3600 * 24 * 365) - year) * 10);
-      // // let month = Math.abs(d.getMonth() - today_date.getMonth());
-
-      // console.log(month + " month(s)");
-      // let day;
-      // let diff = 0;
-      // if (d.getDate() >= today_date.getDate()) {
-      //   diff = d.getDate() - today_date.getDate();
-      //   day = today_date.getDate() + diff;
-      // } else {
-      //   day = today_date.getDate() - d.getDate();
-      // }
-      // // let day = ((milisec_diff / (1000 * 60 * 60 * 24 * 365) - year) * 10);
-      // console.log(diff + " difference");
-      // console.log(day + " days")
-
-      let d1 = d.getTime();
-      let d2 = today_date.getTime();
-
-      let n_days = Math.round((d2 - d1) / (1000 * 3600 * 24));
-      console.log("Number days " + n_days);
-
-      var d1Y = d.getFullYear();
-      var d2Y = today_date.getFullYear();
-      var d1M = d.getMonth();
-      var d2M = today_date.getMonth();
-
-      // console.log(d1Y + " " + d2Y + " " + d1M + " " + d2M);
-      let n_month = '';
-      console.log((d2M + 12 * d2Y) - (d1M + 12 * d1Y));
-
-      console.log(today_date.getFullYear() - d.getFullYear());
-    }
-  </script>
 </body>
 
 </html>

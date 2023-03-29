@@ -602,6 +602,21 @@ $selected_employee = $database->select_employee($id);
                                                                                                                                                         } ?>>
                                         <label class="form-check-label" for="flexSwitchCheckDefault" id="preview"><?= $selected_employee['status'] ?></label>
                                     </div>
+                                    <div>
+                                        <?php
+                                        $diff = date_diff(date_create($selected_employee["start_date"]), date_create());
+                                        $days = $diff->format('%d');
+                                        $tdays = $diff->format('%y');
+
+                                        // calculate length of service in months
+                                        $months = $diff->format('%m');
+                                        $tmonths = $diff->format('%y') * 12 + $diff->format('%m');
+
+                                        // calculate length of service in years
+                                        $years = $diff->format('%y');
+                                        echo "Length of service: $years years, $months months, $days days";
+                                        ?>
+                                    </div>
                                 </div>
 
                                 <div class="row mb-3">

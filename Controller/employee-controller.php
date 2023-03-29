@@ -38,9 +38,11 @@ if (isset($_POST['submit'])) {
                     $homephone = "";
                 }
 
+                date_default_timezone_set("America/Toronto");
+
                 $new_emp = array(
-                    "first_name" => ucwords($_POST['firstname']),
-                    "last_name" => ucwords($_POST['lastname']),
+                    "firstname" => ucwords($_POST['firstname']),
+                    "lastname" => ucwords($_POST['lastname']),
                     "birth_date" => $_POST['dob'],
                     "gender" => $_POST['gender'],
                     "address" => ucwords($_POST['address']),
@@ -57,8 +59,10 @@ if (isset($_POST['submit'])) {
                     "pay_class" => $_POST['payclass'],
                     "supervisor" => ucwords($_POST['supervisor']),
                     "region" => ucwords($_POST['region']),
+                    "start_date" => date("Y-m-d")
                 );
 
+                // Array is store in the employee class
                 $employee = new employee($new_emp);
                 // var_dump($employee);
                 $database->add_employee($employee);
@@ -83,33 +87,3 @@ if (isset($_GET['employee_delete_id'])) {
     $database->delete_employee();
     $database->reset_auto_increment();
 }
-
-// if (isset($_POST['emp_id'])) {
-//     $y = $database->select_employee($_POST['emp_id']);
-//     $output .= '<div class="table-responsive">  
-//     <table class="table table-bordered">';
-//     $output .= '  
-//     <tr>  
-//          <td width="30%"><label>Name</label></td>  
-//          <td width="70%">' . $row["firstname"] . '</td>  
-//     </tr>  
-//     <tr>  
-//          <td width="30%"><label>Address</label></td>  
-//          <td width="70%">' . $row["address"] . '</td>  
-//     </tr>  
-//     <tr>  
-//          <td width="30%"><label>Gender</label></td>  
-//          <td width="70%">' . $row["gender"] . '</td>  
-//     </tr>  
-//     <tr>  
-//          <td width="30%"><label>Designation</label></td>  
-//          <td width="70%">' . $row["supervisor"] . '</td>  
-//     </tr>  
-//     <tr>  
-//          <td width="30%"><label>Age</label></td>  
-//          <td width="70%">' . $row["supervisor"] . ' Year</td>  
-//     </tr>  
-//     ';
-//     $output .= "</table></div>";
-//     echo $output;
-// }

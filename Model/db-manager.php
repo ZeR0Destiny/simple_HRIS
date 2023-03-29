@@ -39,7 +39,7 @@ class DB_Manager
         $query = $this->db->prepare("INSERT INTO employee 
         VALUES (DEFAULT, :firstname, :lastname, :gender, :birthdate, :address, 
         :city, :province, :country, :postalcode, :email, :mobile, :homephone, :SIN, :UID, 
-        :position, :payclass, :supervisor, DEFAULT, DEFAULT, :region)");
+        :position, :payclass, :supervisor, DEFAULT, DEFAULT, :region, :start_date)");
 
         $result = $query->execute(array(
             "firstname" => $employee->getFirstname(),
@@ -59,7 +59,8 @@ class DB_Manager
             "position" => $employee->getPosition(),
             "payclass" => $employee->getPayclass(),
             "supervisor" => $employee->getSupervisor(),
-            "region" => $employee->getRegion()
+            "region" => $employee->getRegion(),
+            "start_date" => $employee->getStart_date()
         ));
 
         if ($result) {
