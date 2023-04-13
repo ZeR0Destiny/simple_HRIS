@@ -1,5 +1,5 @@
 <?php
-require "../HRIS/Model/db-manager.php";
+require "../HRIS/Model/employee-db-manager.php";
 require "../HRIS/Controller/employee-controller.php";
 
 $database = new DB_Manager();
@@ -46,6 +46,9 @@ $get_employee = $database->get_all();
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
+  <!-- Bootstrap 5.2.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+
   <style>
     #inputFirstName,
     #inputLastName,
@@ -67,7 +70,7 @@ $get_employee = $database->get_all();
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">NiceAdmin</span>
       </a>
@@ -298,7 +301,7 @@ $get_employee = $database->get_all();
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -393,7 +396,7 @@ $get_employee = $database->get_all();
       <h1>Form Elements</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
           <li class="breadcrumb-item">Forms</li>
           <li class="breadcrumb-item active">Elements</li>
         </ol>

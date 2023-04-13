@@ -82,7 +82,7 @@ if (isset($_GET['employee_status_id'])) {
     $database->update_employee_status();
 }
 
-// Retrieve the id of the employee then call the delete and auto_increment function
+// Retrieve the id of the employee then call the delete and rest auto_increment function
 if (isset($_GET['employee_delete_id'])) {
     $database->delete_employee();
     $database->reset_auto_increment();

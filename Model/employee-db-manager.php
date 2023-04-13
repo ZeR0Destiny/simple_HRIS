@@ -98,7 +98,7 @@ class DB_Manager
         return $valid;
     }
 
-    // Function to select the employee information based on the id
+    // Function to select the employee information with the id
     public function select_employee($id)
     {
         $query = $this->db->query("SELECT * FROM employee WHERE id = $id;");
@@ -107,7 +107,7 @@ class DB_Manager
         return $array;
     }
 
-    // Function to update the information of the employee
+    // Function to update the information of the employee at the select id
     public function update_employee($id)
     {
         $query = $this->db->prepare("UPDATE employee 
@@ -164,7 +164,7 @@ class DB_Manager
         }
     }
 
-    // Function to delete the selected employeee
+    // Function to delete the select employeee
     public function delete_employee()
     {
         $query = $this->db->prepare("DELETE FROM employee WHERE id = ?; ");
