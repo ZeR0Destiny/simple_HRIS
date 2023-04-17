@@ -1,5 +1,5 @@
 <?php
-require_once "../HRIS/Model/db-manager.php";
+require_once "../HRIS/Model/employee-db-manager.php";
 
 $database = new DB_Manager();
 
