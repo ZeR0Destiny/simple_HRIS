@@ -1,5 +1,5 @@
 <?php
-include "include/header.html";
+require "include/header.html";
 
 require "../HRIS/Model/employee-db-manager.php";
 require "../HRIS/Controller/employee-controller.php";
@@ -111,4 +111,4 @@ $get_employee = $database->get_all();
   </div>
 </div>
 
-<?php include "include/footer.html" ?>
+<?php require "include/footer.html" ?>
