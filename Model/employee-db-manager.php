@@ -187,4 +187,12 @@ class DB_Manager
         $sql = $this->db->prepare('ALTER TABLE employee AUTO_INCREMENT = 1;');
         $sql->execute();
     }
+
+    public function get_all_employee()
+    {
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM employee");
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $result['total'];
+    }
 }

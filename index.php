@@ -1,4 +1,8 @@
-<?php include "include/header.html" ?>
+<?php require "include/header.html";
+
+require "../HRIS/Model/employee-db-manager.php";
+
+?>
 
 <main id="main" class="main">
 
@@ -750,4 +754,4 @@
 
 </main><!-- End #main -->
 
-<?php include "include/footer.html" ?>
+<?php require "include/footer.html" ?>

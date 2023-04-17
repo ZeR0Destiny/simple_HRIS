@@ -642,13 +642,6 @@ $selected_employee = $database->select_employee($id);
 
                 </div>
             </form>
-
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                    </div>
-                </div>
-            </div>
         </section>
 
     </main><!-- End #main -->
