@@ -173,7 +173,7 @@ $get_employee = $database->get_all();
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="tables-data.php">
+            <a href="table-data.php">
               <i class="bi bi-circle"></i><span>Data Tables</span>
             </a>
           </li>
@@ -420,7 +420,7 @@ $get_employee = $database->get_all();
                   <div class="col-sm d-flex justify-content-center">
                     <div class="btn-group">
                       <button onclick="getAge(); getPostalcode();" type="submit" class="btn btn-primary" name="submit">Submit</button>
-                      <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
+                      <a href="table-data.php" type="button" class="btn btn-secondary">Cancel</a>
                     </div>
                   </div>
                   <div class="col-xs"></div>

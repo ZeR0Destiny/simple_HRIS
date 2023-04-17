@@ -30,7 +30,7 @@ $get_employee = $database->get_all();
             <!-- <h5 class="card-title">Datatables</h5> -->
             <div class="card-body">
               <a href="forms-elements.php" class="btn btn-outline-dark" title="Create" data-bs-toggle="tooltip"><i class="bi bi-person-plus-fill"></i></a>
-              <a href="" class="btn btn-outline-dark" title="Document" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-fill"></i></a>
+              <a href="table-file.php" class="btn btn-outline-dark" title="Document" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-fill"></i></a>
             </div>
             <div class="dataTable-container">
               <table id="emp_table" class="table table-striped table-bordered" width="100%">
@@ -69,10 +69,10 @@ $get_employee = $database->get_all();
                               <i class="bi bi-person-check-fill">
                               </i>
                             </a>
-                            <a href="tables-data.php?employee_status_id=<?= $employee['id'] ?>" class="btn btn-outline-secondary btn-sm" role="button" title="Status" data-bs-toggle="tooltip">
+                            <a href="table-data.php?employee_status_id=<?= $employee['id'] ?>" class="btn btn-outline-secondary btn-sm" role="button" title="Status" data-bs-toggle="tooltip">
                               <i class="bi bi-person-dash-fill"></i>
                             </a>
-                            <a href="tables-data.php?employee_delete_id=<?= $employee['id'] ?>" class="btn btn-outline-danger btn-sm" role="button" title="Delete" data-bs-toggle="tooltip">
+                            <a href="table-data.php?employee_delete_id=<?= $employee['id'] ?>" class="btn btn-outline-danger btn-sm" role="button" title="Delete" data-bs-toggle="tooltip">
                               <i class="bi bi-person-x-fill"></i>
                             </a>
                           </div>

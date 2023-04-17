@@ -329,7 +329,7 @@ $selected_employee = $database->select_employee($id);
                 </a>
                 <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="tables-data.php">
+                        <a href="table-data.php">
                             <i class="bi bi-circle"></i><span>Data Tables</span>
                         </a>
                     </li>
@@ -399,7 +399,7 @@ $selected_employee = $database->select_employee($id);
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                    <li class="breadcrumb-item"><a href="tables-data.php">Tables</a></li>
+                    <li class="breadcrumb-item"><a href="table-data.php">Tables</a></li>
                     <li class="breadcrumb-item">Forms</li>
                     <li class="breadcrumb-item active">Elements</li>
                 </ol>
@@ -628,7 +628,7 @@ $selected_employee = $database->select_employee($id);
                                     <div class="col-sm d-flex justify-content-center">
                                         <div class="btn-group">
                                             <button onclick="getAge(); getPostalcode();" type="submit" class="btn btn-primary" name="update">Update</button>
-                                            <a href="tables-data.php" type="button" class="btn btn-secondary">Cancel</a>
+                                            <a href="table-data.php" type="button" class="btn btn-secondary">Cancel</a>
                                         </div>
                                     </div>
                                     <div class="col-xs">
