@@ -23,7 +23,7 @@ class employee
     private $pay_class;
     private $supervisor;
     private $status;
-    private $access;
+    // private $access;
     private $region;
     private $start_date;
 
