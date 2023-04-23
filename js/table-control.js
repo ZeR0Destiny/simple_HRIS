@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $("#emp_table").DataTable({
+  $("#emp_table, #emp_file_table, #file_table").DataTable({
     responsive: {
       details: {
         type: "column",
@@ -9,6 +9,8 @@ $(document).ready(function () {
   });
 
   var table = $("#emp_table").DataTable();
+  var table2 = $("#emp_file_table").DataTable();
+  var table3 = $("#file_table").DataTable();
 
   $("#emp_table tbody").on("click mouseover", "tr", function () {
     var data = table.row(this).data();

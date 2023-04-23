@@ -160,7 +160,7 @@ $get_employee = $database->get_all();
         <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
             <a href="forms-elements.php" class="active">
-              <i class="bi bi-circle"></i><span>Form Elements</span>
+              <i class="bi bi-circle"></i><span>Create Employee</span>
             </a>
           </li>
         </ul>
@@ -174,12 +174,19 @@ $get_employee = $database->get_all();
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="table-data.php">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
+              <i class="bi bi-circle"></i><span>Employee Table</span>
             </a>
           </li>
         </ul>
       </li>
       <!-- End Tables Nav -->
+
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="table-file-manager.php">
+              <i class="bi bi-folder"></i>
+              <span>File Manager</span>
+          </a>
+      </li>
 
       <li class="nav-heading">Pages</li>
 
@@ -239,12 +246,12 @@ $get_employee = $database->get_all();
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Form Elements</h1>
+      <h1>Employee Form</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
           <li class="breadcrumb-item">Forms</li>
-          <li class="breadcrumb-item active">Elements</li>
+          <li class="breadcrumb-item active">Create</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -346,7 +353,6 @@ $get_employee = $database->get_all();
               <div class="row mb-3">
                 <label for="inputPostalcode" class="col-sm-3 col-form-label">Postal Code</label>
                 <div class="col-sm-9">
-                  <!-- oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" -->
                   <input type="text" class="form-control" id="inputPostalcode" maxlength="7" name="postalcode" required>
                   <div class="invalid-feedback">
                     Please provide a valid zip. (Canada: A1Z-1B2, USA: 12345)
@@ -357,7 +363,7 @@ $get_employee = $database->get_all();
               <div class="row mb-3">
                 <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
-                  <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" name="email" required>
+                  <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                 </div>
               </div>
               <div class="row mb-3">

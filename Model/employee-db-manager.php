@@ -64,7 +64,7 @@ class DB_Manager
         ));
 
         if ($result) {
-            header("location: tables-data.php?employee-created");
+            header("location: table-data.php?employee-created");
         }
     }
 
@@ -101,8 +101,10 @@ class DB_Manager
     // Function to select the employee information with the id
     public function select_employee($id)
     {
-        $query = $this->db->query("SELECT * FROM employee WHERE id = $id;");
-        $array = $query->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->db->prepare("SELECT * FROM employee WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $array = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $array;
     }
@@ -114,7 +116,7 @@ class DB_Manager
         SET firstname = :firstname, lastname = :lastname, gender = :gender, birthdate = :birthdate, 
         address = :address, city = :city, province = :province, country = :country, postalcode =:postalcode, 
         email = :email, mobile = :mobile, homephone = :homephone,
-        position = :position, payclass = :payclass, supervisor = :supervisor, status = :status, region = :region WHERE id = $id");
+        position = :position, payclass = :payclass, supervisor = :supervisor, status = :status, region = :region, last_update = NOW() WHERE id = $id");
 
         if (isset($_POST['homephone'])) {
             $homephone = $_POST['homephone'];
@@ -149,18 +151,18 @@ class DB_Manager
         ));
 
         if ($result) {
-            header("location: tables-data.php?employee-information-updated");
+            header("location: table-data.php?employee-information-updated");
         }
     }
 
     // Function to quickly change the status of the employee
     public function update_employee_status()
     {
-        $query = $this->db->prepare("UPDATE employee SET status = 'Inactive' WHERE id = ?;");
+        $query = $this->db->prepare("UPDATE employee SET last_update = IF(status != 'Inactive', NOW(), last_update), status = 'Inactive' WHERE id = ?");
         $result = $query->execute(array($_GET['employee_status_id']));
 
         if ($result) {
-            header("location: tables-data.php?employee-status-changed");
+            header("location: table-data.php?employee-status-changed");
         }
     }
 
@@ -171,7 +173,7 @@ class DB_Manager
         $result = $query->execute(array($_GET['employee_delete_id']));
 
         if ($result) {
-            header("location: tables-data.php?employee-deleted");
+            header("location: table-data.php?employee-deleted");
         }
     }
 
@@ -188,4 +190,11 @@ class DB_Manager
         $sql->execute();
     }
 
+    // public function get_all_employee()
+    // {
+    //     $query = $this->db->query("SELECT COUNT(*) AS total FROM employee");
+    //     $result = $query->fetch(PDO::FETCH_ASSOC);
+
+    //     return $result['total'];
+    // }
 }

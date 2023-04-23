@@ -79,163 +79,8 @@ $selected_employee = $database->select_employee($id);
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
 
-        <div class="search-bar">
-            <form class="search-form d-flex align-items-center" method="POST" action="#">
-                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-        </div><!-- End Search Bar -->
-
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
-                <li class="nav-item d-block d-lg-none">
-                    <a class="nav-link nav-icon search-bar-toggle " href="#">
-                        <i class="bi bi-search"></i>
-                    </a>
-                </li><!-- End Search Icon-->
-
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number">4</span>
-                    </a><!-- End Notification Icon -->
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                        <li class="dropdown-header">
-                            You have 4 new notifications
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-exclamation-circle text-warning"></i>
-                            <div>
-                                <h4>Lorem Ipsum</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>30 min. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-x-circle text-danger"></i>
-                            <div>
-                                <h4>Atque rerum nesciunt</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>1 hr. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-check-circle text-success"></i>
-                            <div>
-                                <h4>Sit rerum fuga</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>2 hrs. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="notification-item">
-                            <i class="bi bi-info-circle text-primary"></i>
-                            <div>
-                                <h4>Dicta reprehenderit</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>4 hrs. ago</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li class="dropdown-footer">
-                            <a href="#">Show all notifications</a>
-                        </li>
-
-                    </ul><!-- End Notification Dropdown Items -->
-
-                </li><!-- End Notification Nav -->
-
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-chat-left-text"></i>
-                        <span class="badge bg-success badge-number">3</span>
-                    </a><!-- End Messages Icon -->
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-                        <li class="dropdown-header">
-                            You have 3 new messages
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>Maria Hudson</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>4 hrs. ago</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>Anna Nelson</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>6 hrs. ago</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>David Muldon</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>8 hrs. ago</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">Show all messages</a>
-                        </li>
-
-                    </ul><!-- End Messages Dropdown Items -->
-
-                </li><!-- End Messages Nav -->
-
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -313,10 +158,10 @@ $selected_employee = $database->select_employee($id);
                 <a class="nav-link " data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+                <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="forms-elements.php" class="active">
-                            <i class="bi bi-circle"></i><span>Form Elements</span>
+                        <a href="forms-elements.php">
+                            <i class="bi bi-circle"></i><span>Create Employee</span>
                         </a>
                     </li>
                 </ul>
@@ -330,12 +175,19 @@ $selected_employee = $database->select_employee($id);
                 <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="table-data.php">
-                            <i class="bi bi-circle"></i><span>Data Tables</span>
+                            <i class="bi bi-circle"></i><span>Employee Table</span>
                         </a>
                     </li>
                 </ul>
             </li>
             <!-- End Tables Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="table-file-manager.php">
+                    <i class="bi bi-folder"></i>
+                    <span>File Manager</span>
+                </a>
+            </li>
 
             <li class="nav-heading">Pages</li>
 
@@ -395,13 +247,13 @@ $selected_employee = $database->select_employee($id);
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Form Elements</h1>
+            <h1>Employee Form</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                     <li class="breadcrumb-item"><a href="table-data.php">Tables</a></li>
                     <li class="breadcrumb-item">Forms</li>
-                    <li class="breadcrumb-item active">Elements</li>
+                    <li class="breadcrumb-item active"><?= $selected_employee['firstname'] . ", " . $selected_employee['lastname'] ?></li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -428,218 +280,224 @@ $selected_employee = $database->select_employee($id);
         <!-- Section with all the inputs -->
         <section class="section">
             <form action="#" method="post">
-                <div class="col-lg-6 justify-content-center mx-auto">
-                    <div class="col">
+                <div class="row">
+                    <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Personal Informations</h5>
+                                <h5>hello</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Personal Informations</h5>
 
-                                <!-- General Form Elements -->
-                                <div class="row mb-3">
-                                    <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputFirstName" required name="firstname" <?= 'value="' . $selected_employee['firstname'] . '"'; ?>>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputLastName" required name="lastname" <?= 'value="' . $selected_employee['lastname'] . '"'; ?>>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputDob" class="col-sm-3 col-form-label">Date of birth</label>
-                                    <div class="col-sm-9">
-                                        <input type="date" class="form-control" id="inputDob" required name="dob" <?= 'value="' . $selected_employee['birthdate'] . '"'; ?>>
-                                        <div class="invalid-feedback">
-                                            Invalid age, must be 16 and above
+                                    <!-- General Form Elements -->
+                                    <div class="row mb-3">
+                                        <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputFirstName" required name="firstname" <?= 'value="' . $selected_employee['firstname'] . '"'; ?>>
                                         </div>
                                     </div>
-                                </div>
-                                <fieldset class="row mb-3">
-                                    <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
-                                    <div class="col-sm-9">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" <?php if ($selected_employee['gender'] == 'Male') {
-                                                                                                                                            echo 'checked';
-                                                                                                                                        } ?>>
-                                            <label class="form-check-label" for="gridRadios1">
-                                                Male
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" <?php if ($selected_employee['gender'] == 'Female') {
-                                                                                                                                            echo 'checked';
-                                                                                                                                        } ?>>
-                                            <label class="form-check-label" for="gridRadios2">
-                                                Female
-                                            </label>
+                                    <div class="row mb-3">
+                                        <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputLastName" required name="lastname" <?= 'value="' . $selected_employee['lastname'] . '"'; ?>>
                                         </div>
                                     </div>
-                                </fieldset>
-                                <div class="row mb-3">
-                                    <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" required name="address" <?= 'value="' . $selected_employee['address'] . '"'; ?>>
+                                    <div class="row mb-3">
+                                        <label for="inputDob" class="col-sm-3 col-form-label">Date of birth</label>
+                                        <div class="col-sm-9">
+                                            <input type="date" class="form-control" id="inputDob" required name="dob" <?= 'value="' . $selected_employee['birthdate'] . '"'; ?>>
+                                            <div class="invalid-feedback">
+                                                Invalid age, must be 16 and above
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- <div class="row mb-3">
+                                    <fieldset class="row mb-3">
+                                        <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
+                                        <div class="col-sm-9">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" <?php if ($selected_employee['gender'] == 'Male') {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            } ?>>
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    Male
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" <?php if ($selected_employee['gender'] == 'Female') {
+                                                                                                                                                echo 'checked';
+                                                                                                                                            } ?>>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    Female
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="row mb-3">
+                                        <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" required name="address" <?= 'value="' . $selected_employee['address'] . '"'; ?>>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row mb-3">
                                     <label for="inputAddress2" class="col-sm-3 col-form-label">Address 2</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="address2">
                                     </div>
                                 </div> -->
-                                <div class="row mb-3">
-                                    <label for="inputCity" class="col-sm-3 col-form-label">City</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputCity" required name="city" <?= 'value="' . $selected_employee['city'] . '"'; ?>>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputProvince" class="col-sm-3 col-form-label">Province</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputProvince" required name="province" <?= 'value="' . $selected_employee['province'] . '"'; ?>>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputCountry" class="col-sm-3 col-form-label">Country</label>
-                                    <div class="col-sm-9">
-                                        <select id="inputCountry" class="form-select" name="country">
-                                            <option value="Canada" <?php if ($selected_employee['country'] == 'Canada') {
-                                                                        echo "selected";
-                                                                    } ?>>Canada</option>
-                                            <option value="United-States" <?php if ($selected_employee['country'] == 'United-States') {
-                                                                                echo "selected";
-                                                                            } ?>>United-States</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputPostalcode" class="col-sm-3 col-form-label">Postal Code</label>
-                                    <div class="col-sm-9">
-                                        <!-- <input type="text" class="form-control" id="inputPostalcode" maxlength="7" required pattern="<?php if ($selected_employee['country'] == 'Canada') {
-                                                                                                                                                echo "[A-Z]{1}[0-9]{1}[A-Z]{1}-[0-9]{1}[A-Z]{1}[0-9]{1}";
-                                                                                                                                            } elseif ($selected_employee['country'] == 'United-States') {
-                                                                                                                                                echo "[0-9]{5}";
-                                                                                                                                            } ?>" name="postalcode" oninvalid="this.setCustomValidity('CAD: K7L-1Z9 \n USA: 52607')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['postalcode'] . '"'; ?>> -->
-                                        <input type="text" class="form-control" id="inputPostalcode" maxlength="7" name="postalcode" required <?= 'value="' . $selected_employee['postalcode'] . '"'; ?>>
-                                        <div class="invalid-feedback">
-                                            Please provide a valid zip. (Canada: A1Z-1B2, USA: 12345)
+                                    <div class="row mb-3">
+                                        <label for="inputCity" class="col-sm-3 col-form-label">City</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputCity" required name="city" <?= 'value="' . $selected_employee['city'] . '"'; ?>>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" required name="email" <?= 'value="' . $selected_employee['email'] . '"'; ?>>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputMobile" class="col-sm-3 col-form-label">Mobile Phone</label>
-                                    <div class="col-sm-9">
-                                        <input type="tel" class="form-control" id="inputMobile" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="mobile" oninvalid="this.setCustomValidity('e.g. 888-888-888')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['mobile'] . '"'; ?>>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputHome" class="col-sm-3 col-form-label">Homephone</label>
-                                    <div class="col-sm-9">
-                                        <input type="tel" class="form-control" id="inputHome" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="home" oninvalid="this.setCustomValidity('e.g. 888-888-8888')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['homephone'] . '"'; ?>>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputSin" class="col-sm-3 col-form-label">SIN</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputSin" required maxlength="9" pattern="[0-9]{9}" name="sin" oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['SIN'] . '"'; ?> disabled>
-                                    </div>
-                                </div>
-
-                                <!-- End General Form Elements -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Other Informations</h5>
-
-                                <!-- Advanced Form Elements -->
-                                <div class="row mb-3">
-                                    <label for="inputPosition" class="col-sm-3 col-form-label">Hired position</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputPosition" name="position" <?= 'value="' . $selected_employee['position'] . '"'; ?>>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputPayclass" class="col-sm-3 col-form-label">Pay Class</label>
-                                    <div class="col-sm-9">
-                                        <select id="inputPayclass" class="form-select" name="payclass">
-                                            <option value="Hourly" <?php if ($selected_employee['payclass'] == 'Hourly') {
-                                                                        echo "selected";
-                                                                    } ?>>Hourly</option>
-                                            <option value="Salary" <?php if ($selected_employee['payclass'] == 'Salary') {
-                                                                        echo "selected";
-                                                                    } ?>>Salary</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputSupervisor" class="col-sm-3 col-form-label">Supervisor</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputSupervisor" name="supervisor" <?= 'value="' . $selected_employee['supervisor'] . '"'; ?>>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputRegion" class="col-sm-3 col-form-label">Region</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputRegion" name="region" <?= 'value="' . $selected_employee['region'] . '"'; ?>>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">Status</label>
-                                    </div>
-                                    <div class="col-sm-3 form-check form-switch">
-                                        <input onclick="getStatus()" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="status" <?php if ($selected_employee['status'] == 'Active') {
-                                                                                                                                                            echo 'checked';
-                                                                                                                                                        } ?>>
-                                        <label class="form-check-label" for="flexSwitchCheckDefault" id="preview"><?= $selected_employee['status'] ?></label>
-                                    </div>
-                                    <div>
-                                        <?php
-                                        $diff = date_diff(date_create($selected_employee["start_date"]), date_create());
-                                        $days = $diff->format('%d');
-                                        $tdays = $diff->format('%y');
-
-                                        // calculate length of service in months
-                                        $months = $diff->format('%m');
-                                        $tmonths = $diff->format('%y') * 12 + $diff->format('%m');
-
-                                        // calculate length of service in years
-                                        $years = $diff->format('%y');
-                                        echo "Length of service: $years years, $months months, $days days";
-                                        ?>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-xs">
-                                    </div>
-                                    <div class="col-sm d-flex justify-content-center">
-                                        <div class="btn-group">
-                                            <button onclick="getAge(); getPostalcode();" type="submit" class="btn btn-primary" name="update">Update</button>
-                                            <a href="table-data.php" type="button" class="btn btn-secondary">Cancel</a>
+                                    <div class="row mb-3">
+                                        <label for="inputProvince" class="col-sm-3 col-form-label">Province</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputProvince" required name="province" <?= 'value="' . $selected_employee['province'] . '"'; ?>>
                                         </div>
                                     </div>
-                                    <div class="col-xs">
+                                    <div class="row mb-3">
+                                        <label for="inputCountry" class="col-sm-3 col-form-label">Country</label>
+                                        <div class="col-sm-9">
+                                            <select id="inputCountry" class="form-select" name="country">
+                                                <option value="Canada" <?php if ($selected_employee['country'] == 'Canada') {
+                                                                            echo "selected";
+                                                                        } ?>>Canada</option>
+                                                <option value="United-States" <?php if ($selected_employee['country'] == 'United-States') {
+                                                                                    echo "selected";
+                                                                                } ?>>United-States</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="row mb-3">
+                                        <label for="inputPostalcode" class="col-sm-3 col-form-label">Postal Code</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputPostalcode" maxlength="7" name="postalcode" required <?= 'value="' . $selected_employee['postalcode'] . '"'; ?>>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid zip. (Canada: A1Z-1B2, USA: 12345)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control" id="inputEmail" placeholder="example@realfruitbubbletea.com" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" <?= 'value="' . $selected_employee['email'] . '"'; ?>>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputMobile" class="col-sm-3 col-form-label">Mobile Phone</label>
+                                        <div class="col-sm-9">
+                                            <input type="tel" class="form-control" id="inputMobile" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="mobile" oninvalid="this.setCustomValidity('e.g. 888-888-888')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['mobile'] . '"'; ?>>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputHome" class="col-sm-3 col-form-label">Homephone</label>
+                                        <div class="col-sm-9">
+                                            <input type="tel" class="form-control" id="inputHome" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="home" oninvalid="this.setCustomValidity('e.g. 888-888-8888')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['homephone'] . '"'; ?>>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputSin" class="col-sm-3 col-form-label">SIN</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputSin" required maxlength="9" pattern="[0-9]{9}" name="sin" oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['SIN'] . '"'; ?> disabled>
+                                        </div>
+                                    </div>
 
-                                <!-- End Advanced Form Elements -->
+                                    <!-- End General Form Elements -->
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Other Informations</h5>
+
+                                    <!-- Advanced Form Elements -->
+                                    <div class="row mb-3">
+                                        <label for="inputPosition" class="col-sm-3 col-form-label">Hired position</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputPosition" name="position" <?= 'value="' . $selected_employee['position'] . '"'; ?>>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputPayclass" class="col-sm-3 col-form-label">Pay Class</label>
+                                        <div class="col-sm-9">
+                                            <select id="inputPayclass" class="form-select" name="payclass">
+                                                <option value="Hourly" <?php if ($selected_employee['payclass'] == 'Hourly') {
+                                                                            echo "selected";
+                                                                        } ?>>Hourly</option>
+                                                <option value="Salary" <?php if ($selected_employee['payclass'] == 'Salary') {
+                                                                            echo "selected";
+                                                                        } ?>>Salary</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputSupervisor" class="col-sm-3 col-form-label">Supervisor</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputSupervisor" name="supervisor" <?= 'value="' . $selected_employee['supervisor'] . '"'; ?>>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputRegion" class="col-sm-3 col-form-label">Region</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputRegion" name="region" <?= 'value="' . $selected_employee['region'] . '"'; ?>>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <label class="form-check-label" for="flexSwitchCheckDefault">Status</label>
+                                        </div>
+                                        <div class="col-sm-3 form-check form-switch">
+                                            <input onclick="getStatus()" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="status" <?php if ($selected_employee['status'] == 'Active') {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
+                                            <label class="form-check-label" for="flexSwitchCheckDefault" id="preview"><?= $selected_employee['status'] ?></label>
+                                        </div>
+                                        <div>
+                                            <?php
+                                            $diff = date_diff(date_create($selected_employee["start_date"]), date_create());
+                                            $days = $diff->format('%d');
+                                            $tdays = $diff->format('%y');
+
+                                            // calculate length of service in months
+                                            $months = $diff->format('%m');
+                                            $tmonths = $diff->format('%y') * 12 + $diff->format('%m');
+
+                                            // calculate length of service in years
+                                            $years = $diff->format('%y');
+                                            echo "Length of service: $years years, $months months, $days days";
+                                            ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-xs">
+                                        </div>
+                                        <div class="col-sm d-flex justify-content-center">
+                                            <div class="btn-group">
+                                                <button onclick="getAge(); getPostalcode();" type="submit" class="btn btn-primary" name="update">Update</button>
+                                                <a href="table-data.php" type="button" class="btn btn-secondary">Cancel</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs"></div>
+
+                                    </div>
+                                    <div class="text-end">
+                                        <label for="">Last Updated:</label><?= ' ' . $selected_employee['last_update'] ?>
+                                    </div>
+                                    <!-- End Advanced Form Elements -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </form>
         </section>

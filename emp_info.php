@@ -196,10 +196,6 @@ if (isset($_POST["emp_id"])) {
                 <tr>  
                     <td><label>Status</label></td>  
                     <td>' . $emp["status"] . '</td>  
-                </tr>
-                <tr>  
-                    <td><label>Access</label></td>  
-                    <td>' . $emp["access"] . '</td>  
                 </tr>  
                 <tr>  
                     <td><label>Region</label></td>  
@@ -208,7 +204,11 @@ if (isset($_POST["emp_id"])) {
                 <tr>  
                     <td><label>Start Date</label></td>  
                     <td>' . $emp["start_date"] . '</td>  
-                </tr>      
+                </tr> 
+                <tr>  
+                <td><label>Last Updated</label></td>  
+                <td>' . $emp["last_update"] . '</td>  
+            </tr>     
             </table>
         </div>';
 

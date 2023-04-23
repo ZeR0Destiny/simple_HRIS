@@ -24,13 +24,25 @@ class DB_Manager
         }
     }
 
+    // Function to retrieve all files per employee
     public function get_file_employee()
     {
-        $query = $this->db->query("SELECT employee.id, employee.firstname, employee.lastname, employee.UID, COUNT(pdf_filess.UID) as count FROM employee 
-        LEFT JOIN pdf_filess ON employee.UID = pdf_filess.UID GROUP BY employee.UID ORDER BY id;");
+        $query = $this->db->query("SELECT employee.id, employee.firstname, employee.lastname, employee.UID, COUNT(employee_files.UID) as count FROM employee 
+        LEFT JOIN employee_files ON employee.UID = employee_files.UID GROUP BY employee.UID ORDER BY id;");
 
         $array = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return $array;
+    }
+
+
+    public function get_files($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }
