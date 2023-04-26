@@ -9,7 +9,7 @@ class DB_Manager
         $host = "localhost";
         $user = "root";
         $pass = "";
-        $dbname = "RFBT";
+        $dbname = "rfbt";
 
         //try to connect to the database using the provided credentials
         //if the connection works, it will keep the persistence, else it will throw an error
@@ -27,12 +27,12 @@ class DB_Manager
     // Function to retrieve all files per employee
     public function get_file_employee()
     {
-        $query = $this->db->query("SELECT employee.id, employee.firstname, employee.lastname, employee.UID, COUNT(employee_files.UID) as count FROM employee 
+        $stmt = $this->db->query("SELECT employee.id, employee.firstname, employee.lastname, employee.UID, COUNT(employee_files.UID) as count FROM employee 
         LEFT JOIN employee_files ON employee.UID = employee_files.UID GROUP BY employee.UID ORDER BY id;");
 
-        $array = $query->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $array;
+        return $result;
     }
 
 
@@ -44,5 +44,28 @@ class DB_Manager
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
+    }
+
+    function check_if_file_exists($filename)
+    {
+        $sql = "SELECT * FROM employee_files WHERE filename=:filename";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':filename', $filename);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function insert_file_data($display_name, $filename, $filedata)
+    {
+        $employeeUID = $_POST['employeeUID'];
+
+        $sql = "INSERT INTO employee_files (display_name, filename, filedata, UID) VALUES (:display_name, :filename, :filedata, :uid)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':display_name', $display_name);
+        $stmt->bindParam(':filename', $filename);
+        $stmt->bindParam(':filedata', $filedata, PDO::PARAM_LOB);
+        $stmt->bindParam(':uid', $employeeUID);
+        $stmt->execute();
     }
 }
