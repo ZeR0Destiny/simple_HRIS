@@ -23,7 +23,6 @@ class employee
     private $pay_class;
     private $supervisor;
     private $status;
-    // private $access;
     private $region;
     private $start_date;
 
@@ -129,11 +128,6 @@ class employee
     public function getStatus()
     {
         return $this->status;
-    }
-
-    public function getAccess()
-    {
-        return $this->access;
     }
 
     public function getRegion()
@@ -276,13 +270,6 @@ class employee
     public function setStatus($status)
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    public function setAccess($access)
-    {
-        $this->access = $access;
 
         return $this;
     }
