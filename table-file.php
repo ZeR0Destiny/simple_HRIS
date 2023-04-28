@@ -128,7 +128,7 @@ require "include/header.html";
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
-                        <button class="btn btn-outline-dark" title="Upload" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-arrow-up-fill"></i></button>
+                        <button class="btn btn-outline-dark" title="Upload" data-bs-toggle="Upload"><i class="bi bi-file-earmark-arrow-up-fill"></i></button>
 
                         </div>
                         <div class="dataTable-container">
