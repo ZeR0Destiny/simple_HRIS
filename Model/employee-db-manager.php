@@ -24,16 +24,16 @@ class DB_Manager
         }
     }
 
-    // Function to select all the employee from the table
-    public function get_all()
+    // Select all the employee from the table
+    public function select_all_employee()
     {
         $query = $this->db->query("SELECT * FROM employee");
-        $array = $query->fetchAll(PDO::FETCH_ASSOC);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        return $array;
+        return $result;
     }
 
-    // Function to insert a new employee to database
+    // Insert a new employee to database
     public function add_employee($employee)
     {
         $query = $this->db->prepare("INSERT INTO employee 
@@ -68,37 +68,35 @@ class DB_Manager
         }
     }
 
-    // Function to select an existing SIN and return true or false
-    public function sin_check($sin)
+    // Select an employee with SIN and validate
+    public function check_if_sin_exits($sin)
     {
         $query = $this->db->prepare("SELECT * FROM employee WHERE SIN = :SIN;");
         $query->execute(array("SIN" => $sin));
 
         if ($query->fetch() == true) {
-            $valid = true;
+            return true;
         } else {
-            $valid = false;
+            return false;
         }
-
-        return $valid;
     }
 
-    // Function to select an existing unique id and return true or false
-    public function uid_check($uid)
+    // Select an employee with unique id and validate
+    public function check_if_uid_exits($uid)
     {
         $query = $this->db->prepare("SELECT * FROM employee WHERE UID = :UID;");
         $query->execute(array("UID" => $uid));
 
         if ($query->fetch() == true) {
-            $valid = true;
+            $result = true;
         } else {
-            $valid = false;
+            $result = false;
         }
 
-        return $valid;
+        return $result;
     }
 
-    // Function to select the employee information with the id
+    // Select an employee with the id
     public function select_employee($id)
     {
         $stmt = $this->db->prepare("SELECT * FROM employee WHERE id = :id");
@@ -109,46 +107,71 @@ class DB_Manager
         return $array;
     }
 
-    // Function to update the information of the employee at the select id
+    // Update the employee at selected id
     public function update_employee($id)
     {
-        $query = $this->db->prepare("UPDATE employee 
-        SET firstname = :firstname, lastname = :lastname, gender = :gender, birthdate = :birthdate, 
-        address = :address, city = :city, province = :province, country = :country, postalcode =:postalcode, 
-        email = :email, mobile = :mobile, homephone = :homephone,
-        position = :position, payclass = :payclass, supervisor = :supervisor, status = :status, region = :region, last_update = NOW() WHERE id = $id");
+        // $query = $this->db->prepare("UPDATE employee 
+        // SET firstname = :firstname, lastname = :lastname, gender = :gender, birthdate = :birthdate, 
+        // address = :address, city = :city, province = :province, country = :country, postalcode =:postalcode, 
+        // email = :email, mobile = :mobile, homephone = :homephone,
+        // position = :position, payclass = :payclass, supervisor = :supervisor, status = :status, region = :region, last_update = NOW() WHERE id = $id");
 
-        if (isset($_POST['homephone'])) {
-            $homephone = $_POST['homephone'];
-        } else {
-            $homephone = "";
-        }
+        // if (isset($_POST['homephone'])) {
+        //     $homephone = $_POST['homephone'];
+        // } else {
+        //     $homephone = "";
+        // }
 
-        if (isset($_POST['status'])) {
-            $status = "Active";
-        } else {
-            $status = "Inactive";
-        }
+        // if (isset($_POST['status'])) {
+        //     $status = "Active";
+        // } else {
+        //     $status = "Inactive";
+        // }
 
-        $result = $query->execute(array(
-            "firstname" => ucwords($_POST['firstname']),
-            "lastname" => ucwords($_POST['lastname']),
-            "birthdate" => $_POST['dob'],
-            "gender" => $_POST['gender'],
-            "address" => ucwords($_POST['address']),
-            "city" => ucwords($_POST['city']),
-            "province" => ucwords($_POST['province']),
-            "country" => $_POST['country'],
-            "postalcode" => $_POST['postalcode'],
-            "email" => $_POST['email'],
-            "mobile" => $_POST['mobile'],
-            "homephone" => $homephone,
-            "position" => ucwords($_POST['position']),
-            "payclass" => $_POST['payclass'],
-            "supervisor" => ucwords($_POST['supervisor']),
-            "status" => $status,
-            "region" => ucwords($_POST['region'])
-        ));
+        // $result = $query->execute(
+        //     array(
+        //         "firstname" => ucwords($_POST['firstname']),
+        //         "lastname" => ucwords($_POST['lastname']),
+        //         "birthdate" => $_POST['dob'],
+        //         "gender" => $_POST['gender'],
+        //         "address" => ucwords($_POST['address']),
+        //         "city" => ucwords($_POST['city']),
+        //         "province" => ucwords($_POST['province']),
+        //         "country" => $_POST['country'],
+        //         "postalcode" => $_POST['postalcode'],
+        //         "email" => $_POST['email'],
+        //         "mobile" => $_POST['mobile'],
+        //         "homephone" => $homephone,
+        //         "position" => ucwords($_POST['position']),
+        //         "payclass" => $_POST['payclass'],
+        //         "supervisor" => ucwords($_POST['supervisor']),
+        //         "status" => $status,
+        //         "region" => ucwords($_POST['region'])
+        //     )
+        // );
+        $sql = "UPDATE employee SET firstname=:firstname, lastname=:lastname, gender=:gender, birthdate=:birthdate, address=:address, city=:city, province=:province, country=:country, postalcode=:postalcode, email=:email, mobile=:mobile, homephone=:homephone, position=:position, payclass=:payclass, supervisor=:supervisor, status=:status, region=:region, last_update=NOW() WHERE id=:id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':firstname', ucwords($_POST['firstname']));
+        $stmt->bindParam(':lastname', ucwords($_POST['lastname']));
+        $stmt->bindParam(':gender', $_POST['gender']);
+        $stmt->bindParam(':birthdate', $_POST['dob']);
+        $stmt->bindParam(':address', ucwords($_POST['address']));
+        $stmt->bindParam(':city', ucwords($_POST['city']));
+        $stmt->bindParam(':province', ucwords($_POST['province']));
+        $stmt->bindParam(':country', $_POST['country']);
+        $stmt->bindParam(':postalcode', $_POST['postalcode']);
+        $stmt->bindParam(':email', $_POST['email']);
+        $stmt->bindParam(':mobile', $_POST['mobile']);
+        $homephone = isset($_POST['homephone']) ? $_POST['homephone'] : '';
+        $stmt->bindParam(':homephone', $homephone);
+        $stmt->bindParam(':position', ucwords($_POST['position']));
+        $stmt->bindParam(':payclass', $_POST['payclass']);
+        $stmt->bindParam(':supervisor', ucwords($_POST['supervisor']));
+        $status = isset($_POST['status']) ? 'Active' : 'Inactive';
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':region', ucwords($_POST['region']));
+        $stmt->bindParam(':id', $id);
+        $result = $stmt->execute();
 
         if ($result) {
             header("location: table-data.php?employee-information-updated");
@@ -158,8 +181,13 @@ class DB_Manager
     // Function to quickly change the status of the employee
     public function update_employee_status()
     {
-        $query = $this->db->prepare("UPDATE employee SET last_update = IF(status != 'Inactive', NOW(), last_update), status = 'Inactive' WHERE id = ?");
-        $result = $query->execute(array($_GET['employee_status_id']));
+        // $query = $this->db->prepare("UPDATE employee SET last_update = IF(status != 'Inactive', NOW(), last_update), status = 'Inactive' WHERE id = ?");
+        // $result = $query->execute(array($_GET['employee_status_id']));
+
+        $employee_id = $_GET['employee_status_id'];
+        $sql = $this->db->prepare("UPDATE employee SET last_update = IF(status != 'Inactive', NOW(), last_update), status = 'Inactive' WHERE id = :id");
+        $sql->bindParam(':id', $employee_id);
+        $result = $sql->execute();
 
         if ($result) {
             header("location: table-data.php?employee-status-changed");
@@ -169,8 +197,14 @@ class DB_Manager
     // Function to delete the select employeee
     public function delete_employee()
     {
-        $query = $this->db->prepare("DELETE FROM employee WHERE id = ?; ");
-        $result = $query->execute(array($_GET['employee_delete_id']));
+        // $query = $this->db->prepare("DELETE FROM employee WHERE id = ?;");
+        // $result = $query->execute(array($_GET['employee_delete_id']));
+
+        $employee_delete_id = $_GET['employee_delete_id'];
+        $sql = "DELETE FROM employee WHERE id = :id;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":id", $employee_delete_id);
+        $result = $stmt->execute();
 
         if ($result) {
             header("location: table-data.php?employee-deleted");
@@ -190,11 +224,4 @@ class DB_Manager
         $sql->execute();
     }
 
-    // public function get_all_employee()
-    // {
-    //     $query = $this->db->query("SELECT COUNT(*) AS total FROM employee");
-    //     $result = $query->fetch(PDO::FETCH_ASSOC);
-
-    //     return $result['total'];
-    // }
 }

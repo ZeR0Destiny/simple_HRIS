@@ -1,5 +1,5 @@
 <?php
-class DB_Manager
+class File_DB_Manager
 {
     private $db;
 
@@ -24,8 +24,8 @@ class DB_Manager
         }
     }
 
-    // Function to retrieve all files per employee
-    public function get_file_employee()
+    // Join table employee and employee, then select and count the number of files per employee
+    public function select_and_count_all_employee_file()
     {
         $stmt = $this->db->query("SELECT employee.id, employee.firstname, employee.lastname, employee.UID, COUNT(employee_files.UID) as count FROM employee 
         LEFT JOIN employee_files ON employee.UID = employee_files.UID GROUP BY employee.UID ORDER BY id;");
@@ -35,8 +35,8 @@ class DB_Manager
         return $result;
     }
 
-
-    public function get_files($uid)
+    // Select file with associated unique id
+    public function select_file_with_uid($uid)
     {
         $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid");
         $stmt->bindParam(':uid', $uid);
@@ -46,6 +46,7 @@ class DB_Manager
         return $result;
     }
 
+    // Select file with associated filename
     function check_if_file_exists($filename)
     {
         $sql = "SELECT * FROM employee_files WHERE filename=:filename";
@@ -56,6 +57,7 @@ class DB_Manager
         return $result;
     }
 
+    // Insert file into the database
     function insert_file_data($display_name, $filename, $filedata)
     {
         $employeeUID = $_POST['employeeUID'];
@@ -68,4 +70,25 @@ class DB_Manager
         $stmt->bindParam(':uid', $employeeUID);
         $stmt->execute();
     }
+
+    // Select the file with the id
+    function select_file($id)
+    {
+        // get the PDF file data from the database
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM employee_files WHERE id=:id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    // function delete_file()
+    // {
+    //     $file_delete_id = $_GET['file_delete_id'];
+    //     $sql = "";
+    //     $stmt = $this->db->prepare($sql);
+    // }
 }
