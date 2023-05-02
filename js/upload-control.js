@@ -1,12 +1,39 @@
 // get the row id and employee UID
+// const uploadButtons = document.querySelectorAll('tbody button[title="Upload"]');
+// uploadButtons.forEach(button => {
+//     button.addEventListener('click', () => {
+//         const uid = button.closest('tr').dataset.uid;
+//         console.log(uid);
+//         document.querySelector('#employeeUID').value = uid;
+//     });
+// });
+
 const uploadButtons = document.querySelectorAll('tbody button[title="Upload"]');
 uploadButtons.forEach(button => {
     button.addEventListener('click', () => {
         const uid = button.closest('tr').dataset.uid;
         console.log(uid);
         document.querySelector('#employeeUID').value = uid;
+        // check if employeeUID is not set
+        if (!document.querySelector('#employeeUID').value) {
+            // get employeeUID from URL
+            const searchParams = new URLSearchParams(window.location.search);
+            const employeeUID = searchParams.get('employee_UID');
+            console.log(employeeUID);
+            document.querySelector('#employeeUID').value = employeeUID;
+        }
     });
 });
+
+const uploadButton = document.querySelector('button[name="SingleUpload"]');
+if (uploadButton) { // check if button exists on the page
+    uploadButton.addEventListener('click', () => {
+        const searchParams = new URLSearchParams(window.location.search);
+        const employeeUID = searchParams.get('employee_UID');
+        console.log(employeeUID);
+        document.querySelector('#employeeUID').value = employeeUID;
+    });
+}
 
 // toastr message options
 toastr.options = {
