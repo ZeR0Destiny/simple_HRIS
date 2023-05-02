@@ -1,13 +1,17 @@
-<?php 
-require "../HRIS/Model/file-db-manager.php";
+<?php
+require_once "Controller/file-manager-controller.php";
 
-$database = new DB_Manager();
+// $database = new File_DB_Manager();
 
-$uid = $_GET['employee_UID'];
+if (isset($_GET['employee_UID'])) {
+    $uid = $_GET['employee_UID'];
+} else {
+    $uid = 0;
+}
 
-$get_files = $database->get_files($uid);
+$get_files = $database->select_file_with_uid($uid);
 
-require "include/header.html";
+require_once "include/header.html";
 ?>
 
 <!-- ======= Sidebar ======= -->
@@ -123,13 +127,11 @@ require "include/header.html";
         </nav>
     </div>
     <section class="section">
-        <form action="" method="post">
             <div class="col-lg justify-content-center">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
-                        <button class="btn btn-outline-dark" title="Upload" data-bs-toggle="Upload"><i class="bi bi-file-earmark-arrow-up-fill"></i></button>
-
+                            <button class="btn btn-outline-dark" name="SingleUpload" title="Upload" data-bs-toggle="modal" data-bs-target="#uploadModal"><i class="bi bi-file-earmark-arrow-up-fill"></i></button>
                         </div>
                         <div class="dataTable-container">
                             <table id="file_table" class="table table-striped table-bordered" width="100%">
@@ -143,18 +145,18 @@ require "include/header.html";
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php 
+                                    <?php
                                     $count = 1;
                                     foreach ($get_files as $files) : ?>
                                         <tr name="p_id">
                                             <td width="3%"><?= $count++ ?></td>
                                             <td><?= $files['display_name'] ?></td>
                                             <td><?= $files['filename'] ?></td>
-                                            <td><?= $files['created_at'] ?></td>
+                                            <td width="15%"><?= $files['created_at'] ?></td>
                                             <td width="15%">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <button class="btn btn-outline-primary btn-sm" title="View" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-check-fill"></i></button>
+                                                        <a href="View/view-pdf.php?id=<?= $files['id'] ?>" target="_blank" role="button" class="btn btn-outline-primary btn-sm" title="View" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-check-fill"></i></a>
                                                         <button class="btn btn-outline-secondary btn-sm" title="Download" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-arrow-down-fill"></i></button>
                                                         <button class="btn btn-outline-danger btn-sm" title="Delete" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-x-fill"></i></button>
                                                     </div>
@@ -168,8 +170,36 @@ require "include/header.html";
                     </div>
                 </div>
             </div>
-        </form>
     </section>
 </main>
 
-<?php require "include/footer.html" ?>
+<!-- Modal for file upload -->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="" method="post" enctype="multipart/form-data" id="uploadForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel">Upload File</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="fileUpload" class="form-label">Select File</label>
+                        <input type="file" class="form-control" id="fileUpload" name="fileUpload" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="displayName" class="form-label">Display Name</label>
+                        <input type="text" class="form-control" id="displayName" name="displayName" required>
+                    </div>
+                    <input type="hidden" name="employeeUID" value="employeeUID" id="employeeUID">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php require_once "include/footer.html" ?>
