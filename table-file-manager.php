@@ -1,10 +1,7 @@
 <?php
-require "../HRIS/Model/file-db-manager.php";
-require "../HRIS/Controller/file-controller.php";
+require_once "../HRIS/Controller/file-manager-controller.php";
 
-$database = new DB_Manager();
-
-$get_file_employee = $database->get_file_employee();
+$get_file_employee = $database->select_and_count_all_employee_file();
 
 require "include/header.html";
 ?>
