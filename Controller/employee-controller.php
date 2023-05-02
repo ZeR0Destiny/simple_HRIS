@@ -13,8 +13,8 @@ $database = new DB_Manager();
 // Retrieve and validate all input when the submit is clicked then call the add function
 if (isset($_POST['submit'])) {
 
-    // Verify if a SIN already exists
-    $valid = $database->sin_check($_POST['sin']);
+    // verify if a SIN already exists
+    $valid = $database->check_if_sin_exits($_POST['sin']);
 
     if ($valid == true) {
         $_SESSION['valid'] = true;
@@ -23,13 +23,13 @@ if (isset($_POST['submit'])) {
         $uniq_id;
 
         do {
-            // Generate a unique id
+            // generate a unique id
             $letter = chr(rand(65, 90)) . chr(rand(65, 90));
             $number = rand(1000, 999999);
             $uniq_id = $letter . $number;
 
-            // Verify if unique id already exist
-            $valid_2 = $database->uid_check($uniq_id);
+            // verify if unique id already exist
+            $valid_2 = $database->check_if_uid_exits($uniq_id);
 
             if ($valid_2 == false) {
                 if (isset($_POST['homephone'])) {
@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
                     "start_date" => date("Y-m-d")
                 );
 
-                // Array is store in the employee class
+                // array is store in the employee class
                 $employee = new employee($new_emp);
                 // var_dump($employee);
                 $database->add_employee($employee);
@@ -72,17 +72,17 @@ if (isset($_POST['submit'])) {
     }
 }
 
-// Retrieve information from the inputs when the update button is clicked
+// Retrieve information from the inputs and update the employee information
 if (isset($_POST['update'])) {
     $database->update_employee($_GET['employee_id']);
 }
 
-// Retrieve the id of the employee and call the update function
+// Retrieve the id of the employee and call the update status function
 if (isset($_GET['employee_status_id'])) {
     $database->update_employee_status();
 }
 
-// Retrieve the id of the employee then call the delete and rest auto_increment function
+// Retrieve the id of the employee then call the delete and reset increment function
 if (isset($_GET['employee_delete_id'])) {
     $database->delete_employee();
     $database->reset_auto_increment();
