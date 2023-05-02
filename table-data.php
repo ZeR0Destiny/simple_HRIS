@@ -4,7 +4,7 @@ require "../HRIS/Controller/employee-controller.php";
 
 $database = new DB_Manager();
 
-$get_employee = $database->get_all();
+$get_employee = $database->select_all_employee();
 
 require "include/header.html";
 
