@@ -1,8 +1,6 @@
 <?php
 require_once "Controller/file-manager-controller.php";
 
-// $database = new File_DB_Manager();
-
 if (isset($_GET['employee_UID'])) {
     $uid = $_GET['employee_UID'];
 } else {
