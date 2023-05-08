@@ -85,10 +85,27 @@ class File_DB_Manager
         return $result;
     }
 
-    // function delete_file()
-    // {
-    //     $file_delete_id = $_GET['file_delete_id'];
-    //     $sql = "";
-    //     $stmt = $this->db->prepare($sql);
-    // }
+    function delete_file()
+    {
+        if (isset($_GET['file_delete_id'])) {
+            $file_delete_id = $_GET['file_delete_id'];
+            $sql = "DELETE FROM employee_files WHERE id=:id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':id', $file_delete_id);
+            $stmt->execute();
+        }
+    }
+
+    // Function to reset auto increment of employee_files table
+    public function reset_auto_increment_files()
+    {
+        $sql = $this->db->prepare('SELECT @num := 0;');
+        $sql->execute();
+
+        $sql = $this->db->prepare('UPDATE employee_files SET id = @num := (@num+1);');
+        $sql->execute();
+
+        $sql = $this->db->prepare('ALTER TABLE employee_files AUTO_INCREMENT = 1;');
+        $sql->execute();
+    }
 }

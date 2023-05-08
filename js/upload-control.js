@@ -7,32 +7,37 @@
 //         document.querySelector('#employeeUID').value = uid;
 //     });
 // });
+if (window.location.href.includes('table-file-manager.php')) {
+    // Upload file using the button on each rows
+    const uploadButtons = document.querySelectorAll('tbody button[title="Upload"]');
+    uploadButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const uid = button.closest('tr').dataset.uid;
+            console.log(uid);
+            document.querySelector('#employeeUID').value = uid;
+            // check if employeeUID is not set
+            if (!document.querySelector('#employeeUID').value) {
+                // get employeeUID from URL
+                const searchParams = new URLSearchParams(window.location.search);
+                const employeeUID = searchParams.get('employee_UID');
+                console.log(employeeUID);
+                document.querySelector('#employeeUID').value = employeeUID;
+            }
+        });
+    });
+}
 
-const uploadButtons = document.querySelectorAll('tbody button[title="Upload"]');
-uploadButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const uid = button.closest('tr').dataset.uid;
-        console.log(uid);
-        document.querySelector('#employeeUID').value = uid;
-        // check if employeeUID is not set
-        if (!document.querySelector('#employeeUID').value) {
-            // get employeeUID from URL
+if (window.location.href.includes('table-file.php')) {
+    // Single upload button in the table-file.php 
+    const uploadButton = document.querySelector('button[name="SingleUpload"]');
+    if (uploadButton) { // check if button exists on the page
+        uploadButton.addEventListener('click', () => {
             const searchParams = new URLSearchParams(window.location.search);
             const employeeUID = searchParams.get('employee_UID');
             console.log(employeeUID);
             document.querySelector('#employeeUID').value = employeeUID;
-        }
-    });
-});
-
-const uploadButton = document.querySelector('button[name="SingleUpload"]');
-if (uploadButton) { // check if button exists on the page
-    uploadButton.addEventListener('click', () => {
-        const searchParams = new URLSearchParams(window.location.search);
-        const employeeUID = searchParams.get('employee_UID');
-        console.log(employeeUID);
-        document.querySelector('#employeeUID').value = employeeUID;
-    });
+        });
+    }
 }
 
 // toastr message options

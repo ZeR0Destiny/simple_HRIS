@@ -48,3 +48,8 @@ if (isset($_FILES['fileUpload'])) {
 //     // output the PDF file data
 //     echo $result['filedata'];
 // }
+
+if (isset($_GET['file_delete_id'])) {
+    $database->delete_file();
+    $database->reset_auto_increment_files();
+}

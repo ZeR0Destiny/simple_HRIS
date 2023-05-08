@@ -161,7 +161,7 @@ require "include/header.html";
                                                             echo 'bg-success';
                                                           } ?>"><?= $employee['status']; ?></span>
                       </td>
-                      <td width="12%">
+                      <td width="15%">
                         <div class="row">
                           <div class="col">
                             <button type="button" class="btn btn-outline-dark btn-sm" id="<?= $employee['id'] ?>" title="View" data-bs-toggle="tooltip"><i class="bi bi-person-fill"></i></button>
