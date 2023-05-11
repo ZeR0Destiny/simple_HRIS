@@ -50,7 +50,7 @@ if (isset($_GET['file_download_id'])) {
     $filename = $file['filename'];
     $filedata = $file['filedata'];
 
-    // Since we want download the pdf, 'Content-Disposition: inline' will display pdf and is safe to remove
+    // 'Content-Disposition: inline' will display pdf and 'Content-Disposition: attachment' is to download
     header('Content-Type: application/pdf');
     // header('Content-Disposition: inline; filename="' . $filename . '"');
     header('Content-Transfer-Encoding: binary');
