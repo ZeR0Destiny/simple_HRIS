@@ -31,25 +31,40 @@ if (isset($_FILES['fileUpload'])) {
 
     // set the expected header format as JSON
     header('Content-Type: application/json');
-    
+
     // converts the response to JSON format
-    echo json_encode($response); 
+    echo json_encode($response);
     exit;
 }
 
-// if (isset($_GET['id'])) {
-//     $result = $database->select_file($_GET['id']);
-
-//     // set the HTTP headers to display the PDF file in the browser
-//     header("Content-type: application/pdf");
-//     header("Content-Disposition: inline; filename=" . $result['filename']);
-//     header("Content-length: " . strlen($result['filedata']));
-
-//     // output the PDF file data
-//     echo $result['filedata'];
-// }
-
+// Delete the file from the database
 if (isset($_GET['file_delete_id'])) {
     $database->delete_file();
     $database->reset_auto_increment_files();
+}
+
+if (isset($_GET['file_download_id'])) {
+    $file_id = $_GET['file_download_id'];
+    $file = $database->select_file($file_id);
+
+    $filename = $file['filename'];
+    $filedata = $file['filedata'];
+
+    // Since we want download the pdf, 'Content-Disposition: inline' will display pdf and is safe to remove
+    header('Content-Type: application/pdf');
+    // header('Content-Disposition: inline; filename="' . $filename . '"');
+    header('Content-Transfer-Encoding: binary');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+    // Save file to disk
+    $temp_file = tempnam(sys_get_temp_dir(), 'pdf');
+    file_put_contents($temp_file, $filedata);
+
+    // Download file from disk
+    readfile($temp_file);
+
+    // Clean up temp file
+    unlink($temp_file);
+
+    exit;
 }
