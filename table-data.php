@@ -165,7 +165,7 @@ require "include/header.html";
                         <div class="row">
                           <div class="col">
                             <button type="button" class="btn btn-outline-dark btn-sm" id="<?= $employee['id'] ?>" title="View" data-bs-toggle="tooltip"><i class="bi bi-person-fill"></i></button>
-                            <a href="edit-forms-elements.php?employee_id=<?= $employee['id'] ?>" class="btn btn-outline-primary btn-sm" role="button" title="Edit" data-bs-toggle="tooltip">
+                            <a href="edit-forms-elements.php?firstname=<?= $employee['firstname'] ?>&lastname=<?= $employee['lastname'] ?>&employee_id=<?= $employee['id'] ?>" class="btn btn-outline-primary btn-sm" role="button" title="Edit" data-bs-toggle="tooltip">
                               <i class="bi bi-person-check-fill">
                               </i>
                             </a>
