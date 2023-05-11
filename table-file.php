@@ -150,16 +150,17 @@ require_once "include/header.html";
                                         <td width="3%"><?= $count++ ?></td>
                                         <td><?= $files['display_name'] ?></td>
                                         <td><?= $files['filename'] ?></td>
-                                        <td width="15%"><?= $files['created_at'] ?></td>
+                                        <td width="20%"><?= $files['created_at'] ?></td>
                                         <td width="15%">
                                             <div class="row justify-content-center">
                                                 <div class="col-auto" style="padding-right: 5px">
-                                                    <a href="View/view-pdf.php?id=<?= $files['id'] ?>" target="_blank" role="button" class="btn btn-outline-primary btn-sm" title="View" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-check-fill"></i></a>
-                                                    <button class="btn btn-outline-secondary btn-sm" title="Download" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-arrow-down-fill"></i></button>
+                                                    <a href="View/view-pdf.php?employee_UID=<?= $files['UID'] ?>&id=<?= $files['id'] ?>" target="_blank" role="button" class="btn btn-outline-primary btn-sm" title="View" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-check-fill"></i></a>
+                                                    <!-- <button class="btn btn-outline-secondary btn-sm" title="Download" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-arrow-down-fill"></i></button> -->
+                                                    <a href="table-file.php?employee_UID=<?= $files['UID'] ?>&file_download_id=<?= $files['id'] ?>" class="btn btn-outline-secondary btn-sm" title="Download" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
                                                 </div>
                                                 <div class="col-auto" style="width: fit-content; padding: 0">
                                                     <form action="" method="post">
-                                                        <a href="table-file.php?employee_UID=<?= $files['UID'] ?>&file_delete_id=<?= $files['id']?>" type="submit" role="button" class="btn btn-outline-danger btn-sm" title="Delete" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-x-fill"></i></a>
+                                                        <a href="table-file.php?employee_UID=<?= $files['UID'] ?>&file_delete_id=<?= $files['id'] ?>" role="button" class="btn btn-outline-danger btn-sm" title="Delete" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-x-fill"></i></a>
                                                     </form>
                                                 </div>
                                             </div>
