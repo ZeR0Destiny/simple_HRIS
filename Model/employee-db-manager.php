@@ -39,7 +39,7 @@ class DB_Manager
         $query = $this->db->prepare("INSERT INTO employee 
         VALUES (DEFAULT, :firstname, :lastname, :gender, :birthdate, :address, 
         :city, :province, :country, :postalcode, :email, :mobile, :homephone, :SIN, :UID, 
-        :position, :payclass, :supervisor, DEFAULT, DEFAULT, :region, :start_date)");
+        :position, :payclass, DEFAULT, :region, :home_store, :start_date, DEFAULT)");
 
         $result = $query->execute(array(
             "firstname" => $employee->getFirstname(),
@@ -58,8 +58,8 @@ class DB_Manager
             "UID" => $employee->getUID(),
             "position" => $employee->getPosition(),
             "payclass" => $employee->getPayclass(),
-            "supervisor" => $employee->getSupervisor(),
             "region" => $employee->getRegion(),
+            "home_store" => $employee->getHome_store(),
             "start_date" => $employee->getStart_date()
         ));
 
@@ -149,7 +149,7 @@ class DB_Manager
         //         "region" => ucwords($_POST['region'])
         //     )
         // );
-        $sql = "UPDATE employee SET firstname=:firstname, lastname=:lastname, gender=:gender, birthdate=:birthdate, address=:address, city=:city, province=:province, country=:country, postalcode=:postalcode, email=:email, mobile=:mobile, homephone=:homephone, position=:position, payclass=:payclass, supervisor=:supervisor, status=:status, region=:region, last_update=NOW() WHERE id=:id";
+        $sql = "UPDATE employee SET firstname=:firstname, lastname=:lastname, gender=:gender, birthdate=:birthdate, address=:address, city=:city, province=:province, country=:country, postalcode=:postalcode, email=:email, mobile=:mobile, homephone=:homephone, position=:position, payclass=:payclass, status=:status, region=:region, home_store=:home_store, last_update=NOW() WHERE id=:id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':firstname', ucwords($_POST['firstname']));
         $stmt->bindParam(':lastname', ucwords($_POST['lastname']));
@@ -166,10 +166,10 @@ class DB_Manager
         $stmt->bindParam(':homephone', $homephone);
         $stmt->bindParam(':position', ucwords($_POST['position']));
         $stmt->bindParam(':payclass', $_POST['payclass']);
-        $stmt->bindParam(':supervisor', ucwords($_POST['supervisor']));
         $status = isset($_POST['status']) ? 'Active' : 'Inactive';
         $stmt->bindParam(':status', $status);
         $stmt->bindParam(':region', ucwords($_POST['region']));
+        $stmt->bindParam(':home_store', ucwords($_POST['home_store']));
         $stmt->bindParam(':id', $id);
         $result = $stmt->execute();
 
@@ -224,4 +224,70 @@ class DB_Manager
         $sql->execute();
     }
 
+    // Function counting and sorting employee per region
+    public function employee_per_region()
+    {
+        $sql = "SELECT region, COUNT(*) AS employee FROM employee GROUP BY region";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function employee_per_position()
+    {
+        $sql = "SELECT position, COUNT(*) AS employee
+        FROM employee
+        WHERE position IN ('Cashier/Bartender', 'Store Manager', 'Multi-Unit Manager', 'Regional Manager')
+        GROUP BY position";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function employee_per_position_hq()
+    {
+        $sql = "SELECT position, COUNT(*) AS employee
+        FROM employee
+        WHERE position NOT IN ('Cashier/Bartender', 'Store Manager', 'Multi-Unit Manager', 'Regional Manager')
+        GROUP BY position";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function employee_total()
+    {
+        $sql = "SELECT COUNT(*) AS employee FROM employee";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function employee_active()
+    {
+        $sql = "SELECT COUNT(*) AS employee FROM employee WHERE status = 'Active'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function employee_inactive()
+    {
+        $sql = "SELECT COUNT(*) AS employee FROM employee WHERE status = 'Inactive'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
 }

@@ -75,7 +75,6 @@ class File_DB_Manager
     function select_file($id)
     {
         // get the PDF file data from the database
-        // $id = $_GET['id'];
         $sql = "SELECT * FROM employee_files WHERE id=:id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id', $id);
@@ -85,15 +84,14 @@ class File_DB_Manager
         return $result;
     }
 
+    // Function to delete file from database
     function delete_file()
     {
-        // if (isset($_GET['file_delete_id'])) {
-            $file_delete_id = $_GET['file_delete_id'];
-            $sql = "DELETE FROM employee_files WHERE id=:id";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':id', $file_delete_id);
-            $stmt->execute();
-        // }
+        $file_delete_id = $_GET['file_delete_id'];
+        $sql = "DELETE FROM employee_files WHERE id=:id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $file_delete_id);
+        $stmt->execute();
     }
 
     // Function to reset auto increment of employee_files table
@@ -108,6 +106,4 @@ class File_DB_Manager
         $sql = $this->db->prepare('ALTER TABLE employee_files AUTO_INCREMENT = 1;');
         $sql->execute();
     }
-
-    
 }

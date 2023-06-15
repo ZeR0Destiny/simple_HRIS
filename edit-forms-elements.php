@@ -489,7 +489,7 @@ $selected_employee = $database->select_employee($id);
                                     </div>
                                     <div class="col-sm d-flex justify-content-center">
                                         <div class="btn-group">
-                                            <button onclick="getAge(); getPostalcode();" type="submit" class="btn btn-primary" name="update">Update</button>
+                                            <button onclick="checkAge(); checkPostalcode();" type="submit" class="btn btn-primary" name="update">Update</button>
                                             <a href="table-data.php" type="button" class="btn btn-secondary">Cancel</a>
                                         </div>
                                     </div>
@@ -546,7 +546,7 @@ $selected_employee = $database->select_employee($id);
     <script src="js/alert-control.js"></script>
 
     <!-- Javascript to load getStatus control  -->
-    <script src="js/getStatus-control.js"></script>
+    <script src="js/status-control.js"></script>
 
     <!-- Javascript to load getAge and getPostalCode control  -->
     <script src="js/getAge.js"></script>

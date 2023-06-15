@@ -38,23 +38,23 @@ if (isset($_POST["emp_id"])) {
                 <tr>  
                     <td><label>Birthdate</label></td>  
                     <td>' . $emp["birthdate"] . '</td>  
-                </tr>  
+                </tr>                    
                 <tr>  
-                    <td><label>Address</label></td>  
-                    <td>' . $emp["address"] . '</td>  
-                </tr>  
+                    <td><label>Country</label></td>  
+                    <td>' . $emp["country"] . '</td>  
+                </tr>
+                <tr>  
+                    <td><label>Province</label></td>  
+                    <td>' . $emp["province"] . '</td>  
+                </tr>                  
                 <tr>  
                     <td><label>City</label></td>  
                     <td>' . $emp["city"] . '</td>  
                 </tr>
                 <tr>  
-                    <td><label>Province</label></td>  
-                    <td>' . $emp["province"] . '</td>  
-                </tr>  
-                <tr>  
-                    <td><label>Country</label></td>  
-                    <td>' . $emp["country"] . '</td>  
-                </tr>  
+                    <td><label>Address</label></td>  
+                    <td>' . $emp["address"] . '</td>  
+                </tr>
                 <tr>  
                     <td><label>Postal Code</label></td>  
                     <td>' . $emp["postalcode"] . '</td>  
@@ -71,19 +71,23 @@ if (isset($_POST["emp_id"])) {
                     <td><label>Homephone</label></td>  
                     <td>' . $emp["homephone"] . '</td>  
                 </tr>
+                <tr>  
+                    <td><label>SIN</label></td>  
+                    <td>' . $emp["SIN"] . '</td>  
+                </tr> 
             </table>
         </div> 
         <h5>Work Information</h5>
         <div class="table-responsive">  
-            <table class="table table-bordered">
-                <tr>  
-                    <td><label>SIN</label></td>  
-                    <td>' . $emp["SIN"] . '</td>  
-                </tr>  
+            <table class="table table-bordered">          
                 <tr>  
                     <td><label>UID</label></td>  
                     <td>' . $emp["UID"] . '</td>  
-                </tr>  
+                </tr> 
+                <tr>  
+                    <td><label>Start Date</label></td>  
+                    <td>' . $emp["start_date"] . '</td>  
+                </tr> 
                 <tr>  
                     <td><label>Position</label></td>  
                     <td>' . $emp["position"] . '</td>  
@@ -91,11 +95,7 @@ if (isset($_POST["emp_id"])) {
                 <tr>  
                     <td><label>Payclass</label></td>  
                     <td>' . $emp["payclass"] . '</td>  
-                </tr>  
-                <tr>  
-                    <td><label>Supervisor</label></td>  
-                    <td>' . $emp["supervisor"] . '</td>  
-                </tr>  
+                </tr>   
                 <tr>  
                     <td><label>Status</label></td>  
                     <td>' . $emp["status"] . '</td>  
@@ -105,13 +105,13 @@ if (isset($_POST["emp_id"])) {
                     <td>' . $emp["region"] . '</td>  
                 </tr>  
                 <tr>  
-                    <td><label>Start Date</label></td>  
-                    <td>' . $emp["start_date"] . '</td>  
+                    <td><label>Home Store</label></td>  
+                    <td>' . $emp["home_store"] . '</td>  
                 </tr> 
                 <tr>  
-                <td><label>Last Updated</label></td>  
-                <td>' . $emp["last_update"] . '</td>  
-            </tr>     
+                    <td><label>Last Updated</label></td>  
+                    <td>' . $emp["last_update"] . '</td>  
+                </tr>     
             </table>
         </div>';
 

@@ -43,6 +43,7 @@ if (isset($_GET['file_delete_id'])) {
     $database->reset_auto_increment_files();
 }
 
+// Trigger the download file
 if (isset($_GET['file_download_id'])) {
     $file_id = $_GET['file_download_id'];
     $file = $database->select_file($file_id);

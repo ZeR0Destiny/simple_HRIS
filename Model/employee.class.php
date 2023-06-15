@@ -21,9 +21,9 @@ class employee
     private $uid;
     private $position;
     private $pay_class;
-    private $supervisor;
     private $status;
     private $region;
+    private $home_store;
     private $start_date;
 
     public function __construct($array)
@@ -120,11 +120,6 @@ class employee
         return $this->pay_class;
     }
 
-    public function getSupervisor()
-    {
-        return $this->supervisor;
-    }
-
     public function getStatus()
     {
         return $this->status;
@@ -133,6 +128,11 @@ class employee
     public function getRegion()
     {
         return $this->region;
+    }
+
+    public function getHome_store()
+    {
+        return $this->home_store;
     }
 
     public function getStart_date()
@@ -260,13 +260,6 @@ class employee
         return $this;
     }
 
-    public function setSupervisor($supervisor)
-    {
-        $this->supervisor = $supervisor;
-
-        return $this;
-    }
-
     public function setStatus($status)
     {
         $this->status = $status;
@@ -277,6 +270,13 @@ class employee
     public function setRegion($region)
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    public function setHome_store($home_store)
+    {
+        $this->home_store = $home_store;
 
         return $this;
     }
