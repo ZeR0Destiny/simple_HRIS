@@ -1,6 +1,6 @@
 function allowExpiration() {
     const checkbox = document.getElementById("gridCheck1");
-    const expiration = document.getElementById("inputExpSIN");
+    const expiration = document.getElementById("inputSinExpiration");
 
     if (checkbox.checked) {
         expiration.removeAttribute("disabled");
@@ -10,7 +10,7 @@ function allowExpiration() {
 }
 
 function checkExpiration() {
-    const date = document.getElementById("inputExpSIN").value;
+    const date = document.getElementById("inputSinExpiration").value;
     const todayDate = new Date();
     const checkbox = document.getElementById("gridCheck1");
 
@@ -26,10 +26,10 @@ function checkExpiration() {
             if (inputDate.getTime() <= todayDate.getTime()) {
                 event.preventDefault();
                 // The input date is equal to or in the past compared to today's date
-                document.getElementById("inputExpSIN").classList.add("is-invalid");
+                document.getElementById("inputSinExpiration").classList.add("is-invalid");
             } else {
                 // The input date is in the future
-                document.getElementById("inputExpSIN").classList.remove("is-invalid");
+                document.getElementById("inputSinExpiration").classList.remove("is-invalid");
             }
         }
     } else {

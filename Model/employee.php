@@ -6,29 +6,24 @@ class employee
     // Employee properties
     private $id;
     private $firstname;
-    private $middlename;
     private $lastname;
-    private $preferredname;
     private $gender;
     private $birth_date;
-    private $country;
-    private $province;
-    private $city;
     private $address;
-    private $unit;
+    private $city;
+    private $province;
+    private $country;
     private $postal_code;
     private $email;
     private $mobile;
     private $homephone;
     private $sin;
-    private $sin_expiration;
     private $uid;
     private $position;
     private $pay_class;
     private $status;
     private $region;
     private $home_store;
-    private $language;
     private $start_date;
 
     public function __construct($array)
@@ -50,19 +45,9 @@ class employee
         return $this->firstname;
     }
 
-    public function getMiddlename()
-    {
-        return $this->middlename;
-    }
-
     public function getLastname()
     {
         return $this->lastname;
-    }
-
-    public function getPreferredname()
-    {
-        return $this->preferredname;
     }
 
     public function getGender()
@@ -95,11 +80,6 @@ class employee
         return $this->country;
     }
 
-    public function getUnit()
-    {
-        return $this->unit;
-    }
-
     public function getPostalcode()
     {
         return $this->postal_code;
@@ -123,11 +103,6 @@ class employee
     public function getSin()
     {
         return $this->sin;
-    }
-
-    public function getSin_expiration()
-    {
-        return $this->sin_expiration;
     }
 
     public function getUid()
@@ -160,11 +135,6 @@ class employee
         return $this->home_store;
     }
 
-    public function getLanguage()
-    {
-        return $this->language;
-    }
-
     public function getStart_date()
     {
         return $this->start_date;
@@ -184,24 +154,10 @@ class employee
 
         return $this;
     }
-    
-    public function setMiddlename($middlename)
-    {
-        $this->middlename = $middlename;
-
-        return $this;
-    }
 
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    public function setPreferredname($preferredname)
-    {
-        $this->preferredname = $preferredname;
 
         return $this;
     }
@@ -248,13 +204,6 @@ class employee
         return $this;
     }
 
-    public function setUnit($unit)
-    {
-        $this->unit = $unit;
-
-        return $this;
-    }
-
     public function setPostalcode($postal_code)
     {
         $this->postal_code = $postal_code;
@@ -286,13 +235,6 @@ class employee
     public function setSin($sin)
     {
         $this->sin = $sin;
-
-        return $this;
-    }
-
-    public function setSin_expiraton($sin_expiration)
-    {
-        $this->sin_expiration = $sin_expiration;
 
         return $this;
     }
@@ -335,13 +277,6 @@ class employee
     public function setHome_store($home_store)
     {
         $this->home_store = $home_store;
-
-        return $this;
-    }
-
-    public function setLanguage($language)
-    {
-        $this->language = $language;
 
         return $this;
     }

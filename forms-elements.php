@@ -53,7 +53,7 @@ $get_employee = $database->select_all_employee();
         #inputFirstName,
         #inputMiddleName,
         #inputLastName,
-        #inputPreferedName,
+        #inputPreferredName,
         #inputAddress,
         #inputCity,
         #inputPosition {
@@ -302,9 +302,9 @@ $get_employee = $database->select_all_employee();
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="inputPreferedName" class="col-sm-3 col-form-label">Prefered Name</label>
+                                    <label for="inputPreferredName" class="col-sm-3 col-form-label">Prefered Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputPreferedName" name="preferedname" required>
+                                        <input type="text" class="form-control" id="inputPreferredName" name="preferredname" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -351,8 +351,10 @@ $get_employee = $database->select_all_employee();
                                         </select>
                                     </div>
                                 </div>
+
                                 <!-- Javascript to load province or state list from selected country -->
                                 <script src="js/getProvince.js"></script>
+
                                 <div class="row mb-3">
                                     <label for="inputProvince" class="col-sm-3 col-form-label">Province/State</label>
                                     <div class="col-sm-9">
@@ -370,11 +372,17 @@ $get_employee = $database->select_all_employee();
                                 <div class="row mb-3">
                                     <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" name="address" required>
+                                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="inputPostalCode" class="col-sm-3 col-form-label">Postal/ZIP Code<Code></Code></label>
+                                    <label for="inputUnit" class="col-sm-3 col-form-label">Apt/Unit</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputUnit" name="unit">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputPostalCode" class="col-sm-3 col-form-label">Postal/ZIP Code</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="inputPostalCode" maxlength="7" name="postalcode" required>
                                         <div class="invalid-feedback">
@@ -398,24 +406,27 @@ $get_employee = $database->select_all_employee();
                                 <div class="row mb-3">
                                     <label for="inputHome" class="col-sm-3 col-form-label">Homephone</label>
                                     <div class="col-sm-9">
-                                        <input type="tel" class="form-control" id="inputHome" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="home">
+                                        <input type="tel" class="form-control" id="inputHome" placeholder="e.g. 888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="homephone">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="inputSin" class="col-sm-3 col-form-label">SIN</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="inputSin" maxlength="9" pattern="[0-9]{9}" name="sin" required oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1" onclick="allowExpiration()">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="sin_expiration_checkbox" onclick="allowExpiration()">
                                         <label class="form-check-label" for="gridCheck1">
                                             Expiration Date
                                         </label>
-                                        <input type="date" class="form-control" id="inputExpSIN" name="exp_sin" disabled>
+                                        <input type="date" class="form-control" id="inputSinExpiration" name="sin_expiration" disabled>
                                         <div class="invalid-feedback">
                                             Invalid expiration date
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Javascript to load SIN expiration check -->
                                 <script src="js/getSIN-Expiration.js"></script>
+
                                 <!-- End General Form Elements -->
                             </div>
                         </div>
@@ -474,19 +485,19 @@ $get_employee = $database->select_all_employee();
                                     <div class="col-sm-9" style="max-width: 150px;">
                                         <ul class="list-group">
                                             <li class="list-group-item">
-                                                <input class="form-input-checkbox" type="checkbox" id="language1" name="language" value="English">
+                                                <input class="form-input-checkbox" type="checkbox" id="language1" name="language[]" value="English">
                                                 <label class="form-check-label" for="language1">
                                                     English
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                                <input class="form-input-checkbox" type="checkbox" id="language2" name="language" value="French">
+                                                <input class="form-input-checkbox" type="checkbox" id="language2" name="language[]" value="French">
                                                 <label class="form-check-label" for="language2">
                                                     French
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                                <input class="form-input-checkbox" type="checkbox" id="language3" name="language" value="Other">
+                                                <input class="form-input-checkbox" type="checkbox" id="language3" name="language[]" value="Other">
                                                 <label class="form-check-label" for="language3">
                                                     Other
                                                 </label>

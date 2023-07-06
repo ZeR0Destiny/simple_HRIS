@@ -28,9 +28,17 @@ if (isset($_POST["emp_id"])) {
                     <td>' . $emp["firstname"] . '</td>  
                 </tr>  
                 <tr>  
+                    <td><label>Middle Name</label></td>  
+                     <td>' . $emp["middlename"] . '</td>  
+                </tr> 
+                <tr>  
                     <td><label>Last Name</label></td>  
                      <td>' . $emp["lastname"] . '</td>  
                 </tr>  
+                <tr>  
+                    <td><label>Preferred Name</label></td>  
+                     <td>' . $emp["preferredname"] . '</td>  
+                </tr> 
                 <tr>  
                     <td><label>Gender</label></td>  
                     <td>' . $emp["gender"] . '</td>  
@@ -56,7 +64,11 @@ if (isset($_POST["emp_id"])) {
                     <td>' . $emp["address"] . '</td>  
                 </tr>
                 <tr>  
-                    <td><label>Postal Code</label></td>  
+                    <td><label>Apt/Unit</label></td>  
+                     <td>' . $emp["unit"] . '</td>  
+                </tr> 
+                <tr>  
+                    <td><label>Postal/Zip Code</label></td>  
                     <td>' . $emp["postalcode"] . '</td>  
                 </tr> 
                 <tr>  
@@ -74,6 +86,10 @@ if (isset($_POST["emp_id"])) {
                 <tr>  
                     <td><label>SIN</label></td>  
                     <td>' . $emp["SIN"] . '</td>  
+                </tr> 
+                <tr>  
+                    <td><label>SIN Expiration</label></td>  
+                     <td>' . $emp["SIN_expiration"] . '</td>  
                 </tr> 
             </table>
         </div> 
@@ -107,6 +123,10 @@ if (isset($_POST["emp_id"])) {
                 <tr>  
                     <td><label>Home Store</label></td>  
                     <td>' . $emp["home_store"] . '</td>  
+                </tr> 
+                <tr>  
+                    <td><label>Language</label></td>  
+                     <td>' . $emp["language"] . '</td>  
                 </tr> 
                 <tr>  
                     <td><label>Last Updated</label></td>  

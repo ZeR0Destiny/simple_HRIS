@@ -32,33 +32,54 @@ if (isset($_POST['submit'])) {
             $valid_2 = $database->check_if_uid_exits($uniq_id);
 
             if ($valid_2 == false) {
-                if (isset($_POST['homephone'])) {
-                    $homephone = $_POST['homephone'];
-                } else {
-                    $homephone = "";
-                }
+                // if (isset($_POST['homephone'])) {
+                //     $homephone = $_POST['homephone'];
+                // } else {
+                //     $homephone = "";
+                // }
 
                 date_default_timezone_set("America/Toronto");
 
+                // Check the language that are checked and store in array
+                $selectedLanguages = isset($_POST['language']) ? $_POST['language'] : [];
+
+                $languages = implode(', ', $selectedLanguages);
+
+                if (isset($_POST['sin_expiration_checkbox'])) {
+                    if (!empty($_POST['sin_expiration'])) {
+                        $date = $_POST['sin_expiration'];
+                    } else {
+                        $date = 'N/A';
+                    }
+                } else {
+                    $date = 'N/A';
+                }
+
+
                 $new_emp = array(
                     "firstname" => ucwords($_POST['firstname']),
+                    "middlename" => ucwords($_POST['middlename']),
                     "lastname" => ucwords($_POST['lastname']),
-                    "birth_date" => $_POST['dob'],
+                    "preferredname" => ucwords($_POST['preferredname']),
                     "gender" => $_POST['gender'],
-                    "address" => ucwords($_POST['address']),
-                    "city" => ucwords($_POST['city']),
-                    "province" => ucwords($_POST['province']),
+                    "birth_date" => $_POST['dob'],
                     "country" => $_POST['country'],
+                    "province" => $_POST['province'],
+                    "city" => ucwords($_POST['city']),
+                    "address" => ucwords($_POST['address']),
+                    "unit" => $_POST['unit'],
                     "postal_code" => strtoupper($_POST['postalcode']),
                     "email" => $_POST['email'],
                     "mobile" => $_POST['mobile'],
-                    "homephone" => $homephone,
+                    "homephone" => $_POST['homephone'],
                     "sin" => $_POST['sin'],
+                    "sin_expiration" => $date,
                     "uid" => $uniq_id,
                     "position" => ucwords($_POST['position']),
                     "pay_class" => $_POST['payclass'],
-                    "supervisor" => ucwords($_POST['supervisor']),
-                    "region" => ucwords($_POST['region']),
+                    "region" => $_POST['region'],
+                    "home_store" => $_POST['home_store'],
+                    "language" => $languages,
                     "start_date" => date("Y-m-d")
                 );
 

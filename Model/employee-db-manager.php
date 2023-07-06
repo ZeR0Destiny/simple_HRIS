@@ -35,38 +35,45 @@ class DB_Manager
 
     // Insert a new employee to database
     public function add_employee($employee)
-    {
-        $query = $this->db->prepare("INSERT INTO employee 
-        VALUES (DEFAULT, :firstname, :lastname, :gender, :birthdate, :address, 
-        :city, :province, :country, :postalcode, :email, :mobile, :homephone, :SIN, :UID, 
-        :position, :payclass, DEFAULT, :region, :home_store, :start_date, DEFAULT)");
+{
+    $query = $this->db->prepare("INSERT INTO employee 
+    VALUES (DEFAULT, :firstname, :middlename, :lastname, :preferredname, :gender, :birthdate, 
+    :country, :province, :city, :address, 
+    :unit, :postalcode, :email, :mobile, :homephone, :SIN, :SIN_expiration, :UID, 
+    :position, :payclass, DEFAULT, :region, :home_store, :language, :start_date, DEFAULT)");
 
-        $result = $query->execute(array(
-            "firstname" => $employee->getFirstname(),
-            "lastname" => $employee->getLastname(),
-            "gender" => $employee->getGender(),
-            "birthdate" => $employee->getBirthdate(),
-            "address" => $employee->getAddress(),
-            "city" => $employee->getCity(),
-            "province" => $employee->getProvince(),
-            "country" => $employee->getCountry(),
-            "postalcode" => $employee->getPostalcode(),
-            "email" => $employee->getEmail(),
-            "mobile" => $employee->getMobile(),
-            "homephone" => $employee->getHomephone(),
-            "SIN" => $employee->getSin(),
-            "UID" => $employee->getUID(),
-            "position" => $employee->getPosition(),
-            "payclass" => $employee->getPayclass(),
-            "region" => $employee->getRegion(),
-            "home_store" => $employee->getHome_store(),
-            "start_date" => $employee->getStart_date()
-        ));
+    $result = $query->execute(array(
+        "firstname" => $employee->getFirstname(),
+        "middlename" => $employee->getMiddlename(),
+        "lastname" => $employee->getLastname(),
+        "preferredname" => $employee->getPreferredname(),
+        "gender" => $employee->getGender(),
+        "birthdate" => $employee->getBirthdate(),        
+        "country" => $employee->getCountry(),
+        "province" => $employee->getProvince(),
+        "city" => $employee->getCity(),
+        "address" => $employee->getAddress(),
+        "unit" => $employee->getUnit(),
+        "postalcode" => $employee->getPostalcode(),
+        "email" => $employee->getEmail(),
+        "mobile" => $employee->getMobile(),
+        "homephone" => $employee->getHomephone(),
+        "SIN" => $employee->getSin(),
+        "SIN_expiration" => $employee->getSin_expiration(),
+        "UID" => $employee->getUID(),
+        "position" => $employee->getPosition(),
+        "payclass" => $employee->getPayclass(),
+        "region" => $employee->getRegion(),
+        "home_store" => $employee->getHome_store(),
+        "language" => $employee->getLanguage(),
+        "start_date" => $employee->getStart_date()
+    ));
 
-        if ($result) {
-            header("location: table-data.php?employee-created");
-        }
+    if ($result) {
+        header("location: table-data.php?employee-created");
     }
+}
+
 
     // Select an employee with SIN and validate
     public function check_if_sin_exits($sin)

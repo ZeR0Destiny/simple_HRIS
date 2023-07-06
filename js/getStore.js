@@ -8,19 +8,31 @@ function loadStores() {
 
     let stores = [];
 
-    // if (selectedRegion == 'CENTRAL') {
-        
-    // } else if (selectedRegion == 'EAST') {
-        
-    // }
-
     switch (selectedRegion) {
         case 'CENTRAL':
             stores = [
-                'HCM'
+
             ];
             break;
-    
+        case 'EAST':
+            break;
+        case 'NW':
+            break;
+        case 'OTTAWA':
+            break;
+        case 'QUEBEC':
+            stores = [
+                'FPC', 'SCS', 'GDA', 'CFL', 'MCP', 'MEC', 'SCO', 'WTC', 'CAN', 'PSB', 'BSN'
+            ];
+            break;
+        case 'SOUTH':
+            break;
+        case 'SW1':
+            break;
+        case 'SW2':
+            break;
+        case 'USA':
+            break;
         default:
             break;
     }
