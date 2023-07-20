@@ -53,14 +53,12 @@ $selected_employee = $database->select_employee($id);
 
     <style>
         #inputFirstName,
+        #inputMiddleName,
         #inputLastName,
+        #inputPreferredName,
         #inputAddress,
-        #inputAddress2,
         #inputCity,
-        #inputProvince,
-        #inputPosition,
-        #inputSupervisor,
-        #inputRegion {
+        #inputPosition {
             text-transform: capitalize;
         }
     </style>
@@ -281,23 +279,6 @@ $selected_employee = $database->select_employee($id);
         <section class="section">
             <form action="#" method="post">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="dropdown">
-                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Dropdown link
-                                    </a>
-
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
@@ -311,9 +292,21 @@ $selected_employee = $database->select_employee($id);
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <label for="inputMiddleName" class="col-sm-3 col-form-label">Middle Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputMiddleName" name="middlename" <?= 'value="' . $selected_employee['middlename'] . '"'; ?>>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
                                     <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="inputLastName" required name="lastname" <?= 'value="' . $selected_employee['lastname'] . '"'; ?>>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputPreferredName" class="col-sm-3 col-form-label">Preferred Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputPreferredName" required name="preferredname" <?= 'value="' . $selected_employee['preferredname'] . '"'; ?>>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -329,7 +322,7 @@ $selected_employee = $database->select_employee($id);
                                     <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
                                     <div class="col-sm-9">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" <?php if ($selected_employee['gender'] == 'Male') {
+                                            <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" <?php if ($selected_employee['gender'] === 'Male') {
                                                                                                                                             echo 'checked';
                                                                                                                                         } ?>>
                                             <label class="form-check-label" for="gridRadios1">
@@ -337,7 +330,7 @@ $selected_employee = $database->select_employee($id);
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" <?php if ($selected_employee['gender'] == 'Female') {
+                                            <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" <?php if ($selected_employee['gender'] === 'Female') {
                                                                                                                                             echo 'checked';
                                                                                                                                         } ?>>
                                             <label class="form-check-label" for="gridRadios2">
@@ -347,17 +340,32 @@ $selected_employee = $database->select_employee($id);
                                     </div>
                                 </fieldset>
                                 <div class="row mb-3">
-                                    <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
+                                    <label for="inputCountry" class="col-sm-3 col-form-label">Country</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" required name="address" <?= 'value="' . $selected_employee['address'] . '"'; ?>>
+                                        <select id="inputCountry" class="form-select" name="country" onclick="loadProvinces()" required>
+                                            <option selected value="">Select a country</option>
+                                            <option value="Canada" <?php if ($selected_employee['country'] === 'Canada') {
+                                                                        echo "selected";
+                                                                    } ?>>Canada</option>
+                                            <option value="United-States" <?php if ($selected_employee['country'] === 'United-States') {
+                                                                                echo "selected";
+                                                                            } ?>>United-States</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <!-- <div class="row mb-3">
-                                    <label for="inputAddress2" class="col-sm-3 col-form-label">Address 2</label>
+
+                                <!-- Javascript to load province or state list from selected country -->
+                                <script src="js/getProvince.js"></script>
+
+                                <div class="row mb-3">
+                                    <label for="inputProvince" class="col-sm-3 col-form-label">Province</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="address2">
+                                        <select id="inputProvince" class="form-select" name="province" onfocus="loadProvinces();" required>
+                                            <option value="">Select a province</option>
+                                            <option selected value="<?= $selected_employee['province']; ?>"><?= $selected_employee['province']; ?></option>
+                                        </select>
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="row mb-3">
                                     <label for="inputCity" class="col-sm-3 col-form-label">City</label>
                                     <div class="col-sm-9">
@@ -365,22 +373,15 @@ $selected_employee = $database->select_employee($id);
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="inputProvince" class="col-sm-3 col-form-label">Province</label>
+                                    <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputProvince" required name="province" <?= 'value="' . $selected_employee['province'] . '"'; ?>>
+                                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St (App. Unit)" required name="address" <?= 'value="' . $selected_employee['address'] . '"'; ?>>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="inputCountry" class="col-sm-3 col-form-label">Country</label>
+                                    <label for="inputUnit" class="col-sm-3 col-form-label">Apt/Unit</label>
                                     <div class="col-sm-9">
-                                        <select id="inputCountry" class="form-select" name="country">
-                                            <option value="Canada" <?php if ($selected_employee['country'] == 'Canada') {
-                                                                        echo "selected";
-                                                                    } ?>>Canada</option>
-                                            <option value="United-States" <?php if ($selected_employee['country'] == 'United-States') {
-                                                                                echo "selected";
-                                                                            } ?>>United-States</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="inputUnit" name="unit" <?= 'value="' . $selected_employee['unit'] . '"'; ?>>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -420,7 +421,8 @@ $selected_employee = $database->select_employee($id);
                                 <!-- End General Form Elements -->
                             </div>
                         </div>
-
+                    </div>
+                    <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Other Informations</h5>
@@ -436,33 +438,80 @@ $selected_employee = $database->select_employee($id);
                                     <label for="inputPayclass" class="col-sm-3 col-form-label">Pay Class</label>
                                     <div class="col-sm-9">
                                         <select id="inputPayclass" class="form-select" name="payclass">
-                                            <option value="Hourly" <?php if ($selected_employee['payclass'] == 'Hourly') {
+                                            <option value="Hourly" <?php if ($selected_employee['payclass'] === 'Hourly') {
                                                                         echo "selected";
                                                                     } ?>>Hourly</option>
-                                            <option value="Salary" <?php if ($selected_employee['payclass'] == 'Salary') {
+                                            <option value="Salary" <?php if ($selected_employee['payclass'] === 'Salary') {
                                                                         echo "selected";
                                                                     } ?>>Salary</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="inputSupervisor" class="col-sm-3 col-form-label">Supervisor</label>
+                                    <label for="inputRegion" class="col-sm-3 col-form-label">Region</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputSupervisor" name="supervisor" <?= 'value="' . $selected_employee['supervisor'] . '"'; ?>>
+                                        <select id="inputRegion" class="form-select" name="region" onchange="loadStores();" required>
+                                            <option value="">Select a region</option>
+                                            <option value="CENTRAL" <?php if ($selected_employee['region'] === 'CENTRAL') echo 'selected'; ?>>CENTRAL</option>
+                                            <option value="EAST" <?php if ($selected_employee['region'] === 'EAST') echo 'selected'; ?>>EAST</option>
+                                            <option value="NW" <?php if ($selected_employee['region'] === 'NW') echo 'selected'; ?>>NW</option>
+                                            <option value="OTTAWA" <?php if ($selected_employee['region'] === 'OTTAWA') echo 'selected'; ?>>OTTAWA</option>
+                                            <option value="QUEBEC" <?php if ($selected_employee['region'] === 'QUEBEC') echo 'selected'; ?>>QUEBEC</option>
+                                            <option value="SOUTH" <?php if ($selected_employee['region'] === 'SOUTH') echo 'selected'; ?>>SOUTH</option>
+                                            <option value="SW1" <?php if ($selected_employee['region'] === 'SW1') echo 'selected'; ?>>SW1</option>
+                                            <option value="SW2" <?php if ($selected_employee['region'] === 'SW2') echo 'selected'; ?>>SW2</option>
+                                            <option value="USA" <?php if ($selected_employee['region'] === 'USA') echo 'selected'; ?>>USA</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="inputRegion" class="col-sm-3 col-form-label">Region</label>
+                                    <label for="inputHomeStore" class="col-sm-3 col-form-label">Home Store</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputRegion" name="region" <?= 'value="' . $selected_employee['region'] . '"'; ?>>
+                                        <select id="inputHomeStore" class="form-select" name="home_store" onfocus="loadStores();" required>
+                                            <option value="">Select a home store</option>
+                                            <option value="<?php echo $selected_employee['home_store'] ?>" selected><?php echo $selected_employee['home_store'] ?></option>
+                                        </select>
                                     </div>
                                 </div>
+
+                                <!-- Javascript to load stores from selected region  -->
+                                <script src="js/getStore.js"></script>
+
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-3 col-form-label">Language</label>
+                                    <div class="col-sm-9" style="max-width: 150px;">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <input class="form-input-checkbox" type="checkbox" id="language1" name="language[]" value="English" 
+                                                <?php if (in_array("English", explode(", ", $selected_employee['language']))) { echo 'checked'; } ?>>
+                                                <label class="form-check-label" for="language1">
+                                                    English
+                                                </label>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-input-checkbox" type="checkbox" id="language2" name="language[]" value="French"
+                                                <?php if (in_array("French", explode(", ", $selected_employee['language']))) { echo 'checked'; } ?>>
+                                                <label class="form-check-label" for="language2">
+                                                    French
+                                                </label>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <input class="form-input-checkbox" type="checkbox" id="language3" name="language[]" value="Other"
+                                                <?php if (in_array("Other", explode(", ", $selected_employee['language']))) { echo 'checked'; } ?>>
+                                                <label class="form-check-label" for="language3">
+                                                    Other
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Status</label>
                                     </div>
                                     <div class="col-sm-3 form-check form-switch">
-                                        <input onclick="getStatus()" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="status" <?php if ($selected_employee['status'] == 'Active') {
+                                        <input onclick="getStatus()" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="status" <?php if ($selected_employee['status'] === 'Active') {
                                                                                                                                                             echo 'checked';
                                                                                                                                                         } ?>>
                                         <label class="form-check-label" for="flexSwitchCheckDefault" id="preview"><?= $selected_employee['status'] ?></label>
@@ -502,8 +551,8 @@ $selected_employee = $database->select_employee($id);
                                 <!-- End Advanced Form Elements -->
                             </div>
                         </div>
-
                     </div>
+                </div>
                 </div>
             </form>
         </section>
