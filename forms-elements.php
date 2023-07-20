@@ -455,7 +455,6 @@ $get_employee = $database->select_all_employee();
                                 <div class="row mb-3">
                                     <label for="inputRegion" class="col-sm-3 col-form-label">Region</label>
                                     <div class="col-sm-9">
-                                        <!-- <input type="text" class="form-control" id="inputRegion" name="region"> -->
                                         <select id="inputRegion" class="form-select" name="region" onchange="loadStores();" required>
                                             <option selected value="">Select a region</option>
                                             <option value="CENTRAL">CENTRAL</option>
@@ -473,13 +472,15 @@ $get_employee = $database->select_all_employee();
                                 <div class="row mb-3">
                                     <label for="inputHomeStore" class="col-sm-3 col-form-label">Home Store</label>
                                     <div class="col-sm-9">
-                                        <!-- <input type="text" class="form-control" id="inputHomeStore" name="home_store"> -->
                                         <select id="inputHomeStore" class="form-select" name="home_store" required>
                                             <option selected value="">Select a home store</option>
                                         </select>
                                     </div>
                                 </div>
+
+                                <!-- Javascript to load stores from selected region  -->
                                 <script src="js/getStore.js"></script>
+
                                 <div class="row mb-3">
                                     <label for="" class="col-sm-3 col-form-label">Language</label>
                                     <div class="col-sm-9" style="max-width: 150px;">
