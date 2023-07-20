@@ -35,44 +35,44 @@ class DB_Manager
 
     // Insert a new employee to database
     public function add_employee($employee)
-{
-    $query = $this->db->prepare("INSERT INTO employee 
+    {
+        $query = $this->db->prepare("INSERT INTO employee 
     VALUES (DEFAULT, :firstname, :middlename, :lastname, :preferredname, :gender, :birthdate, 
     :country, :province, :city, :address, 
     :unit, :postalcode, :email, :mobile, :homephone, :SIN, :SIN_expiration, :UID, 
     :position, :payclass, DEFAULT, :region, :home_store, :language, :start_date, DEFAULT)");
 
-    $result = $query->execute(array(
-        "firstname" => $employee->getFirstname(),
-        "middlename" => $employee->getMiddlename(),
-        "lastname" => $employee->getLastname(),
-        "preferredname" => $employee->getPreferredname(),
-        "gender" => $employee->getGender(),
-        "birthdate" => $employee->getBirthdate(),        
-        "country" => $employee->getCountry(),
-        "province" => $employee->getProvince(),
-        "city" => $employee->getCity(),
-        "address" => $employee->getAddress(),
-        "unit" => $employee->getUnit(),
-        "postalcode" => $employee->getPostalcode(),
-        "email" => $employee->getEmail(),
-        "mobile" => $employee->getMobile(),
-        "homephone" => $employee->getHomephone(),
-        "SIN" => $employee->getSin(),
-        "SIN_expiration" => $employee->getSin_expiration(),
-        "UID" => $employee->getUID(),
-        "position" => $employee->getPosition(),
-        "payclass" => $employee->getPayclass(),
-        "region" => $employee->getRegion(),
-        "home_store" => $employee->getHome_store(),
-        "language" => $employee->getLanguage(),
-        "start_date" => $employee->getStart_date()
-    ));
+        $result = $query->execute(array(
+            "firstname" => $employee->getFirstname(),
+            "middlename" => $employee->getMiddlename(),
+            "lastname" => $employee->getLastname(),
+            "preferredname" => $employee->getPreferredname(),
+            "gender" => $employee->getGender(),
+            "birthdate" => $employee->getBirthdate(),
+            "country" => $employee->getCountry(),
+            "province" => $employee->getProvince(),
+            "city" => $employee->getCity(),
+            "address" => $employee->getAddress(),
+            "unit" => $employee->getUnit(),
+            "postalcode" => $employee->getPostalcode(),
+            "email" => $employee->getEmail(),
+            "mobile" => $employee->getMobile(),
+            "homephone" => $employee->getHomephone(),
+            "SIN" => $employee->getSin(),
+            "SIN_expiration" => $employee->getSin_expiration(),
+            "UID" => $employee->getUID(),
+            "position" => $employee->getPosition(),
+            "payclass" => $employee->getPayclass(),
+            "region" => $employee->getRegion(),
+            "home_store" => $employee->getHome_store(),
+            "language" => $employee->getLanguage(),
+            "start_date" => $employee->getStart_date()
+        ));
 
-    if ($result) {
-        header("location: table-data.php?employee-created");
+        if ($result) {
+            header("location: table-data.php?employee-created");
+        }
     }
-}
 
 
     // Select an employee with SIN and validate
@@ -156,7 +156,25 @@ class DB_Manager
         //         "region" => ucwords($_POST['region'])
         //     )
         // );
-        $sql = "UPDATE employee SET firstname=:firstname, lastname=:lastname, gender=:gender, birthdate=:birthdate, address=:address, city=:city, province=:province, country=:country, postalcode=:postalcode, email=:email, mobile=:mobile, homephone=:homephone, position=:position, payclass=:payclass, status=:status, region=:region, home_store=:home_store, last_update=NOW() WHERE id=:id";
+        $sql = "UPDATE employee SET 
+        firstname=:firstname, 
+        lastname=:lastname, 
+        gender=:gender, 
+        birthdate=:birthdate, 
+        address=:address, 
+        city=:city, 
+        province=:province, 
+        country=:country, 
+        postalcode=:postalcode, 
+        email=:email, 
+        mobile=:mobile, 
+        homephone=:homephone, 
+        position=:position, 
+        payclass=:payclass, 
+        status=:status, 
+        region=:region, 
+        home_store=:home_store, 
+        last_update=NOW() WHERE id=:id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':firstname', ucwords($_POST['firstname']));
         $stmt->bindParam(':lastname', ucwords($_POST['lastname']));
