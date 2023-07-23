@@ -128,48 +128,100 @@ require_once "include/header.html";
         <div class="col-lg justify-content-center">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <div class="card-body" style="padding: 5px;">
+                            <li>
+                                <button class="btn btn-outline-dark" name="SingleUpload" title="Upload" data-bs-toggle="modal" data-bs-target="#uploadModal"><i class="bi bi-file-earmark-arrow-up-fill"></i></button>
+                            </li>
+                        </div>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Benefits</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Confidential - Medical</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Discipline Record</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Hiring</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Immigration</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Investigation</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Personal File</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Training Package</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Unclassified</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Work Eligibility</button>
+                        </li>
+                    </ul>
+
+                    <!-- <div class="card-body">
                         <button class="btn btn-outline-dark" name="SingleUpload" title="Upload" data-bs-toggle="modal" data-bs-target="#uploadModal"><i class="bi bi-file-earmark-arrow-up-fill"></i></button>
+                    </div> -->
+
+                    <div class="tab-content pt-2" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="card-body">
+                                <div class="dataTable-container">
+                                    <table id="file_table" class="table table-striped table-bordered" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Display Name</th>
+                                                <th>File Name</th>
+                                                <th>Update On</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $count = 1;
+                                            foreach ($get_files as $files) : ?>
+                                                <tr name="p_id">
+                                                    <td width="3%"><?= $count++ ?></td>
+                                                    <td><?= $files['display_name'] ?></td>
+                                                    <td><?= $files['filename'] ?></td>
+                                                    <td width="20%"><?= $files['created_at'] ?></td>
+                                                    <td width="15%">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-auto" style="padding-right: 5px">
+                                                                <a href="View/view-pdf.php?employee_UID=<?= $files['UID'] ?>&id=<?= $files['id'] ?>" target="_blank" role="button" class="btn btn-outline-primary btn-sm" title="View" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-check-fill"></i></a>
+                                                                <!-- <button class="btn btn-outline-secondary btn-sm" title="Download" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-arrow-down-fill"></i></button> -->
+                                                                <a href="table-file.php?employee_UID=<?= $files['UID'] ?>&file_download_id=<?= $files['id'] ?>" class="btn btn-outline-secondary btn-sm" title="Download" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
+                                                            </div>
+                                                            <div class="col-auto" style="width: fit-content; padding: 0">
+                                                                <form action="" method="post">
+                                                                    <a href="table-file.php?employee_UID=<?= $files['UID'] ?>&file_delete_id=<?= $files['id'] ?>" role="button" class="btn btn-outline-danger btn-sm" title="Delete" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-x-fill"></i></a>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                            Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.
+                        </div>
                     </div>
-                    <div class="dataTable-container">
-                        <table id="file_table" class="table table-striped table-bordered" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Display Name</th>
-                                    <th>File Name</th>
-                                    <th>Update On</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $count = 1;
-                                foreach ($get_files as $files) : ?>
-                                    <tr name="p_id">
-                                        <td width="3%"><?= $count++ ?></td>
-                                        <td><?= $files['display_name'] ?></td>
-                                        <td><?= $files['filename'] ?></td>
-                                        <td width="20%"><?= $files['created_at'] ?></td>
-                                        <td width="15%">
-                                            <div class="row justify-content-center">
-                                                <div class="col-auto" style="padding-right: 5px">
-                                                    <a href="View/view-pdf.php?employee_UID=<?= $files['UID'] ?>&id=<?= $files['id'] ?>" target="_blank" role="button" class="btn btn-outline-primary btn-sm" title="View" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-check-fill"></i></a>
-                                                    <!-- <button class="btn btn-outline-secondary btn-sm" title="Download" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-arrow-down-fill"></i></button> -->
-                                                    <a href="table-file.php?employee_UID=<?= $files['UID'] ?>&file_download_id=<?= $files['id'] ?>" class="btn btn-outline-secondary btn-sm" title="Download" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
-                                                </div>
-                                                <div class="col-auto" style="width: fit-content; padding: 0">
-                                                    <form action="" method="post">
-                                                        <a href="table-file.php?employee_UID=<?= $files['UID'] ?>&file_delete_id=<?= $files['id'] ?>" role="button" class="btn btn-outline-danger btn-sm" title="Delete" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-x-fill"></i></a>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endforeach ?>
-                            </tbody>
-                        </table>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -193,6 +245,23 @@ require_once "include/header.html";
                     <div class="mb-3">
                         <label for="displayName" class="form-label">Display Name</label>
                         <input type="text" class="form-control" id="displayName" name="displayName" required>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputCategory" class="form-label">Pay Class</label>
+                        <div class="col-sm-9">
+                            <select id="inputCategory" class="form-select" name="category">
+                                <option value="BEN">Benefits</option>
+                                <option value="MED">Medical</option>
+                                <option value="DCP">Discipline Record</option>
+                                <option value="HIR">Hiring</option>
+                                <option value="IMG">Immigration</option>
+                                <option value="INV">Investigation</option>
+                                <option value="PSN">Personal File</option>
+                                <option value="TRN">Training Package</option>
+                                <option value="UNC">Unclassified</option>
+                                <option value="WRK">Work Eligibility</option>
+                            </select>
+                        </div>
                     </div>
                     <input type="hidden" name="employeeUID" value="employeeUID" id="employeeUID">
                 </div>
