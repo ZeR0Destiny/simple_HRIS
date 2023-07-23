@@ -117,54 +117,18 @@ class DB_Manager
     // Update the employee at selected id
     public function update_employee($id)
     {
-        // $query = $this->db->prepare("UPDATE employee 
-        // SET firstname = :firstname, lastname = :lastname, gender = :gender, birthdate = :birthdate, 
-        // address = :address, city = :city, province = :province, country = :country, postalcode =:postalcode, 
-        // email = :email, mobile = :mobile, homephone = :homephone,
-        // position = :position, payclass = :payclass, supervisor = :supervisor, status = :status, region = :region, last_update = NOW() WHERE id = $id");
-
-        // if (isset($_POST['homephone'])) {
-        //     $homephone = $_POST['homephone'];
-        // } else {
-        //     $homephone = "";
-        // }
-
-        // if (isset($_POST['status'])) {
-        //     $status = "Active";
-        // } else {
-        //     $status = "Inactive";
-        // }
-
-        // $result = $query->execute(
-        //     array(
-        //         "firstname" => ucwords($_POST['firstname']),
-        //         "lastname" => ucwords($_POST['lastname']),
-        //         "birthdate" => $_POST['dob'],
-        //         "gender" => $_POST['gender'],
-        //         "address" => ucwords($_POST['address']),
-        //         "city" => ucwords($_POST['city']),
-        //         "province" => ucwords($_POST['province']),
-        //         "country" => $_POST['country'],
-        //         "postalcode" => $_POST['postalcode'],
-        //         "email" => $_POST['email'],
-        //         "mobile" => $_POST['mobile'],
-        //         "homephone" => $homephone,
-        //         "position" => ucwords($_POST['position']),
-        //         "payclass" => $_POST['payclass'],
-        //         "supervisor" => ucwords($_POST['supervisor']),
-        //         "status" => $status,
-        //         "region" => ucwords($_POST['region'])
-        //     )
-        // );
         $sql = "UPDATE employee SET 
         firstname=:firstname, 
+        middlename=:middlename,
         lastname=:lastname, 
+        preferredname=:preferredname,
         gender=:gender, 
-        birthdate=:birthdate, 
-        address=:address, 
-        city=:city, 
-        province=:province, 
+        birthdate=:birthdate,       
         country=:country, 
+        province=:province,
+        city=:city, 
+        address=:address, 
+        unit=:unit,       
         postalcode=:postalcode, 
         email=:email, 
         mobile=:mobile, 
@@ -174,16 +138,21 @@ class DB_Manager
         status=:status, 
         region=:region, 
         home_store=:home_store, 
+        language=:language,
         last_update=NOW() WHERE id=:id";
+
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':firstname', ucwords($_POST['firstname']));
+        $stmt->bindParam(':middlename', ucwords($_POST['middlename']));
         $stmt->bindParam(':lastname', ucwords($_POST['lastname']));
+        $stmt->bindParam(':preferredname', ucwords($_POST['preferredname']));
         $stmt->bindParam(':gender', $_POST['gender']);
         $stmt->bindParam(':birthdate', $_POST['dob']);
-        $stmt->bindParam(':address', ucwords($_POST['address']));
-        $stmt->bindParam(':city', ucwords($_POST['city']));
-        $stmt->bindParam(':province', ucwords($_POST['province']));
         $stmt->bindParam(':country', $_POST['country']);
+        $stmt->bindParam(':province', $_POST['province']);
+        $stmt->bindParam(':city', ucwords($_POST['city']));
+        $stmt->bindParam(':address', ucwords($_POST['address']));
+        $stmt->bindParam(':unit', $_POST['unit']);        
         $stmt->bindParam(':postalcode', $_POST['postalcode']);
         $stmt->bindParam(':email', $_POST['email']);
         $stmt->bindParam(':mobile', $_POST['mobile']);
@@ -193,8 +162,13 @@ class DB_Manager
         $stmt->bindParam(':payclass', $_POST['payclass']);
         $status = isset($_POST['status']) ? 'Active' : 'Inactive';
         $stmt->bindParam(':status', $status);
-        $stmt->bindParam(':region', ucwords($_POST['region']));
-        $stmt->bindParam(':home_store', ucwords($_POST['home_store']));
+        $stmt->bindParam(':region', ($_POST['region']));
+        $stmt->bindParam(':home_store', $_POST['home_store']);
+
+        $selectedLanguages = isset($_POST['language']) ? $_POST['language'] : [];
+        $languages = implode(', ', $selectedLanguages);
+
+        $stmt->bindParam(':language', $languages);
         $stmt->bindParam(':id', $id);
         $result = $stmt->execute();
 
@@ -206,9 +180,6 @@ class DB_Manager
     // Function to quickly change the status of the employee
     public function update_employee_status()
     {
-        // $query = $this->db->prepare("UPDATE employee SET last_update = IF(status != 'Inactive', NOW(), last_update), status = 'Inactive' WHERE id = ?");
-        // $result = $query->execute(array($_GET['employee_status_id']));
-
         $employee_id = $_GET['employee_status_id'];
         $sql = $this->db->prepare("UPDATE employee SET last_update = IF(status != 'Inactive', NOW(), last_update), status = 'Inactive' WHERE id = :id");
         $sql->bindParam(':id', $employee_id);
@@ -222,9 +193,6 @@ class DB_Manager
     // Function to delete the select employeee
     public function delete_employee()
     {
-        // $query = $this->db->prepare("DELETE FROM employee WHERE id = ?;");
-        // $result = $query->execute(array($_GET['employee_delete_id']));
-
         $employee_delete_id = $_GET['employee_delete_id'];
         $sql = "DELETE FROM employee WHERE id = :id;";
         $stmt = $this->db->prepare($sql);
