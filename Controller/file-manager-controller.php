@@ -10,6 +10,7 @@ if (isset($_FILES['fileUpload'])) {
     $pdf_type = $_FILES['fileUpload']['type'];
     $pdf_data = file_get_contents($_FILES['fileUpload']['tmp_name']);
     $display_name = $_POST['displayName'];
+    $category = $_POST['category'];
 
     // check for file type
     if ($pdf_type != 'application/pdf') {
@@ -24,7 +25,7 @@ if (isset($_FILES['fileUpload'])) {
     if ($result) {
         $response = array('success' => false, 'message' => 'File already exists in the database.');
     } else {
-        $database->insert_file_data($display_name, $pdf_file, $pdf_data);
+        $database->insert_file_data($display_name, $pdf_file, $pdf_data, $category);
 
         $response = array('success' => true, 'message' => 'File uploaded successfully.');
     }
