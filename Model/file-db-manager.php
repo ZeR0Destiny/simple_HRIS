@@ -58,16 +58,17 @@ class File_DB_Manager
     }
 
     // Insert file into the database
-    function insert_file_data($display_name, $filename, $filedata)
+    function insert_file_data($display_name, $filename, $filedata, $category)
     {
         $employeeUID = $_POST['employeeUID'];
 
-        $sql = "INSERT INTO employee_files (display_name, filename, filedata, UID) VALUES (:display_name, :filename, :filedata, :uid)";
+        $sql = "INSERT INTO employee_files (display_name, filename, filedata, UID, category) VALUES (:display_name, :filename, :filedata, :uid, :category)";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':display_name', $display_name);
         $stmt->bindParam(':filename', $filename);
         $stmt->bindParam(':filedata', $filedata, PDO::PARAM_LOB);
         $stmt->bindParam(':uid', $employeeUID);
+        $stmt->bindParam(':category', $category);
         $stmt->execute();
     }
 
