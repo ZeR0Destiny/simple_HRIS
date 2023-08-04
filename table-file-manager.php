@@ -161,10 +161,10 @@ require "include/header.html";
 </main>
 
 <!-- Modal for file upload -->
-<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" method="post" enctype="multipart/form-data" id="uploadForm">
+            <form action="#" method="post" enctype="multipart/form-data" id="uploadForm">
                 <div class="modal-header">
                     <h5 class="modal-title" id="uploadModalLabel">Upload File</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -178,6 +178,21 @@ require "include/header.html";
                         <label for="displayName" class="form-label">Display Name</label>
                         <input type="text" class="form-control" id="displayName" name="displayName" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="inputCategory" class="form-label">Category</label>
+                        <select id="inputCategory" class="form-select" name="category" required>
+                            <option value="BEN">Benefits</option>
+                            <option value="MED">Medical</option>
+                            <option value="DCP">Discipline Record</option>
+                            <option value="HIR">Hiring</option>
+                            <option value="IMG">Immigration</option>
+                            <option value="INV">Investigation</option>
+                            <option value="PSF">Personal File</option>
+                            <option value="TRN">Training Package</option>
+                            <option value="UNC">Unclassified</option>
+                            <option value="WRK">Work Eligibility</option>
+                        </select>
+                    </div>
                     <input type="hidden" name="employeeUID" value="employeeUID" id="employeeUID">
                 </div>
                 <div class="modal-footer">
@@ -188,5 +203,72 @@ require "include/header.html";
         </div>
     </div>
 </div>
+
+<!-- <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="file-manager-controller.php" method="post" enctype="multipart/form-data" id="uploadForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel">Upload File</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="fileUpload" class="form-label">Select File</label>
+                        <input type="file" class="form-control" id="fileUpload" name="fileUpload" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="displayName" class="form-label">Display Name</label>
+                        <input type="text" class="form-control" id="displayName" name="displayName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputCategory" class="form-label">Category</label>
+                        <select id="inputCategory" class="form-select" name="category" required>
+                            <option value="BEN">Benefits</option>
+                            <option value="MED">Medical</option>
+                            <option value="DCP">Discipline Record</option>
+                            <option value="HIR">Hiring</option>
+                            <option value="IMG">Immigration</option>
+                            <option value="INV">Investigation</option>
+                            <option value="PSN">Personal File</option>
+                            <option value="TRN">Training Package</option>
+                            <option value="UNC">Unclassified</option>
+                            <option value="WRK">Work Eligibility</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="employeeUID" value="" id="employeeUID">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<script>
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     // Single upload button in the table-file.php 
+    //     const uploadButton = document.querySelector('button[name="SingleUpload"]');
+    //     if (uploadButton) { // check if button exists on the page
+    //         uploadButton.addEventListener('click', (event) => {
+    //             event.preventDefault(); // Prevent the default click behavior
+
+    //             // Get the data-employee-uid attribute from the button's parent row
+    //             const employeeUID = event.target.closest('tr').getAttribute('data-uid');
+    //             console.log(employeeUID);
+    //             document.querySelector('#employeeUID').value = employeeUID;
+
+    //             // Show the modal
+    //             const modal = new bootstrap.Modal(document.getElementById('uploadModal'));
+    //             modal.show();
+    //         });
+    //     }
+    // });
+
+    
+</script>
+
 
 <?php require "include/footer.html" ?>
