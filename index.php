@@ -367,7 +367,7 @@ $database = new DB_Manager();
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Store Position Chart</h5>
+                <h5 class="card-title">Store Front Position Chart</h5>
 
                 <!-- Pie Chart -->
                 <div id="pieChart"></div>
@@ -405,7 +405,7 @@ $database = new DB_Manager();
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Company Position Chart</h5>
+                <h5 class="card-title">Headquarter Position Chart</h5>
 
                 <!-- Pie Chart -->
                 <div id="pieChart2"></div>
