@@ -107,4 +107,104 @@ class File_DB_Manager
         $sql = $this->db->prepare('ALTER TABLE employee_files AUTO_INCREMENT = 1;');
         $sql->execute();
     }
+
+    public function benefits($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid AND category = 'BEN'");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function medical($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid AND category = 'MED'");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function discipline($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid AND category = 'DCP'");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function hiring($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid AND category = 'HIR'");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function immigration($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid AND category = 'IMG'");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function investigation($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid AND category = 'INV'");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function personal($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid AND category = 'PSF'");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function training($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid AND category = 'TRN'");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function unclassified($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid AND category = 'UNC'");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function work($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employee_files WHERE UID = :uid AND category = 'WRK'");
+        $stmt->bindParam(':uid', $uid);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
 }
