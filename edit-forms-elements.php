@@ -415,6 +415,14 @@ $selected_employee = $database->select_employee($id);
                                     <label for="inputSin" class="col-sm-3 col-form-label">SIN</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="inputSin" required maxlength="9" pattern="[0-9]{9}" name="sin" oninvalid="this.setCustomValidity('Must be a 9 digits numeric number')" oninput="this.setCustomValidity('')" <?= 'value="' . $selected_employee['SIN'] . '"'; ?> disabled>
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="sin_expiration_checkbox" onclick="allowExpiration()">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Expiration Date
+                                        </label>
+                                        <input type="date" class="form-control" id="inputSinExpiration" name="sin_expiration" disabled>
+                                        <div class="invalid-feedback">
+                                            Invalid expiration date
+                                        </div>
                                     </div>
                                 </div>
 
@@ -482,22 +490,25 @@ $selected_employee = $database->select_employee($id);
                                     <div class="col-sm-9" style="max-width: 150px;">
                                         <ul class="list-group">
                                             <li class="list-group-item">
-                                                <input class="form-input-checkbox" type="checkbox" id="language1" name="language[]" value="English" 
-                                                <?php if (in_array("English", explode(", ", $selected_employee['language']))) { echo 'checked'; } ?>>
+                                                <input class="form-input-checkbox" type="checkbox" id="language1" name="language[]" value="English" <?php if (in_array("English", explode(", ", $selected_employee['language']))) {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
                                                 <label class="form-check-label" for="language1">
                                                     English
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                                <input class="form-input-checkbox" type="checkbox" id="language2" name="language[]" value="French"
-                                                <?php if (in_array("French", explode(", ", $selected_employee['language']))) { echo 'checked'; } ?>>
+                                                <input class="form-input-checkbox" type="checkbox" id="language2" name="language[]" value="French" <?php if (in_array("French", explode(", ", $selected_employee['language']))) {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
                                                 <label class="form-check-label" for="language2">
                                                     French
                                                 </label>
                                             </li>
                                             <li class="list-group-item">
-                                                <input class="form-input-checkbox" type="checkbox" id="language3" name="language[]" value="Other"
-                                                <?php if (in_array("Other", explode(", ", $selected_employee['language']))) { echo 'checked'; } ?>>
+                                                <input class="form-input-checkbox" type="checkbox" id="language3" name="language[]" value="Other" <?php if (in_array("Other", explode(", ", $selected_employee['language']))) {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
                                                 <label class="form-check-label" for="language3">
                                                     Other
                                                 </label>
