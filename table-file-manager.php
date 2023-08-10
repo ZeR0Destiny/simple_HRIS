@@ -190,7 +190,7 @@ require "include/header.html";
                             <option value="PSF">Personal File</option>
                             <option value="TRN">Training Package</option>
                             <option value="UNC">Unclassified</option>
-                            <option value="WRK">Work Eligibility</option>
+                            <option value="WKE">Work Eligibility</option>
                         </select>
                     </div>
                     <input type="hidden" name="employeeUID" value="employeeUID" id="employeeUID">
@@ -246,29 +246,5 @@ require "include/header.html";
         </div>
     </div>
 </div> -->
-
-<script>
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     // Single upload button in the table-file.php 
-    //     const uploadButton = document.querySelector('button[name="SingleUpload"]');
-    //     if (uploadButton) { // check if button exists on the page
-    //         uploadButton.addEventListener('click', (event) => {
-    //             event.preventDefault(); // Prevent the default click behavior
-
-    //             // Get the data-employee-uid attribute from the button's parent row
-    //             const employeeUID = event.target.closest('tr').getAttribute('data-uid');
-    //             console.log(employeeUID);
-    //             document.querySelector('#employeeUID').value = employeeUID;
-
-    //             // Show the modal
-    //             const modal = new bootstrap.Modal(document.getElementById('uploadModal'));
-    //             modal.show();
-    //         });
-    //     }
-    // });
-
-    
-</script>
-
 
 <?php require "include/footer.html" ?>
