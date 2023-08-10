@@ -12,6 +12,17 @@ $(document).ready(function () {
   var table2 = $("#emp_file_table").DataTable();
   var table3 = $("#file_table").DataTable();
 
+  var table4 = $("#file_table_benefit").DataTable();
+  var table5 = $("#file_table_medical").DataTable();
+  var table6 = $("#file_table_discipline").DataTable();
+  var table7 = $("#file_table_hiring").DataTable();
+  var table8 = $("#file_table_immigration").DataTable();
+  var table9 = $("#file_table_investigation").DataTable();
+  var table8 = $("#file_table_personal").DataTable();
+  var table8 = $("#file_table_training").DataTable();
+  var table9 = $("#file_table_unclassified").DataTable();
+  var table8 = $("#file_table_work").DataTable();
+
   $("#emp_table tbody").on("click mouseover", "tr", function () {
     var data = table.row(this).data();
 
