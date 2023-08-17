@@ -7,18 +7,6 @@ if (isset($_GET['employee_UID'])) {
     $uid = 0;
 }
 
-$get_files = $database->select_file_with_uid($uid);
-$benefit_files = $database->benefits($uid);
-$medical_files = $database->medical($uid);
-$discipline_files = $database->discipline($uid);
-$hiring_files = $database->hiring($uid);
-$immigration_files = $database->immigration($uid);
-$investigation_files = $database->investigation($uid);
-$personal_files = $database->personal($uid);
-$training_files = $database->training($uid);
-$unclassified_files = $database->unclassified($uid);
-$work_files = $database->work($uid);
-
 require_once "include/header.html";
 ?>
 
@@ -197,6 +185,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $get_files = $database->select_file_with_uid($uid);
                                             $count = 1;
                                             foreach ($get_files as $files) : ?>
                                                 <tr name="p_id">
@@ -239,6 +228,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $benefit_files = $database->benefits($uid);
                                             $count = 1;
                                             foreach ($benefit_files as $files) : ?>
                                                 <tr name="p_id">
@@ -281,6 +271,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $medical_files = $database->medical($uid);
                                             $count = 1;
                                             foreach ($medical_files as $files) : ?>
                                                 <tr name="p_id">
@@ -323,6 +314,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $discipline_files = $database->discipline($uid);
                                             $count = 1;
                                             foreach ($discipline_files as $files) : ?>
                                                 <tr name="p_id">
@@ -365,6 +357,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $hiring_files = $database->hiring($uid);
                                             $count = 1;
                                             foreach ($hiring_files as $files) : ?>
                                                 <tr name="p_id">
@@ -407,6 +400,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $immigration_files = $database->immigration($uid);
                                             $count = 1;
                                             foreach ($immigration_files as $files) : ?>
                                                 <tr name="p_id">
@@ -449,6 +443,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $investigation_files = $database->investigation($uid);
                                             $count = 1;
                                             foreach ($investigation_files as $files) : ?>
                                                 <tr name="p_id">
@@ -491,6 +486,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $personal_files = $database->personal($uid);
                                             $count = 1;
                                             foreach ($personal_files as $files) : ?>
                                                 <tr name="p_id">
@@ -533,6 +529,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $training_files = $database->training($uid);
                                             $count = 1;
                                             foreach ($training_files as $files) : ?>
                                                 <tr name="p_id">
@@ -575,6 +572,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $unclassified_files = $database->unclassified($uid);
                                             $count = 1;
                                             foreach ($unclassified_files as $files) : ?>
                                                 <tr name="p_id">
@@ -617,6 +615,7 @@ require_once "include/header.html";
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $work_files = $database->work($uid);
                                             $count = 1;
                                             foreach ($work_files as $files) : ?>
                                                 <tr name="p_id">
