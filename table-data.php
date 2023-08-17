@@ -4,8 +4,6 @@ require "../HRIS/Controller/employee-controller.php";
 
 $database = new DB_Manager();
 
-$get_employee = $database->select_all_employee();
-
 require "include/header.html";
 
 ?>
@@ -13,102 +11,101 @@ require "include/header.html";
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
 
-<ul class="sidebar-nav" id="sidebar-nav">
+  <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php">
-            <i class="bi bi-grid"></i>
-            <span>Dashboard</span>
-        </a>
+      <a class="nav-link collapsed" href="index.php">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-                <a href="forms-elements.php">
-                    <i class="bi bi-circle"></i><span>Create Employee</span>
-                </a>
-            </li>
-        </ul>
+      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="forms-elements.php">
+            <i class="bi bi-circle"></i><span>Create Employee</span>
+          </a>
+        </li>
+      </ul>
     </li>
     <!-- End Forms Nav -->
 
     <li class="nav-item">
-        <a class="nav-link" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i
-                class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-            <li>
-                <a href="table-data.php" class="active">
-                    <i class="bi bi-circle"></i><span>Employee Table</span>
-                </a>
-            </li>
-        </ul>
+      <a class="nav-link" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="table-data.php" class="active">
+            <i class="bi bi-circle"></i><span>Employee Table</span>
+          </a>
+        </li>
+      </ul>
     </li><!-- End Tables Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="table-file-manager.php">
-            <i class="bi bi-folder"></i>
-            <span>File Manager</span>
-        </a>
+      <a class="nav-link collapsed" href="table-file-manager.php">
+        <i class="bi bi-folder"></i>
+        <span>File Manager</span>
+      </a>
     </li>
 
     <li class="nav-heading">Pages</li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-            <i class="bi bi-person"></i>
-            <span>Profile</span>
-        </a>
+      <a class="nav-link collapsed" href="users-profile.html">
+        <i class="bi bi-person"></i>
+        <span>Profile</span>
+      </a>
     </li><!-- End Profile Page Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-            <i class="bi bi-question-circle"></i>
-            <span>F.A.Q</span>
-        </a>
+      <a class="nav-link collapsed" href="pages-faq.html">
+        <i class="bi bi-question-circle"></i>
+        <span>F.A.Q</span>
+      </a>
     </li><!-- End F.A.Q Page Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-            <i class="bi bi-envelope"></i>
-            <span>Contact</span>
-        </a>
+      <a class="nav-link collapsed" href="pages-contact.html">
+        <i class="bi bi-envelope"></i>
+        <span>Contact</span>
+      </a>
     </li><!-- End Contact Page Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-            <i class="bi bi-card-list"></i>
-            <span>Register</span>
-        </a>
+      <a class="nav-link collapsed" href="pages-register.html">
+        <i class="bi bi-card-list"></i>
+        <span>Register</span>
+      </a>
     </li><!-- End Register Page Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
-            <i class="bi bi-box-arrow-in-right"></i>
-            <span>Login</span>
-        </a>
+      <a class="nav-link collapsed" href="pages-login.html">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>Login</span>
+      </a>
     </li><!-- End Login Page Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
-            <i class="bi bi-dash-circle"></i>
-            <span>Error 404</span>
-        </a>
+      <a class="nav-link collapsed" href="pages-error-404.html">
+        <i class="bi bi-dash-circle"></i>
+        <span>Error 404</span>
+      </a>
     </li><!-- End Error 404 Page Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-blank.html">
-            <i class="bi bi-file-earmark"></i>
-            <span>Blank</span>
-        </a>
+      <a class="nav-link collapsed" href="pages-blank.html">
+        <i class="bi bi-file-earmark"></i>
+        <span>Blank</span>
+      </a>
     </li><!-- End Blank Page Nav -->
 
-</ul>
+  </ul>
 
 </aside><!-- End Sidebar-->
 
@@ -128,10 +125,10 @@ require "include/header.html";
       <div class="col-lg justify-content-center">
         <div class="card">
           <div class="card-body">
-              <a href="forms-elements.php" class="btn btn-outline-dark" title="Create" data-bs-toggle="tooltip"><i class="bi bi-person-plus-fill"></i></a>
-              <a href="table-file-manager.php" class="btn btn-outline-dark" title="File Manager" data-bs-toggle="tooltip"><i class="bi bi-folder-fill"></i></a>
+            <a href="forms-elements.php" class="btn btn-outline-dark" title="Create" data-bs-toggle="tooltip"><i class="bi bi-person-plus-fill"></i></a>
+            <a href="table-file-manager.php" class="btn btn-outline-dark" title="File Manager" data-bs-toggle="tooltip"><i class="bi bi-folder-fill"></i></a>
           </div>
-          <div class="card-body">            
+          <div class="card-body">
             <div class="dataTable-container">
               <table id="emp_table" class="table table-striped table-bordered" width="100%">
                 <thead>
@@ -147,7 +144,9 @@ require "include/header.html";
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($get_employee as $employee) : ?>
+                  <?php
+                  $get_employee = $database->select_all_employee();
+                  foreach ($get_employee as $employee) : ?>
                     <tr name="p_id">
                       <td width="3%"><?= $employee['id'] ?></td>
                       <td><?= $employee['firstname'] . ' ' . $employee['lastname'] ?></td>
