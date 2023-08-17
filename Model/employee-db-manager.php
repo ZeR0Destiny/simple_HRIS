@@ -259,7 +259,7 @@ class DB_Manager
         $sql = "SELECT COUNT(*) AS employee FROM employee";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $result;
     }
