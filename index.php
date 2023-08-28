@@ -25,22 +25,9 @@ $database = new DB_Manager();
       <div class="col-lg">
         <div class="row">
 
-          <!-- Sales Card -->
+          <!-- Total Card -->
           <div class="col-xl-4 col-md-4 col-sm-">
             <div class="card info-card sales-card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
 
               <div class="card-body">
                 <h5 class="card-title">Employee <span>| Total</span></h5>
@@ -50,9 +37,9 @@ $database = new DB_Manager();
                     <i class="bi bi-people"></i>
                   </div>
                   <div class="ps-3">
-                    <h6><?php $total = $database->employee_total(); echo $total['employee']; ?></h6>
-                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
+                    <h6><?php $total = $database->employee_total();
+                        echo $total['employee']; ?></h6>
+                    <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
                   </div>
                 </div>
               </div>
@@ -60,34 +47,20 @@ $database = new DB_Manager();
             </div>
           </div><!-- End Sales Card -->
 
-          <!-- Revenue Card -->
+          <!-- Active Card -->
           <div class="col-xl-4 col-md-4 col-sm-">
             <div class="card info-card revenue-card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
 
               <div class="card-body">
                 <h5 class="card-title">Employee <span>| Active</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
+                    <i class="bi bi-people"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>$3,264</h6>
-                    <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
+                    <h6><?php $total = $database->employee_active();
+                        echo $total['employee']; ?></h6>
                   </div>
                 </div>
               </div>
@@ -95,23 +68,10 @@ $database = new DB_Manager();
             </div>
           </div><!-- End Revenue Card -->
 
-          <!-- Customers Card -->
+          <!-- Inactive Card -->
           <div class="col-xl-4 col-md-4 col-sm-">
 
             <div class="card info-card customers-card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#" onclick="filterData('today')">Today</a></li>
-                  <li><a class="dropdown-item" href="#" onclick="filterData('this_month')">This Month</a></li>
-                  <li><a class="dropdown-item" href="#" onclick="filterData('this_year')">This Year</a></li>
-                </ul>
-              </div>
 
               <div class="card-body">
                 <h5 class="card-title">Employee <span id="filterLabel">| Inactive</span></h5>
@@ -121,9 +81,8 @@ $database = new DB_Manager();
                     <i class="bi bi-people"></i>
                   </div>
                   <div class="ps-3">
-                    <h6 id="employeeCount">1244</h6>
-                    <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1" id="changeLabel">decrease</span>
-
+                    <h6><?php $total = $database->employee_inactive();
+                        echo $total['employee']; ?></h6>
                   </div>
                 </div>
 
@@ -132,112 +91,11 @@ $database = new DB_Manager();
 
           </div><!-- End Customers Card -->
 
-          <!-- <div class="col-xl-4 col-md-4 col-sm-">
-              <div class="card info-card revenue-card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">Revenue <span>| This Month</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div> -->
-          <!-- <div class="col-xl-4 col-md-4 col-sm-">
-              <div class="card info-card revenue-card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">Revenue <span>| This Month</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div> -->
-
-          <!-- <div class="col-xl-4 col-md-4 col-sm-">
-              <div class="card info-card revenue-card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">Revenue <span>| This Month</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div> -->
-
           <!-- Reports -->
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Column Chart</h5>
+                <h5 class="card-title">Employee per position per region</h5>
 
                 <!-- Column Chart -->
                 <div id="columnChart"></div>
@@ -246,14 +104,23 @@ $database = new DB_Manager();
                   document.addEventListener("DOMContentLoaded", () => {
                     new ApexCharts(document.querySelector("#columnChart"), {
                       series: [{
-                        name: 'Net Profit',
-                        data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+                        name: 'Cashier/Bartender',
+                        data: [<?php $bartender = $database->employee_bartender_count();
+                                foreach ($bartender as $bartenders) {
+                                  echo $bartenders['bartender_per_region'] . ',';
+                                }; ?>]
                       }, {
-                        name: 'Revenue',
-                        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+                        name: 'Store Manager',
+                        data: [<?php $manager = $database->employee_store_manager_count();
+                                foreach ($manager as $managers) {
+                                  echo $managers['store_manager_per_region'] . ',';
+                                }; ?>]
                       }, {
-                        name: 'Free Cash Flow',
-                        data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+                        name: 'Multi-Unit Manager',
+                        data: [<?php $manager = $database->employee_multi_unit_count();
+                                foreach ($manager as $managers) {
+                                  echo $managers['multi_unit_per_region'] . ',';
+                                }; ?>]
                       }],
                       chart: {
                         type: 'bar',
@@ -275,11 +142,11 @@ $database = new DB_Manager();
                         colors: ['transparent']
                       },
                       xaxis: {
-                        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                        categories: ['CENTRAL', 'EAST', 'NW', 'OTTAWA', 'QUEBEC', 'SOUTH', 'SW1', 'SW2', 'USA'],
                       },
                       yaxis: {
                         title: {
-                          text: '$ (thousands)'
+                          text: 'Employee'
                         }
                       },
                       fill: {
@@ -288,7 +155,7 @@ $database = new DB_Manager();
                       tooltip: {
                         y: {
                           formatter: function(val) {
-                            return "$ " + val + " thousands"
+                            return val + " partners"
                           }
                         }
                       }
@@ -307,56 +174,57 @@ $database = new DB_Manager();
       </div><!-- End Left side columns -->
 
       <!-- Right side columns -->
-      <!-- <div class="col-lg-4"-->
+      <div class="col-lg-4">
 
-      <!-- Employee Per Region Chart -->
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body pb-0">
-            <h5 class="card-title">Employee<span>| Region</span></h5>
+        <!-- Employee Per Region Chart -->
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body pb-0">
+              <h5 class="card-title">Employee<span>| Total employee per region</span></h5>
 
-            <div id="RegionChart" style="min-height: 400px;" class="echart"></div>
+              <div id="RegionChart" style="min-height: 400px;" class="echart"></div>
 
-            <script>
-              document.addEventListener("DOMContentLoaded", () => {
-                echarts.init(document.querySelector("#RegionChart")).setOption({
-                  tooltip: {
-                    trigger: 'item'
-                  },
-                  legend: {
-                    top: '5%',
-                    orient: 'vertical',
-                    left: 'left'
-                  },
-                  series: [{
-                    name: 'Access From',
-                    type: 'pie',
-                    radius: ['30%', '70%'],
-                    avoidLabelOverlap: false,
-                    label: {
-                      show: false,
-                      position: 'center'
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  echarts.init(document.querySelector("#RegionChart")).setOption({
+                    tooltip: {
+                      trigger: 'item'
                     },
-                    emphasis: {
+                    legend: {
+                      top: '5%',
+                      orient: 'horizontal',
+                      left: 'left'
+                    },
+                    series: [{
+                      name: 'Access From',
+                      type: 'pie',
+                      radius: ['30%', '70%'],
+                      avoidLabelOverlap: false,
                       label: {
-                        show: true,
-                        fontSize: '18',
-                        fontWeight: 'bold'
-                      }
-                    },
-                    labelLine: {
-                      show: false
-                    },
-                    data: [
-                      <?php $employee_group = $database->employee_per_region();
-                      foreach ($employee_group as $group) {
-                        echo "{ value: " . $group['employee'] . ", name: '" . $group['region'] . "' },";
-                      } ?>
-                    ]
-                  }]
+                        show: false,
+                        position: 'center'
+                      },
+                      emphasis: {
+                        label: {
+                          show: true,
+                          fontSize: '18',
+                          fontWeight: 'bold'
+                        }
+                      },
+                      labelLine: {
+                        show: false
+                      },
+                      data: [
+                        <?php $employee_group = $database->employee_per_region();
+                        foreach ($employee_group as $group) {
+                          echo "{ value: " . $group['employee'] . ", name: '" . $group['region'] . "' },";
+                        } ?>
+                      ]
+                    }]
+                  });
                 });
-              });
-            </script>
+              </script>
+            </div>
           </div>
         </div>
       </div>
@@ -441,8 +309,7 @@ $database = new DB_Manager();
         </div>
       </div>
 
-      <!-- </div>End Right side columns -->
-
+      
     </div>
   </section>
 
