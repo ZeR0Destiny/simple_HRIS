@@ -24,7 +24,7 @@ class DB_Manager
         }
     }
 
-    // Select all the employee from the table
+    // Function to select all the employee from the table
     public function select_all_employee()
     {
         $query = $this->db->query("SELECT * FROM employee");
@@ -37,10 +37,10 @@ class DB_Manager
     public function add_employee($employee)
     {
         $query = $this->db->prepare("INSERT INTO employee 
-    VALUES (DEFAULT, :firstname, :middlename, :lastname, :preferredname, :gender, :birthdate, 
-    :country, :province, :city, :address, 
-    :unit, :postalcode, :email, :mobile, :homephone, :SIN, :SIN_expiration, :UID, 
-    :position, :payclass, DEFAULT, :region, :home_store, :language, :start_date, DEFAULT)");
+        VALUES (DEFAULT, :firstname, :middlename, :lastname, :preferredname, :gender, :birthdate, 
+        :country, :province, :city, :address, 
+        :unit, :postalcode, :email, :mobile, :homephone, :SIN, :SIN_expiration, :UID, 
+        :position, :payclass, DEFAULT, :region, :home_store, :language, :start_date, DEFAULT)");
 
         $result = $query->execute(array(
             "firstname" => $employee->getFirstname(),
@@ -75,7 +75,7 @@ class DB_Manager
     }
 
 
-    // Select an employee with SIN and validate
+    // Function to select an employee with SIN and validate if it exist
     public function check_if_sin_exits($sin)
     {
         $query = $this->db->prepare("SELECT * FROM employee WHERE SIN = :SIN;");
@@ -88,7 +88,7 @@ class DB_Manager
         }
     }
 
-    // Select an employee with unique id and validate
+    // Function to select an employee with unique id and validate if it exist
     public function check_if_uid_exits($uid)
     {
         $query = $this->db->prepare("SELECT * FROM employee WHERE UID = :UID;");
@@ -103,7 +103,7 @@ class DB_Manager
         return $result;
     }
 
-    // Select an employee with the id
+    // Function to select an employee with the id
     public function select_employee($id)
     {
         $stmt = $this->db->prepare("SELECT * FROM employee WHERE id = :id");
@@ -114,7 +114,7 @@ class DB_Manager
         return $array;
     }
 
-    // Update the employee at selected id
+    // Function to update the employee information at selected id
     public function update_employee($id)
     {
         $sql = "UPDATE employee SET 
@@ -195,29 +195,29 @@ class DB_Manager
         $selectedLanguages = isset($_POST['language']) ? $_POST['language'] : [];
         $languages = implode(', ', $selectedLanguages);
 
-    //     $sql = "UPDATE employee SET 
-    // firstname=:firstname, 
-    // middlename=:middlename,
-    // lastname=:lastname, 
-    // preferredname=:preferredname,
-    // gender=:gender, 
-    // birthdate=:birthdate,       
-    // country=:country, 
-    // province=:province,
-    // city=:city, 
-    // address=:address, 
-    // unit=:unit,       
-    // postalcode=:postalcode, 
-    // email=:email, 
-    // mobile=:mobile, 
-    // homephone=:homephone, 
-    // position=:position, 
-    // payclass=:payclass, 
-    // status=:status, 
-    // region=:region, 
-    // home_store=:home_store, 
-    // language=:language,
-    // last_update=NOW() WHERE id=:id";
+        //     $sql = "UPDATE employee SET 
+        // firstname=:firstname, 
+        // middlename=:middlename,
+        // lastname=:lastname, 
+        // preferredname=:preferredname,
+        // gender=:gender, 
+        // birthdate=:birthdate,       
+        // country=:country, 
+        // province=:province,
+        // city=:city, 
+        // address=:address, 
+        // unit=:unit,       
+        // postalcode=:postalcode, 
+        // email=:email, 
+        // mobile=:mobile, 
+        // homephone=:homephone, 
+        // position=:position, 
+        // payclass=:payclass, 
+        // status=:status, 
+        // region=:region, 
+        // home_store=:home_store, 
+        // language=:language,
+        // last_update=NOW() WHERE id=:id";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':firstname', $firstname);
@@ -290,7 +290,7 @@ class DB_Manager
         $sql->execute();
     }
 
-    // Function counting and sorting employee per region
+    // Function to count total employee for each region
     public function employee_per_region()
     {
         $sql = "SELECT region, COUNT(*) AS employee FROM employee GROUP BY region";
@@ -301,6 +301,7 @@ class DB_Manager
         return $result;
     }
 
+    // Function to count number of employee by position and sort by position
     public function employee_per_position()
     {
         $sql = "SELECT position, COUNT(*) AS employee
@@ -314,6 +315,7 @@ class DB_Manager
         return $result;
     }
 
+    // Function to count number of employee by position excluding certain position and sort by position
     public function employee_per_position_hq()
     {
         $sql = "SELECT position, COUNT(*) AS employee
@@ -327,6 +329,7 @@ class DB_Manager
         return $result;
     }
 
+    // Function to count number of total employee
     public function employee_total()
     {
         $sql = "SELECT COUNT(*) AS employee FROM employee";
@@ -337,6 +340,7 @@ class DB_Manager
         return $result;
     }
 
+    // Function to count number of active employee
     public function employee_active()
     {
         $sql = "SELECT COUNT(*) AS employee FROM employee WHERE status = 'Active'";
@@ -347,6 +351,7 @@ class DB_Manager
         return $result;
     }
 
+    // Function to count number of inactive employee
     public function employee_inactive()
     {
         $sql = "SELECT COUNT(*) AS employee FROM employee WHERE status = 'Inactive'";
@@ -357,6 +362,7 @@ class DB_Manager
         return $result;
     }
 
+    // Function to count number of bartender per region
     public function employee_bartender_count()
     {
         $sql = "SELECT COUNT(*) AS bartender_per_region FROM employee WHERE position = 'Cashier/Bartender' GROUP BY region;";
@@ -367,6 +373,7 @@ class DB_Manager
         return $result;
     }
 
+    // Function to count number of store manager per region
     public function employee_store_manager_count()
     {
         $sql = "SELECT COUNT(*) AS store_manager_per_region FROM employee WHERE position = 'Store Manager' GROUP BY region;";
@@ -377,6 +384,7 @@ class DB_Manager
         return $result;
     }
 
+    // Function to count number of multi-unit manager per region
     public function employee_multi_unit_count()
     {
         $sql = "SELECT COUNT(*) AS multi_unit_per_region FROM employee WHERE position = 'Multi-Unit Manager' GROUP BY region;";
