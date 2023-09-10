@@ -290,10 +290,10 @@ class DB_Manager
         $sql->execute();
     }
 
-    // Function to count total employee for each region
-    public function employee_per_region()
+    // Function to count total employee within each region
+    public function employee_total_by_region()
     {
-        $sql = "SELECT region, COUNT(*) AS employee FROM employee GROUP BY region";
+        $sql = "SELECT region, COUNT(*) AS TotalByRegion FROM employee GROUP BY region";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -302,9 +302,9 @@ class DB_Manager
     }
 
     // Function to count number of employee by position and sort by position
-    public function employee_per_position()
+    public function employee_percent_by_position()
     {
-        $sql = "SELECT position, COUNT(*) AS employee
+        $sql = "SELECT position, COUNT(*) AS StoreEmployee
         FROM employee
         WHERE position IN ('Cashier/Bartender', 'Store Manager', 'Multi-Unit Manager', 'Regional Manager')
         GROUP BY position";
@@ -316,9 +316,9 @@ class DB_Manager
     }
 
     // Function to count number of employee by position excluding certain position and sort by position
-    public function employee_per_position_hq()
+    public function employee_percent_by_position_hq()
     {
-        $sql = "SELECT position, COUNT(*) AS employee
+        $sql = "SELECT position, COUNT(*) AS HqEmployee
         FROM employee
         WHERE position NOT IN ('Cashier/Bartender', 'Store Manager', 'Multi-Unit Manager', 'Regional Manager')
         GROUP BY position";
@@ -329,10 +329,10 @@ class DB_Manager
         return $result;
     }
 
-    // Function to count number of total employee
+    // Function to count grand total number of employee
     public function employee_total()
     {
-        $sql = "SELECT COUNT(*) AS employee FROM employee";
+        $sql = "SELECT COUNT(*) AS TotalEmployee FROM employee";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -343,7 +343,7 @@ class DB_Manager
     // Function to count number of active employee
     public function employee_active()
     {
-        $sql = "SELECT COUNT(*) AS employee FROM employee WHERE status = 'Active'";
+        $sql = "SELECT COUNT(*) AS ActiveCount FROM employee WHERE status = 'Active'";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -354,7 +354,7 @@ class DB_Manager
     // Function to count number of inactive employee
     public function employee_inactive()
     {
-        $sql = "SELECT COUNT(*) AS employee FROM employee WHERE status = 'Inactive'";
+        $sql = "SELECT COUNT(*) AS InactiveCount FROM employee WHERE status = 'Inactive'";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -362,32 +362,14 @@ class DB_Manager
         return $result;
     }
 
-    // Function to count number of bartender per region
-    public function employee_bartender_count()
+    // Function to count number of employee within each selected position within each region
+    public function employee_position_by_region()
     {
-        $sql = "SELECT COUNT(*) AS bartender_per_region FROM employee WHERE position = 'Cashier/Bartender' GROUP BY region;";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
-    }
-
-    // Function to count number of store manager per region
-    public function employee_store_manager_count()
-    {
-        $sql = "SELECT COUNT(*) AS store_manager_per_region FROM employee WHERE position = 'Store Manager' GROUP BY region;";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
-    }
-
-    // Function to count number of multi-unit manager per region
-    public function employee_multi_unit_count()
-    {
-        $sql = "SELECT COUNT(*) AS multi_unit_per_region FROM employee WHERE position = 'Multi-Unit Manager' GROUP BY region;";
+        $sql = "SELECT region,
+        SUM(CASE WHEN position = 'Cashier/Bartender' THEN 1 ELSE 0 END) AS CashierCount,
+        SUM(CASE WHEN position = 'Store Manager' THEN 1 ELSE 0 END) AS StoreManagerCount,
+        SUM(CASE WHEN position = 'Multi-Unit Manager' THEN 1 ELSE 0 END) AS MultiUnitCount
+        FROM employee GROUP BY region ORDER BY region;";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
