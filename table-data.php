@@ -4,7 +4,7 @@ require "../HRIS/Controller/employee-controller.php";
 
 $database = new DB_Manager();
 
-require "include/header.html";
+include "include/header.html";
 
 ?>
 
@@ -90,20 +90,6 @@ require "include/header.html";
         <span>Login</span>
       </a>
     </li><!-- End Login Page Nav -->
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="pages-error-404.html">
-        <i class="bi bi-dash-circle"></i>
-        <span>Error 404</span>
-      </a>
-    </li><!-- End Error 404 Page Nav -->
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="pages-blank.html">
-        <i class="bi bi-file-earmark"></i>
-        <span>Blank</span>
-      </a>
-    </li><!-- End Blank Page Nav -->
 
   </ul>
 
@@ -209,4 +195,4 @@ require "include/header.html";
   </div>
 </div>
 
-<?php require "include/footer.html" ?>
+<?php include "include/footer.html" ?>
