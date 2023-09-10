@@ -7,7 +7,8 @@ if (isset($_GET['employee_UID'])) {
     $uid = 0;
 }
 
-require_once "include/header.html";
+include "include/header.html";
+
 ?>
 
 <!-- ======= Sidebar ======= -->
@@ -92,20 +93,6 @@ require_once "include/header.html";
                 <span>Login</span>
             </a>
         </li><!-- End Login Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-error-404.html">
-                <i class="bi bi-dash-circle"></i>
-                <span>Error 404</span>
-            </a>
-        </li><!-- End Error 404 Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-blank.html">
-                <i class="bi bi-file-earmark"></i>
-                <span>Blank</span>
-            </a>
-        </li><!-- End Blank Page Nav -->
 
     </ul>
 
@@ -700,4 +687,4 @@ require_once "include/header.html";
     </div>
 </div>
 
-<?php require_once "include/footer.html" ?>
+<?php include "include/footer.html" ?>
