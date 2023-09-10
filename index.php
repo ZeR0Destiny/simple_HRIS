@@ -38,7 +38,7 @@ $database = new DB_Manager();
                   </div>
                   <div class="ps-3">
                     <h6><?php $total = $database->employee_total();
-                        echo $total['employee']; ?></h6>
+                        echo $total['TotalEmployee']; ?></h6>
                     <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
                   </div>
                 </div>
@@ -60,7 +60,7 @@ $database = new DB_Manager();
                   </div>
                   <div class="ps-3">
                     <h6><?php $total = $database->employee_active();
-                        echo $total['employee']; ?></h6>
+                        echo $total['ActiveCount']; ?></h6>
                   </div>
                 </div>
               </div>
@@ -82,7 +82,7 @@ $database = new DB_Manager();
                   </div>
                   <div class="ps-3">
                     <h6><?php $total = $database->employee_inactive();
-                        echo $total['employee']; ?></h6>
+                        echo $total['InactiveCount']; ?></h6>
                   </div>
                 </div>
 
@@ -95,7 +95,7 @@ $database = new DB_Manager();
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Employee per position per region</h5>
+                <h5 class="card-title">Employee by position by region</h5>
 
                 <!-- Column Chart -->
                 <div id="columnChart"></div>
@@ -105,22 +105,31 @@ $database = new DB_Manager();
                     new ApexCharts(document.querySelector("#columnChart"), {
                       series: [{
                         name: 'Cashier/Bartender',
-                        data: [<?php $bartender = $database->employee_bartender_count();
-                                foreach ($bartender as $bartenders) {
-                                  echo $bartenders['bartender_per_region'] . ',';
-                                }; ?>]
+                        data: [<?php $bartender = $database->employee_position_by_region();
+                                $dataString = '';
+                                foreach ($bartender as $bartender_counts) {
+                                  $dataString .= $bartender_counts['CashierCount'] . ',';
+                                };
+                                echo rtrim($dataString, ', ');
+                                ?>]
                       }, {
                         name: 'Store Manager',
-                        data: [<?php $manager = $database->employee_store_manager_count();
-                                foreach ($manager as $managers) {
-                                  echo $managers['store_manager_per_region'] . ',';
-                                }; ?>]
+                        data: [<?php $manager = $database->employee_position_by_region();
+                                $dataString = '';
+                                foreach ($manager as $manager_counts) {
+                                  $dataString .= $manager_counts['StoreManagerCount'] . ',';
+                                };
+                                echo rtrim($dataString, ', ');
+                                ?>]
                       }, {
                         name: 'Multi-Unit Manager',
-                        data: [<?php $manager = $database->employee_multi_unit_count();
-                                foreach ($manager as $managers) {
-                                  echo $managers['multi_unit_per_region'] . ',';
-                                }; ?>]
+                        data: [<?php $multiunit = $database->employee_position_by_region();
+                                $dataString = '';
+                                foreach ($multiunit as $multiunit_counts) {
+                                  $dataString .= $multiunit_counts['MultiUnitCount'] . ',';
+                                };
+                                echo rtrim($dataString, ', ');
+                                ?>]
                       }],
                       chart: {
                         type: 'bar',
@@ -142,7 +151,14 @@ $database = new DB_Manager();
                         colors: ['transparent']
                       },
                       xaxis: {
-                        categories: ['CENTRAL', 'EAST', 'NW', 'OTTAWA', 'QUEBEC', 'SOUTH', 'SW1', 'SW2', 'USA'],
+                        categories: [<?php
+                                      $region = $database->employee_position_by_region();
+                                      $categoryString = '';
+                                      foreach ($region as $region_name) {
+                                        $categoryString .= "'" . $region_name['region'] . "', ";
+                                      }
+                                      echo rtrim($categoryString, ', '); // This removes the trailing comma
+                                      ?>],
                       },
                       yaxis: {
                         title: {
@@ -180,7 +196,7 @@ $database = new DB_Manager();
         <div class="col-12">
           <div class="card">
             <div class="card-body pb-0">
-              <h5 class="card-title">Employee<span>| Total employee per region</span></h5>
+              <h5 class="card-title">Employee<span>| Total employee by region</span></h5>
 
               <div id="RegionChart" style="min-height: 400px;" class="echart"></div>
 
@@ -215,9 +231,9 @@ $database = new DB_Manager();
                         show: false
                       },
                       data: [
-                        <?php $employee_group = $database->employee_per_region();
+                        <?php $employee_group = $database->employee_total_by_region();
                         foreach ($employee_group as $group) {
-                          echo "{ value: " . $group['employee'] . ", name: '" . $group['region'] . "' },";
+                          echo "{ value: " . $group['TotalByRegion'] . ", name: '" . $group['region'] . "' },";
                         } ?>
                       ]
                     }]
@@ -244,9 +260,9 @@ $database = new DB_Manager();
                   document.addEventListener("DOMContentLoaded", () => {
                     new ApexCharts(document.querySelector("#pieChart"), {
                       series: [<?php
-                                $employee_position = $database->employee_per_position();
+                                $employee_position = $database->employee_percent_by_position();
                                 foreach ($employee_position as $group) {
-                                  echo $group['employee'] . ",";
+                                  echo $group['StoreEmployee'] . ",";
                                 }
                                 ?>],
                       chart: {
@@ -282,9 +298,9 @@ $database = new DB_Manager();
                   document.addEventListener("DOMContentLoaded", () => {
                     new ApexCharts(document.querySelector("#pieChart2"), {
                       series: [<?php
-                                $employee_position = $database->employee_per_position_hq();
+                                $employee_position = $database->employee_percent_by_position_hq();
                                 foreach ($employee_position as $group) {
-                                  echo $group['employee'] . ",";
+                                  echo $group['HqEmployee'] . ",";
                                 }
                                 ?>],
                       chart: {
@@ -309,7 +325,7 @@ $database = new DB_Manager();
         </div>
       </div>
 
-      
+
     </div>
   </section>
 
