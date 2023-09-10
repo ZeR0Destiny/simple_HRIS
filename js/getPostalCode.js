@@ -1,5 +1,5 @@
 function checkPostalCode() {
-  const cad = /[a-zA-Z][0-9][a-zA-Z]-[0-9][a-zA-Z][0-9]/g;
+  const cad = /[A-Z][0-9][A-Z]-[0-9][A-Z][0-9]/g;
   const us = /[0-9]{5}/g;
 
   let code = document.getElementById("inputCountry").value;
