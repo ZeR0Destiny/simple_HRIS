@@ -1,12 +1,3 @@
-// get the row id and employee UID
-// const uploadButtons = document.querySelectorAll('tbody button[title="Upload"]');
-// uploadButtons.forEach(button => {
-//     button.addEventListener('click', () => {
-//         const uid = button.closest('tr').dataset.uid;
-//         console.log(uid);
-//         document.querySelector('#employeeUID').value = uid;
-//     });
-// });
 if (window.location.href.includes('table-file-manager.php')) {
     // Upload file using the button on each rows
     const uploadButtons = document.querySelectorAll('tbody button[title="Upload"]');
