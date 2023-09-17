@@ -153,9 +153,9 @@ include "include/header.html";
                             <div class="row mb-3">
                                 <label for="inputPostalCode" class="col-sm-3 col-form-label">Postal/ZIP Code</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="inputPostalCode" maxlength="7" name="postalcode" required>
+                                    <input type="text" class="form-control" id="inputPostalCode" maxlength="6" name="postalcode" required>
                                     <div class="invalid-feedback">
-                                        Please provide valid information. (Canada: A1Z-1B2, USA: 12345)
+                                        Please provide valid information. (Canada: A1Z1B2, USA: 12345)
                                     </div>
                                 </div>
                             </div>
