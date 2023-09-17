@@ -1,19 +1,4 @@
 function checkAge() {
-  // let todayDate = new Date();
-
-  // let dob = document.getElementById("inputDob").value;
-  // let todayDate2 = new Date(dob);
-
-  // let milisec_diff = todayDate - todayDate2;
-  // let age = Math.floor(milisec_diff / (1000 * 60 * 60 * 24 * 365));
-
-  // if (age < 16) {
-  //   event.preventDefault();
-  //   document.getElementById("inputDob").classList.add("is-invalid");
-  // } else {
-  //   document.getElementById("inputDob").classList.remove("is-invalid");
-  // }
-
   let dob = document.getElementById("inputDob").value;
   let todayDate = new Date();
   todayDate.setHours(0, 0, 0, 0); // Set time to 0
@@ -36,5 +21,4 @@ function checkAge() {
   } else {
     document.getElementById("inputDob").classList.remove("is-invalid");
   }
-
 }
