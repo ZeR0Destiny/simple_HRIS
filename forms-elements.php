@@ -23,25 +23,6 @@ include "include/header.html";
         </nav>
     </div><!-- End Page Title -->
 
-    <!-- Alert boxes -->
-    <?php if (isset($_SESSION['success']) == true) { ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert-success">
-            <i class="bi bi-check-circle me-1"></i>
-            Congratulation! A new employee has been created!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php } ?>
-
-    <?php if (isset($_SESSION['valid']) == true) { ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert-danger">
-            <i class="bi bi-exclamation-octagon me-1"></i>
-            The SIN number already exists!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php }
-    // Unset existing session
-    session_unset(); ?>
-
     <!-- Section with all the inputs -->
     <section class="section">
         <form action="#" method="post">
@@ -275,6 +256,12 @@ include "include/header.html";
                                     </ul>
                                 </div>
                             </div>
+
+                            <!-- Javascript to verify the age input  -->
+                            <script src="js/getAge.js"></script>
+                            <!-- Javascript to verify the postal code input -->
+                            <script src="js/getPostalCode.js"></script>
+
                             <div class="row mb-3">
                                 <div class="col-xs"></div>
                                 <div class="col-sm d-flex justify-content-center">
@@ -328,15 +315,8 @@ include "include/header.html";
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
-<!-- Javascript for alert popup control  -->
-<script src="js/alert-control.js"></script>
-
 <!-- Javascript for preventing resubmitting control  -->
 <script src="js/resubmission-control.js"></script>
-
-<!-- Javascript to load getAge and getPostalCode control  -->
-<script src="js/getAge.js"></script>
-<script src="js/getPostalCode.js"></script>
 
 </body>
 
