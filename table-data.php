@@ -2,9 +2,9 @@
 require "../HRIS/Model/employee-db-manager.php";
 require "../HRIS/Controller/employee-controller.php";
 
-$database = new DB_Manager();
-
 include "include/header.html";
+
+$database = new DB_Manager();
 
 ?>
 
@@ -108,4 +108,4 @@ include "include/header.html";
   </div>
 </div>
 
-<?php include "include/footer.html" ?>
+<?php include "include/footer.html"; ?>

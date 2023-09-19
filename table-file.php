@@ -1,13 +1,13 @@
 <?php
-require_once "Controller/file-manager-controller.php";
+require "Controller/file-manager-controller.php";
+
+include "include/header.html";
 
 if (isset($_GET['employee_UID'])) {
     $uid = $_GET['employee_UID'];
 } else {
     $uid = 0;
 }
-
-include "include/header.html";
 
 ?>
 
@@ -599,4 +599,4 @@ include "include/header.html";
     </div>
 </div>
 
-<?php include "include/footer.html" ?>
+<?php include "include/footer.html"; ?>

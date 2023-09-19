@@ -2,11 +2,11 @@
 require "../HRIS/Model/employee-db-manager.php";
 require "../HRIS/Controller/employee-controller.php";
 
+include "include/header.html";
+
 $database = new DB_Manager();
 
 $get_employee = $database->select_all_employee();
-
-include "include/header.html";
 
 ?>
 

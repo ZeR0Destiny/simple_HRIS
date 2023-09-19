@@ -1,9 +1,9 @@
 <?php
-require_once "../HRIS/Controller/file-manager-controller.php";
-
-$get_file_employee = $database->select_and_count_all_employee_file();
+require "../HRIS/Controller/file-manager-controller.php";
 
 include "include/header.html";
+
+$get_file_employee = $database->select_and_count_all_employee_file();
 
 ?>
 
@@ -104,4 +104,4 @@ include "include/header.html";
     </div>
 </div>
 
-<?php include "include/footer.html" ?>
+<?php include "include/footer.html"; ?>
