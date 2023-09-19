@@ -1,8 +1,9 @@
-<?php require "include/header.html";
-
+<?php 
 require "../HRIS/Model/employee-db-manager.php";
 
 $database = new DB_Manager();
+
+include "include/header.html";
 
 ?>
 
@@ -331,4 +332,4 @@ $database = new DB_Manager();
 
 </main><!-- End #main -->
 
-<?php require "include/footer.html" ?>
+<?php include "include/footer.html" ?>
