@@ -141,37 +141,6 @@ class DB_Manager
         language=:language,
         last_update=NOW() WHERE id=:id";
 
-        // $stmt = $this->db->prepare($sql);
-        // $stmt->bindParam(':firstname', ucwords($_POST['firstname']));
-        // $stmt->bindParam(':middlename', ucwords($_POST['middlename']));
-        // $stmt->bindParam(':lastname', ucwords($_POST['lastname']));
-        // $stmt->bindParam(':preferredname', ucwords($_POST['preferredname']));
-        // $stmt->bindParam(':gender', $_POST['gender']);
-        // $stmt->bindParam(':birthdate', $_POST['dob']);
-        // $stmt->bindParam(':country', $_POST['country']);
-        // $stmt->bindParam(':province', $_POST['province']);
-        // $stmt->bindParam(':city', ucwords($_POST['city']));
-        // $stmt->bindParam(':address', ucwords($_POST['address']));
-        // $stmt->bindParam(':unit', $_POST['unit']);        
-        // $stmt->bindParam(':postalcode', $_POST['postalcode']);
-        // $stmt->bindParam(':email', $_POST['email']);
-        // $stmt->bindParam(':mobile', $_POST['mobile']);
-        // $homephone = isset($_POST['homephone']) ? $_POST['homephone'] : '';
-        // $stmt->bindParam(':homephone', $homephone);
-        // $stmt->bindParam(':position', ucwords($_POST['position']));
-        // $stmt->bindParam(':payclass', $_POST['payclass']);
-        // $status = isset($_POST['status']) ? 'Active' : 'Inactive';
-        // $stmt->bindParam(':status', $status);
-        // $stmt->bindParam(':region', ($_POST['region']));
-        // $stmt->bindParam(':home_store', $_POST['home_store']);
-
-        // $selectedLanguages = isset($_POST['language']) ? $_POST['language'] : [];
-        // $languages = implode(', ', $selectedLanguages);
-
-        // $stmt->bindParam(':language', $languages);
-        // $stmt->bindParam(':id', $id);
-        // $result = $stmt->execute();
-
         $firstname = ucwords($_POST['firstname']);
         $middlename = ucwords($_POST['middlename']);
         $lastname = ucwords($_POST['lastname']);
@@ -194,30 +163,6 @@ class DB_Manager
         $home_store = $_POST['home_store'];
         $selectedLanguages = isset($_POST['language']) ? $_POST['language'] : [];
         $languages = implode(', ', $selectedLanguages);
-
-        //     $sql = "UPDATE employee SET 
-        // firstname=:firstname, 
-        // middlename=:middlename,
-        // lastname=:lastname, 
-        // preferredname=:preferredname,
-        // gender=:gender, 
-        // birthdate=:birthdate,       
-        // country=:country, 
-        // province=:province,
-        // city=:city, 
-        // address=:address, 
-        // unit=:unit,       
-        // postalcode=:postalcode, 
-        // email=:email, 
-        // mobile=:mobile, 
-        // homephone=:homephone, 
-        // position=:position, 
-        // payclass=:payclass, 
-        // status=:status, 
-        // region=:region, 
-        // home_store=:home_store, 
-        // language=:language,
-        // last_update=NOW() WHERE id=:id";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':firstname', $firstname);
