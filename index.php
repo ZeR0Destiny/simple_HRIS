@@ -1,5 +1,6 @@
 <?php 
-require "../HRIS/Model/employee-db-manager.php";
+require_once "../HRIS/Model/employee-db-manager.php";
+require_once "../HRIS/Controller/account-controller.php";
 
 include "include/header.html";
 
