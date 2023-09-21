@@ -6,7 +6,7 @@ spl_autoload_register(function ($class) {
 });
 
 // Only 1 session needed
-session_start();
+// session_start();
 
 $database = new DB_Manager();
 
@@ -32,11 +32,6 @@ if (isset($_POST['submit'])) {
             $valid_2 = $database->check_if_uid_exits($uniq_id);
 
             if ($valid_2 == false) {
-                // if (isset($_POST['homephone'])) {
-                //     $homephone = $_POST['homephone'];
-                // } else {
-                //     $homephone = "";
-                // }
 
                 date_default_timezone_set("America/Toronto");
 
