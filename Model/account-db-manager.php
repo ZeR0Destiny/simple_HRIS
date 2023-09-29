@@ -23,6 +23,7 @@ class Account_DB_Manager
         }
     }
 
+    // Function to select user with correct username and password
     public function login($username, $password)
     {
         $stmt = $this->db->prepare("SELECT * FROM user WHERE username = :username AND password = :password;");
@@ -33,8 +34,10 @@ class Account_DB_Manager
         $result = $stmt->fetch();
     
         if ($result) {
+            session_start();
             $_SESSION['logged_user'] = $result;
-            header("Location: index.php");
+            return true;
         }
+        return false;
     }
 }

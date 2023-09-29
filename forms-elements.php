@@ -1,12 +1,22 @@
 <?php
-require "../HRIS/Model/employee-db-manager.php";
-require "../HRIS/Controller/employee-controller.php";
-
-include "include/header.html";
+require_once "../HRIS/Model/employee-db-manager.php";
+require_once "../HRIS/Controller/employee-controller.php";
+require_once "../HRIS/Controller/account-controller.php";
 
 $database = new DB_Manager();
 
 $get_employee = $database->select_all_employee();
+
+if (!isset($_SESSION['logged_user'])) {
+    header('Location: pages-login.php');
+    exit;
+}
+
+if (isset($_POST['logout'])) {
+    logout();
+}
+
+include_once "include/header.php";
 
 ?>
 
@@ -283,4 +293,4 @@ $get_employee = $database->select_all_employee();
 
 </main><!-- End #main -->
 
-<?php include "include/footer.html"; ?>
+<?php include_once "include/footer.html"; ?>

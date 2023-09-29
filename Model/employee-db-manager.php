@@ -196,9 +196,9 @@ class DB_Manager
     }
 
     // Function to quickly change the status of the employee
-    public function update_employee_status()
+    public function update_employee_status($employee_id)
     {
-        $employee_id = $_GET['employee_status_id'];
+        // $employee_id = $_GET['employee_status_id'];
         $sql = $this->db->prepare("UPDATE employee SET last_update = IF(status != 'Inactive', NOW(), last_update), status = 'Inactive' WHERE id = :id");
         $sql->bindParam(':id', $employee_id);
         $result = $sql->execute();
@@ -209,9 +209,9 @@ class DB_Manager
     }
 
     // Function to delete the select employeee
-    public function delete_employee()
+    public function delete_employee($employee_delete_id)
     {
-        $employee_delete_id = $_GET['employee_delete_id'];
+        // $employee_delete_id = $_GET['employee_delete_id'];
         $sql = "DELETE FROM employee WHERE id = :id;";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(":id", $employee_delete_id);

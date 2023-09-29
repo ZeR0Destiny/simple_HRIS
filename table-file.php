@@ -1,13 +1,25 @@
 <?php
-require "Controller/file-manager-controller.php";
+require_once "Controller/file-manager-controller.php";
+require_once "../HRIS/Controller/account-controller.php";
 
-include "include/header.html";
+$database = new File_DB_Manager();
 
 if (isset($_GET['employee_UID'])) {
     $uid = $_GET['employee_UID'];
 } else {
     $uid = 0;
 }
+
+if (!isset($_SESSION['logged_user'])) {
+    header('Location: pages-login.php');
+    exit;
+}
+
+if (isset($_POST['logout'])) {
+    logout();
+}
+
+include_once "include/header.php";
 
 ?>
 
@@ -599,4 +611,4 @@ if (isset($_GET['employee_UID'])) {
     </div>
 </div>
 
-<?php include "include/footer.html"; ?>
+<?php include_once "include/footer.html"; ?>

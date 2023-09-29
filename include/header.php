@@ -69,16 +69,17 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Log Out</span>
+                        <!-- <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION['logged_user']['name']; ?></span> -->
+                        <h4 class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION['logged_user']['name']; ?></h4>
                     </a>
                     <!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <!-- <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
+                            <h6><?php echo $_SESSION['logged_user']['name']; ?></h6>
                             <span>Web Designer</span>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <hr class="dropdown-divider">
                         </li>
 
@@ -112,15 +113,21 @@
                             <hr class="dropdown-divider">
                         </li> -->
 
-                        <li>
+                        <!-- <li>
                             <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <!-- <span>Sign Out</span> -->
-                                <input class="dropdown-item" type="submit" name="logout" value="Logout">
+                                <i class="bi bi-box-arrow-right"><input class="dropdown-item" type="submit" name="logout" value="Logout">x</i>
+                                <span>Sign Out</span>
                             </a>
-                        </li>
-
-                    </ul><!-- End Profile Dropdown Items -->
+                        </li> -->
+                        <form action="" method="post">
+                            <input type="hidden" name="logout" value="1">
+                            <button type="submit" class="btn btn-link" name="logout">
+                                <i class="bi bi-box-arrow-right"></i> Log Out
+                            </button>
+                            <!-- <i class="bi bi-box-arrow-right"><input type="submit" class="btn btn-link" value="Log Out" name="logout"></i> -->
+                        </form>
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
 
             </ul>
@@ -191,14 +198,15 @@
                 </a>
             </li><!-- End Register Page Nav -->
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="pages-login.php">
                     <i class="bi bi-box-arrow-in-right"></i>
                     <span>Login</span>
                 </a>
-            </li><!-- End Login Page Nav -->
+            </li> -->
+            <!-- End Login Page Nav -->
 
-            
+
 
         </ul>
 

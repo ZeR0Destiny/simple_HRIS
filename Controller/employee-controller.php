@@ -95,11 +95,11 @@ if (isset($_POST['update'])) {
 
 // Retrieve the id of the employee and call the update status function
 if (isset($_GET['employee_status_id'])) {
-    $database->update_employee_status();
+    $database->update_employee_status($_GET['employee_status_id']);
 }
 
 // Retrieve the id of the employee then call the delete and reset increment function
 if (isset($_GET['employee_delete_id'])) {
-    $database->delete_employee();
+    $database->delete_employee($_GET['employee_delete_id']);
     $database->reset_auto_increment();
 }

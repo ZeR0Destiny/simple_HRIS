@@ -2,9 +2,18 @@
 require_once "../HRIS/Model/employee-db-manager.php";
 require_once "../HRIS/Controller/account-controller.php";
 
-include "include/header.html";
-
 $database = new DB_Manager();
+
+if (!isset($_SESSION['logged_user'])) {
+  header('Location: pages-login.php');
+  exit;
+}
+
+if (isset($_POST['logout'])) {
+  logout();
+}
+
+include_once "include/header.php";
 
 ?>
 
@@ -333,4 +342,4 @@ $database = new DB_Manager();
 
 </main><!-- End #main -->
 
-<?php include "include/footer.html"; ?>
+<?php include_once "include/footer.html"; ?>

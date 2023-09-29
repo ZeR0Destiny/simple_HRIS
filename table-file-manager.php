@@ -1,9 +1,21 @@
 <?php
-require "../HRIS/Controller/file-manager-controller.php";
+require_once "../HRIS/Controller/file-manager-controller.php";
+require_once "../HRIS/Controller/account-controller.php";
 
-include "include/header.html";
+$database = new File_DB_Manager();
 
 $get_file_employee = $database->select_and_count_all_employee_file();
+
+if (!isset($_SESSION['logged_user'])) {
+    header('Location: pages-login.php');
+    exit;
+}
+
+if (isset($_POST['logout'])) {
+    logout();
+}
+
+include_once "include/header.php";
 
 ?>
 
@@ -104,4 +116,4 @@ $get_file_employee = $database->select_and_count_all_employee_file();
     </div>
 </div>
 
-<?php include "include/footer.html"; ?>
+<?php include_once "include/footer.html"; ?>
