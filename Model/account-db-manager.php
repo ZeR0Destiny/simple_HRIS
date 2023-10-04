@@ -40,4 +40,10 @@ class Account_DB_Manager
         }
         return false;
     }
+
+    public function register($user)
+    {
+        $stmt = $this->db->prepare("INSERT INTO user VALUES(DEFAULT, :name, :username, :password);");
+        $stmt->execute(array("name" => $user->getName(), "username" => $user->getUsername(), "password" => $user->getPassword()));
+    }
 }
