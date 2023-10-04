@@ -262,7 +262,7 @@ include_once "include/header.php";
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Store Front Position Chart</h5>
+                <h5 class="card-title">Operation Position Chart</h5>
 
                 <!-- Pie Chart -->
                 <div id="pieChart"></div>
