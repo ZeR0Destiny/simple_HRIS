@@ -95,7 +95,7 @@ require_once "../HRIS/Controller/account-controller.php";
                       <input class="btn btn-primary w-100" type="submit" name="login" value="Login">
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
+                      <p class="small mb-0">Don't have account? <a href="pages-register.php">Create an account</a></p>
                     </div>
                   </form>
 
