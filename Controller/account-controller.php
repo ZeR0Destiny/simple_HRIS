@@ -25,16 +25,19 @@ if (isset($_POST["login"])) {
 }
 
 // Function to logout and destroy the session
-function logout() {
+function logout()
+{
     session_destroy();
     header('Location: pages-login.php');
     exit;
 }
 
 if (isset($_POST["register"])) {
-    $new_user = array("name" => ucwords($_POST["name"]), "username" => $_POST["username"], "password" => $_POST["password"]);
+    if (isset($_POST['terms'])) {
+        $new_user = array("name" => ucwords($_POST["name"]), "username" => $_POST["username"], "password" => $_POST["password"]);
 
-    $user = new user($new_user);
+        $user = new user($new_user);
 
-    $database->register($user);
+        $database->register($user);
+    }
 }
