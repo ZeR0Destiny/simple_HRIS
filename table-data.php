@@ -100,7 +100,7 @@ include_once "include/header.php";
 </main>
 
 <!-- Small modal -->
-<div class="modal fade md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="exampleModal">
+<div class="modal fade md"  id="exampleModal" tabindex="-1" aria-labelledby="mySmallModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
