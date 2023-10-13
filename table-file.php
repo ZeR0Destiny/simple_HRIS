@@ -30,7 +30,7 @@ include_once "include/header.php";
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item"><a href="table-file-manager.php">Tables</a></li>
-                <li class="breadcrumb-item active">Employee</li>
+                <li class="breadcrumb-item active">Files</li>
             </ol>
         </nav>
     </div>
@@ -45,7 +45,7 @@ include_once "include/header.php";
                             </li>
                         </div>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="false"><i class="bi bi-house-door-fill"></i></button>
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="false"><i class="bi bi-house-door-fill"></i></button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="benefit-tab" data-bs-toggle="tab" data-bs-target="#benefit" type="button" role="tab" aria-controls="benefit" aria-selected="false" data-category="BEN">Benefits</button>
@@ -78,11 +78,12 @@ include_once "include/header.php";
                             <button class="nav-link" id="work-tab" data-bs-toggle="tab" data-bs-target="#work" type="button" role="tab" aria-controls="work" aria-selected="false" data-category="WKE">Work Eligibility</button>
                         </li>
                     </ul>
+
                     <div class="tab-content pt-2" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table" class="table table-striped table-bordered" width="100%">
+                                    <table id="home_table" class="table table-striped table-bordered" width="100%" data-bs-toggle="table" data-bs-target="#home">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -125,7 +126,7 @@ include_once "include/header.php";
                         <div class="tab-pane fade" id="benefit" role="tabpanel" aria-labelledby="benefit-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table_benefit" class="table table-striped table-bordered" width="100%">
+                                    <table id="benefit_table" class="table table-striped table-bordered" width="100%" data-bs-toggle="table" data-bs-target="#benefit">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -165,10 +166,10 @@ include_once "include/header.php";
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="medical" role="tabpanel" aria-labelledby="medical-tab">
+                        <div class="tab-pane fade" id="medical" role="medical" aria-labelledby="medical-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table_medical" class="table table-striped table-bordered" width="100%">
+                                    <table id="medical_table" class="table table-striped table-bordered" width="100%" data-bs-toggle="table" data-bs-target="medical">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -211,7 +212,7 @@ include_once "include/header.php";
                         <div class="tab-pane fade" id="discipline" role="tabpanel" aria-labelledby="discipline-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table_discipline" class="table table-striped table-bordered" width="100%">
+                                    <table id="discipline_table" class="table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -254,7 +255,7 @@ include_once "include/header.php";
                         <div class="tab-pane fade" id="hiring" role="tabpanel" aria-labelledby="hiring-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table_hiring" class="table table-striped table-bordered" width="100%">
+                                    <table id="hiring_table" class="table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -297,7 +298,7 @@ include_once "include/header.php";
                         <div class="tab-pane fade" id="immigration" role="tabpanel" aria-labelledby="immigration-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table_immigration" class="table table-striped table-bordered" width="100%">
+                                    <table id="immigration_table" class="table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -340,7 +341,7 @@ include_once "include/header.php";
                         <div class="tab-pane fade" id="investigation" role="tabpanel" aria-labelledby="investigation-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table_investigation" class="table table-striped table-bordered" width="100%">
+                                    <table id="investigation_table" class="table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -383,7 +384,7 @@ include_once "include/header.php";
                         <div class="tab-pane fade" id="personal" role="tabpanel" aria-labelledby="personal-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table_personal" class="table table-striped table-bordered" width="100%">
+                                    <table id="personal_table" class="table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -426,7 +427,7 @@ include_once "include/header.php";
                         <div class="tab-pane fade" id="training" role="tabpanel" aria-labelledby="training-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table_training" class="table table-striped table-bordered" width="100%">
+                                    <table id="training_table" class="table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -469,7 +470,7 @@ include_once "include/header.php";
                         <div class="tab-pane fade" id="unclassified" role="tabpanel" aria-labelledby="unclassified-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table_unclassified" class="table table-striped table-bordered" width="100%">
+                                    <table id="unclassified_table" class="table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -512,7 +513,7 @@ include_once "include/header.php";
                         <div class="tab-pane fade" id="work" role="tabpanel" aria-labelledby="work-tab">
                             <div class="card-body">
                                 <div class="dataTable-container">
-                                    <table id="file_table_work" class="table table-striped table-bordered" width="100%">
+                                    <table id="work_table" class="table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
