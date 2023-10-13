@@ -26,7 +26,7 @@ include_once "include/header.php";
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active">Employee</li>
+                <li class="breadcrumb-item active">Files</li>
             </ol>
         </nav>
     </div>
