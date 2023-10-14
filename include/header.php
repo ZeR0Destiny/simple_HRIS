@@ -181,7 +181,7 @@
                     <span>File Manager</span>
                 </a>
             </li>
-
+            <?php if ($_SESSION['logged_user']['name'] == 'Admin') { ?>
             <li class="nav-heading">Pages</li>
 
 
@@ -191,6 +191,7 @@
                     <span>Users</span>
                 </a>
             </li>
+            <?php } ?>
             <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="users-profile.html">
                     <i class="bi bi-person"></i>
