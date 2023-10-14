@@ -46,4 +46,36 @@ class Account_DB_Manager
         $stmt = $this->db->prepare("INSERT INTO user VALUES(DEFAULT, :name, :username, :password);");
         $stmt->execute(array("name" => $user->getName(), "username" => $user->getUsername(), "password" => $user->getPassword()));
     }
+
+    public function all_users()
+    {
+        $stmt = $this->db->query("SELECT * FROM user");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Function to delete the select user
+    public function delete_user($user_id)
+    {
+        $sql = "DELETE FROM user WHERE id = :id;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":id", $user_id);
+        $result = $stmt->execute();
+
+        if ($result) {
+            header("location: table-user.php?user-deleted");
+        }
+    }
+
+    // Function to reset auto increment of user table
+    public function reset_auto_increment()
+    {
+        $sql = $this->db->prepare('SELECT @num := 0;');
+        $sql->execute();
+
+        $sql = $this->db->prepare('UPDATE user SET id = @num := (@num+1);');
+        $sql->execute();
+
+        $sql = $this->db->prepare('ALTER TABLE user AUTO_INCREMENT = 1;');
+        $sql->execute();
+    }
 }
