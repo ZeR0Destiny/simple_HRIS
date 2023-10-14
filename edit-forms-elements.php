@@ -290,14 +290,14 @@ include_once "include/header.php";
                             </div>
 
                             <!-- Javascript to change the employee status  -->
-                            <script src="js/status-control.js"></script>
+                            <script src="js/getStatus.js"></script>
 
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <label class="form-check-label" for="flexSwitchCheckDefault">Status</label>
                                 </div>
                                 <div class="col-sm-3 form-check form-switch">
-                                    <input onclick="getStatus()" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="status" <?php if ($selected_employee['status'] === 'Active') {
+                                    <input onclick="checkStatus()" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="status" <?php if ($selected_employee['status'] === 'Active') {
                                                                                                                                                         echo 'checked';
                                                                                                                                                     } ?>>
                                     <label class="form-check-label" for="flexSwitchCheckDefault" id="preview"><?= $selected_employee['status'] ?></label>
