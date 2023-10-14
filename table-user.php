@@ -54,10 +54,14 @@ include_once "include/header.php";
                                         <td><?= $a_user['password'] ?></td>
                                         <td>
                                             <div>
-                                                <button type="button" class="btn btn-outline-dark btn-sm" id="<?= $a_user['id'] ?>" title="View" data-bs-toggle="tooltip"><i class="bi bi-pencil-fill"></i></button>  
-                                                <a href="" class="btn btn-outline-danger btn-sm" role="button" title="Delete" data-bs-toggle="tooltip">
-                                                    <i class="bi bi-x-circle-fill"></i>
-                                                </a>
+                                                <form action="" method="post">
+                                                    <button type="button" class="btn btn-outline-dark btn-sm" id="<?= $a_user['id'] ?>" title="View" data-bs-toggle="tooltip"><i class="bi bi-pencil-fill"></i></button>
+                                                    <?php if ($a_user['name'] != 'Admin') { ?>
+                                                        <a href="table-user.php?user_ID=<?= $a_user['id'] ?>" class="btn btn-outline-danger btn-sm" role="button" title="Delete" data-bs-toggle="tooltip">
+                                                        <i class="bi bi-x-circle-fill"></i>
+                                                    </a>
+                                                    <?php } ?>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
