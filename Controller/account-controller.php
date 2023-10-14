@@ -41,3 +41,8 @@ if (isset($_POST["register"])) {
         $database->register($user);
     }
 }
+
+if (isset($_GET['user_ID'])) {
+    $database->delete_user($_GET['user_ID']);
+    $database->reset_auto_increment();
+}
