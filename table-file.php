@@ -45,7 +45,7 @@ include_once "include/header.php";
                             </li>
                         </div>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="false"><i class="bi bi-house-door-fill"></i></button>
+                            <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="false"><i class="bi bi-house-door-fill"></i></button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="benefit-tab" data-bs-toggle="tab" data-bs-target="#benefit" type="button" role="tab" aria-controls="benefit" aria-selected="false" data-category="BEN">Benefits</button>
