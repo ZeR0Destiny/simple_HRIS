@@ -55,11 +55,12 @@ include_once "include/header.php";
                                         <td>
                                             <div>
                                                 <form action="" method="post">
-                                                    <button type="button" class="btn btn-outline-dark btn-sm" id="<?= $a_user['id'] ?>" title="View" data-bs-toggle="tooltip"><i class="bi bi-pencil-fill"></i></button>
+                                                    <button type="button" id="<?= $a_user['id'] ?>" class="btn btn-outline-dark btn-sm editbtn" name="Edit" title="Edit" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="bi bi-pencil-fill"></i></button>
+
                                                     <?php if ($a_user['name'] != 'Admin') { ?>
                                                         <a href="table-user.php?user_ID=<?= $a_user['id'] ?>" class="btn btn-outline-danger btn-sm" role="button" title="Delete" data-bs-toggle="tooltip">
-                                                        <i class="bi bi-x-circle-fill"></i>
-                                                    </a>
+                                                            <i class="bi bi-x-circle-fill"></i>
+                                                        </a>
                                                     <?php } ?>
                                                 </form>
                                             </div>
@@ -76,12 +77,12 @@ include_once "include/header.php";
 </main>
 
 <!-- Modal for file upload -->
-<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="#" method="post" id="uploadForm">
+            <form action="#" method="post" id="changePassForm">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="uploadModalLabel">New Password</h5>
+                    <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -89,11 +90,11 @@ include_once "include/header.php";
                         <label for="changePassword" class="form-label">New Password</label>
                         <input type="text" class="form-control" id="changePassword" name="changePassword" required>
                     </div>
-                    <input type="hidden" name="employeeUID" value="employeeUID" id="employeeUID">
                 </div>
+                <input type="hidden" name="userId" value="userId" id="userId">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </div>
             </form>
         </div>
