@@ -32,7 +32,7 @@ class Account_DB_Manager
         $stmt->execute();
 
         $result = $stmt->fetch();
-    
+
         if ($result) {
             session_start();
             $_SESSION['logged_user'] = $result;
@@ -77,5 +77,30 @@ class Account_DB_Manager
 
         $sql = $this->db->prepare('ALTER TABLE user AUTO_INCREMENT = 1;');
         $sql->execute();
+    }
+
+    // Function to change password
+    public function change_password($id, $password)
+    {
+        $sql = "UPDATE user SET password = :password WHERE id = :id;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":password", $password);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+    }
+
+    public function verify_existing($username, $password)
+    {
+        $sql = "SELECT * FROM user WHERE username = :username OR password = :password;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":password", $password);
+        $result = $stmt->execute();
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
