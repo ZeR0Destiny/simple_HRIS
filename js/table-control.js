@@ -31,18 +31,18 @@ $(document).ready(function () {
         url: "emp_info.php",
         type: "post",
         data: {
-            emp_id: id_emp,
+          emp_id: id_emp,
         },
         success: function (get_employee) {
-            $(".modal-body").html(get_employee);
-            $("#exampleModal").modal("show");
+          $(".modal-body").html(get_employee);
+          $("#exampleModal").modal("show");
         },
         error: function (xhr, status, error) {
-            console.error(error);
-            // Handle the error, e.g., display an error message
+          console.error(error);
+          // Handle the error, e.g., display an error message
         },
-    });
-    
+      });
+
 
     });
   });
