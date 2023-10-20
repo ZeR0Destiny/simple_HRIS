@@ -57,7 +57,7 @@ include_once "include/header.php";
                                             <div class="row">
                                                 <div class="col">
                                                     <a href="table-file.php?employee_UID=<?= $file_employee['UID'] ?>" class="btn btn-outline-dark btn-sm" title="View Files" data-bs-toggle="tooltip"><i class="bi bi-file-earmark-diff-fill"></i></a>
-                                                    <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#uploadModal" data-employee-uid="<?= $file_employee['UID'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload"><i class="bi bi-file-earmark-arrow-up-fill"></i></button>
+                                                    <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#uploadModal" data-employee-uid="<?= $file_employee['UID'] ?>" title="Upload"><i class="bi bi-file-earmark-arrow-up-fill"></i></button>
                                                 </div>
                                             </div>
                                         </td>
