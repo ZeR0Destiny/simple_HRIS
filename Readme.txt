@@ -1,4 +1,8 @@
-Thanks for downloading this template!
+* * * * * * * * * * * * * * * * * * * *
+
+This project template is from the following website.
+
+* * * * * * * * * * * * * * * * * * * *
 
 Template Name: NiceAdmin
 Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
