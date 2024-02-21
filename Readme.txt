@@ -1,6 +1,6 @@
 * * * * * * * * * * * * * * * * * * * *
 
-This project template is from the following website.
+This project template is from the following website. 
 
 * * * * * * * * * * * * * * * * * * * *
 
@@ -11,7 +11,7 @@ License: https://bootstrapmade.com/license/
 
 
 * * * * * * * * * * * * * * * * * * * *
-A simple HRIS
+How to set-up database connection:
 
 The "Database-Tables/" folder contains sql tables, will need to create a Database called "rfbt". 
 Can also create a database name of choice and change the $dbname to the correct database name for "employee-db-manager.php", "file-db-manager.php" and "account-db-manager.php".
